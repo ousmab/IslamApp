@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
+        </head>
+        <body>
+                <nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="mynav">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                         <div id="mynav1"> <a class="navbar-brand"   href="#" id="mynav1">IslamApp</a></div>
+                          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item active">
+                              <a class="nav-link"  href="#" id="mynav1">Conference <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" id="mynav" href="#">Cours</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#" id="mynav1">Articles</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#" id="mynav1">Vendredi</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#" id="mynav1">Geolocalisation</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#" id="mynav1">Questions/reponses</a>
+                                </li>
+                              </ul>
+                              <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="text" placeholder="recherche">
+                                <button class="btn btn-success my-2 my-sm-0" type="submit">recherche</button>
+                              </form>
+                            </div>
+                          </nav>
+                           <div class="alert alert-success marouf">
+                          
+                            <h1 class="col-md-8">La plate forme d'apprentissage et connaissance de l'islam</h1>
+                            
+                                
+                                  <div class="mydiv2">
+                                   <center> <h4>la science du Tadjiwd <button class="btn btn-primary">En savoir plus</button> </h4> </center>
+                                    </div>
+                              </div>
+                              <div class="container">
+                                      <div class="row row-offcanvas row-offcanvas-right">
+                                  @include('include.content')
+                                  @include('include.sidebardroite')
+                                  
+                              </div>
+                             
+                            </div>
+                            @include('include.footervue')
+        </body>
+</html>
