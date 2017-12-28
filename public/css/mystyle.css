@@ -152,8 +152,9 @@
     color:white;
     display: block;
 }
-#pied{
+#footer{
 background-color:  #009688;
+padding-top:30px;
 }
 .saleh{
     color: white;
@@ -165,4 +166,68 @@ background-color:  #009688;
 #titre
 {
   color:white;
+}
+
+/****ICON SOCIALS************/
+.socials{ 
+  text-align:center;
+  
+}
+.socials>li{ 
+  background-color:#009688;
+  margin:5px;
+  width:50px;
+  height:50px;
+  border:1px solid #fff;
+  border-radius:50px;
+
+  text-align:center;
+  line-height:50px;
+}
+.fa-facebook,.fa-google-plus,.fa-twitter { 
+  font-size:25px;
+  font-weight:bolder;
+  color:#fff;
+  width:inherit;
+}
+.faicon-facebook:hover{ 
+  background-color:#3B5998;
+  transition:0.5s;
+}
+
+.faicon-google-plus:hover{
+  background-color:#DB4A39;
+  transition:0.5s;
+}
+.faicon-twitter:hover{
+  background-color:#00ACEE;
+  transition:0.7s;
+}
+.social{ 
+  width:25px;
+  height:25px;
+  border-radius:25px;
+  background-color:#fff;
+  line-height:25px;
+}
+/**********************************/
+
+.copy-right{ 
+  font-size:12px;
+  color:#fff;
+  width:300px;
+  margin:auto;
+  border-top:1px #fff solid;
+  
+}
+.footer-links >a{ 
+  color:#fff;
+  text-decoration:none;
+}
+.newsletter-form{ 
+  margin:9% 0 0 0;
+}
+
+.footer-links>a:hover{ 
+  text-decoration:underline;
 }
