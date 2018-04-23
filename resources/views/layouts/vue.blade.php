@@ -3,6 +3,7 @@
 <head>
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
         </head>
         <body>

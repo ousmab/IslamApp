@@ -23,6 +23,10 @@
 {
   display: none;
 }
+#perso:hover
+{
+  display:block;
+}
 #personav
 {
   background: #263238;
@@ -66,7 +70,7 @@
   @media (min-width: 768px) {
     .sidebar {
       color:white;
-      position: fixed;
+      position:absolute;
       top: 51px;
       bottom: 0;
       left: 0;
@@ -79,8 +83,9 @@
       border-right: 1px solid #263238;
     }
   }
-  
-  
+  .sidebar{
+    height: 1000px;
+  }
   
   
   /*
@@ -231,3 +236,37 @@ padding-top:30px;
 .footer-links>a:hover{ 
   text-decoration:underline;
 }
+#themediv
+{
+  float: left;
+  width: 800px;
+  height: 700px;
+}
+#inputtheme
+{
+ margin-left: -110px;
+  
+}
+.mycontent
+{
+margin-left: -140px;
+width: 900px;
+}
+.align
+{
+  display: inline-block;
+}
+.form-control-inline {
+  width: auto;
+  float:left;
+  margin-right: 5px;
+}
+#mis
+{
+  margin-left: 300px;
+}
+
+#leila2
+{
+  height: 300px;
+} 

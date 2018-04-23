@@ -16,6 +16,8 @@
      <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
      <link href="{{ asset('css/bootstrap-iso.css') }}" rel="stylesheet">
      <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/stylejq.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -79,17 +81,27 @@
                   @else
                   @include('include.sidebar_admin')
                   @endguest
-              <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+              <div class=" col-md-16 col-md-offset-2 main">
               @yield('content')
               </div>
            </div>
           </div>  
-       
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script>
+      $( function() {
+		$( "#datepicker1,#datepicker2" ).datepicker({
+			showWeek: true,
+			firstDay: 1,
+            dateFormat: 'yy-mm-dd'
+		});
+	} );
+    </script>
+         @yield('monjs')
       <script>
         //fonction pour afficher ou cacher les sous menus de administration
          function afficher(idvaleur)
