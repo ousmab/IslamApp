@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('addTheme',function()
+{
+    return view('/home');
+}
+);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('accueil');
+Route::get('/admin.theme',function()
+            {
+             return view('admin.theme_liste');
+            }
+);
