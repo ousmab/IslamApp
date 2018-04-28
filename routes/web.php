@@ -28,3 +28,7 @@ Route::get('/admin.theme',function()
              return view('admin.theme_liste');
             }
 );
+
+
+/*--GESTION DES QUESTIONS REPONSES------------------------
+-------------------------------------------------------------------------------*/
