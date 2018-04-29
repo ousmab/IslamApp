@@ -32,3 +32,5 @@ Route::get('/admin.theme',function()
 
 /*--GESTION DES QUESTIONS REPONSES------------------------
 -------------------------------------------------------------------------------*/
+Route::get('/question','QuestionController@home')->name('question');
+Route::get('/question/poser_question','QuestionController@askQuestion')->name('poserQuestion');
