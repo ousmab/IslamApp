@@ -33,7 +33,7 @@
                                   <a class="nav-link" href="#" id="mynav1">Geolocalisation</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="#" id="mynav1">Questions/reponses</a>
+                                  <a class="nav-link" href="{{ route('question') }}" id="mynav1">Questions/reponses</a>
                                 </li>
                               </ul>
                               <form class="form-inline my-lg-0">
@@ -52,10 +52,9 @@
                                     </div>
                               </div>
                               <div class="container">
-                                      <div class="row row-offcanvas row-offcanvas-right">
-                                  @include('include.content')
-                                  @include('include.sidebardroite')
-                                  
+                               <div class="row row-offcanvas row-offcanvas-right">
+                                  @yield('container')
+                                  @include('include.sidebardroite') 
                               </div>
                              
                             </div>

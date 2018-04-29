@@ -41,3 +41,9 @@ Route::post('addTheme',function()
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('accueil');
+
+
+/*--GESTION DES QUESTIONS REPONSES------------------------
+-------------------------------------------------------------------------------*/
+Route::get('/question','QuestionController@home')->name('question');
+Route::get('/question/poser_question','QuestionController@askQuestion')->name('poserQuestion');
