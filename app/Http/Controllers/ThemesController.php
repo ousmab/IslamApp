@@ -10,6 +10,8 @@ use Response;
 use Illuminate\Support\Facades\input;
 use  App\http\Requests;
 use App\Http\Requests\ThemeRequest;
+use App\Rules\ThemePublier;
+use Carbon\Carbon;
 
 class ThemesController extends Controller
 {
@@ -62,7 +64,42 @@ class ThemesController extends Controller
        public function addTheme(Request $request)
           {
                     $theme = new Theme;
-                    $requestTheme= new ThemeRequest;
+                    if($request->theme_publi==false)
+                          {
+                            $themes=Theme::where('is_brouillon',false)->where('is_archive',false)->get();
+                               if(!($themes->isEmpty()))
+                                  {
+                                    return response()->json(array('errors'=>['theme_publi'=>'IL YA DEJA UN THEME EN LIGNE']));
+                                  }
+                                  else{
+                            $validator = Validator::make($request->all(),[
+                                'theme_titre' => 'required|min:3',
+                                'resume' => 'required|min:5'
+        
+                            ]);
+                                  }
+                            if($validator->fails())
+                            {
+                            
+                            return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
+                              
+                            }
+                        
+                             else{
+                               $carbon = Carbon::today();
+                                 $id=Auth::user()->id;
+                                 $theme->titre=$request->theme_titre;
+                                 $theme->resume= $request->input('resume');
+                                 $theme->date_publication = $carbon;
+                                 $theme->date_publication->format('Y-d-m'); 
+                                 $theme->id_user=$id;
+                                 $theme->is_brouillon= false;
+                                 $theme->is_archive= false;
+                                 $theme->save();
+                                 return response()->json($theme); 
+                             }
+                          }
+                          else{
                    $validator = Validator::make($request->all(),$theme->rules);
                      if($validator->fails())
                         {
@@ -83,6 +120,7 @@ class ThemesController extends Controller
                             $theme->save();
                             return response()->json($theme);
                        }
+                    }
           }
 
     /**

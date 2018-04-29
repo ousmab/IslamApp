@@ -8,9 +8,12 @@
     <th>NUM</th>
        <th>Theme</th>
        <th>Nombre de question </th>
-       <th class="text-center" width="150px">
+       <th class="text-center" width="300px">
          <a href="#" class="create-modal btn btn-success btn-sm">
           <i class="glyphicon glyphicon-plus"></i>
+         </a>
+         <a href="#" class="public-modal btn btn-primary btn-sm">
+          PUBLIER THEME
          </a>
        </th>
     </tr>
@@ -144,10 +147,22 @@
      {
          $('#create').modal('show');
          $('.form-horizontal').show();
+         $('#themepubli').addClass('hidden')
+         $('#divdate').removeClass('hidden')
+         $('#add').removeClass('hidden')
          $('.modal-title').text('sauveguarder theme');
              }
      );
-     //ajout de theme
+     $(document).on('click','.public-modal',function()
+     {
+        $('#create').modal('show');
+        $('#divdate').addClass('hidden');
+        $('#add').addClass('hidden')
+        $('#themepubli').removeClass('hidden')
+         $('.modal-title').text('Publication de theme');  
+     }
+     )
+     //ajout de theme (theme_publi permet de savoir si c'est une publication ou un enregistrement de theme)
      $('#add').click(function()
           {
             $.ajax(
@@ -157,8 +172,9 @@
               data: {
                   '_token' : $('input[name=_token]').val(),
                   'theme_titre' : $('input[name=theme_titre]').val(),
-                  'theme_date' : $('input[name=theme_date]').val(),
+                  'date_publication' : $('input[name=theme_date]').val(),
                   'resume' : $('#resume').val(),
+                  'theme_publi': false,
               },
               success: function(data){
                          if((data.errors))
@@ -206,6 +222,42 @@
            $("#titre").val();
            $('#resume').val();
           }); 
+          //enregistrement theme
+          $('#themepubli').click(function()
+             {
+               // var fullDate = new Date();
+                $.ajax(
+          {
+              type: 'POST',
+              url: 'addTheme',
+              data: {
+                  '_token' : $('input[name=_token]').val(),
+                  'theme_titre' : $('input[name=theme_titre]').val(),
+                  'resume' : $('#resume').val(),
+              },
+              success: function(data){
+                         if((data.errors))
+                           {
+                        $.each(data.errors, function(key,value){
+                            $('#error').removeClass('hidden')
+                        $('#error').append(value) 
+                        })
+                           }
+            else{
+                $('.error').remove();
+                $('.table').append("<tr class='theme"+ data.id+"'>"+"<th>"+data.id+"</th>"
+                +"<th>"+data.titre+"</th>"+"<th>10</th>"+"<th><a href='#' class='show-modal btn btn-info btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='fa fa-eye'></i></a>"
+                +"<a href='#' class='edit-modal btn btn-warning btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='glyphicon glyphicon-pencil'></i></a>"
+                +"<a href='#' class='delete-modal btn btn-danger btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='glyphicon glyphicon-trash'></i></a>"+
+                "</th></tr>");
+                  alert('ENREGISTREMENT TERMINER')
+                  $('#create').modal('hide');
+         $('.form-horizontal').hide();
+            }
+              },
+          })
+              
+             })
           //vue modal
           $(document).on('click','.show-modal',function(){
               var titre = $(this).data('titre');

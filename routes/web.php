@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AccueilController@index');
 Route::get('archive', function () {
     return view('admin/archive');
 });

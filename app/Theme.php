@@ -10,11 +10,14 @@ class Theme extends Model
     public $rules =
         [
               'theme_titre' => 'required|min:3',
-              'theme_date'=>'required',
+              'date_publication'=>'required|unique:themes',
                'resume' => 'required|min:5'
         ]
         ;
       protected $dates = ['date_publication'];
-        
+      public function getFirstNameAttribute($value)
+      {
+          return ucfirst($value);
+      }
 
 }

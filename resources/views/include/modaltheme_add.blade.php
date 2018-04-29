@@ -18,7 +18,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('theme_date') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('theme_date') ? ' has-error' : '' }}" id="divdate">
                             <label for="theme_titre"class="control-label col-sm-2">Date de publication</label>
 
                             <div class="col-sm-10">
@@ -44,8 +44,9 @@
                     </form>
       </div>
        <div class="modal-footer">
-          <button type="submit" id="add" class="btn btn-warning"></span class="glyphicon glyphicon-plus"></span>Sauvegarder theme</button>
-          <button type="button"  class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>fermer</button>
+          <button type="submit" id="add" class="btn btn-success"></span class="glyphicon glyphicon-plus"></span>Enregistrer</button>
+          <button id="themepubli" type="button"  class="btn btn-primary"></span class="glyphicon glyphicon-remobe"></span>PUBLIER THEME</button>
+          <button type="button"  class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>annuler</button>
         </div>
 </div>
 </div>

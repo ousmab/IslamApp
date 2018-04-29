@@ -48,7 +48,13 @@
                             
                                 
                                   <div class="mydiv2">
-                                   <center> <h4>la science du Tadjiwd <button class="btn btn-primary">En savoir plus</button> </h4> </center>
+                                   <center> <h4>
+                                   @if($theme)
+                                   {{ $theme->titre}}
+                                   @else
+                                     PAS DE THEME PUBLIER
+                                     @endif
+                                   <button class="btn btn-primary">Poser une question</button> </h4> </center>
                                     </div>
                               </div>
                               <div class="container">
