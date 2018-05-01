@@ -33,7 +33,7 @@
                                   <a class="nav-link" href="#" id="mynav1">Geolocalisation</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="#" id="mynav1">Questions/reponses</a>
+                                  <a class="nav-link" href="{{ route('question') }}" id="mynav1">Questions/reponses</a>
                                 </li>
                               </ul>
                               <form class="form-inline my-lg-0">

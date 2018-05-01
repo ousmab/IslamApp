@@ -1,0 +1,7 @@
+islam_app:
+  extends:
+    file: common.yml
+    service: islam_app
+  volumes:
+    - ./app
+  container_name: islam_app
