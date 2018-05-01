@@ -5,6 +5,7 @@
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
      <div class="modal-body" id="leila2">
+     
      <p class=" text-center alert alert-danger hidden" id="error"><ul></ul></p>
      <form class="form-horizontal" method="POST" role="form" >
                         {{ csrf_field() }}
@@ -42,8 +43,11 @@
                             </div>
                         </div>
                     </form>
+                   
+                           
       </div>
        <div class="modal-footer">
+      
           <button type="submit" id="add" class="btn btn-success"></span class="glyphicon glyphicon-plus"></span>Enregistrer</button>
           <button id="themepubli" type="button"  class="btn btn-primary"></span class="glyphicon glyphicon-remobe"></span>PUBLIER THEME</button>
           <button type="button"  class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>annuler</button>

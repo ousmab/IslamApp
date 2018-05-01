@@ -21,8 +21,32 @@
     <tbody>
       {{csrf_field()}}
       <?php $n=1; ?>
+      @if($theme_en_ligne)
+      <tr class="success theme{{$theme_en_ligne->id}}">
+         <th> {{$n++}}
+         </th>
+         <th> 
+         {{$theme_en_ligne->titre}}
+         </th>
+         <th>
+          10
+         </th>
+         <th>
+          <a href="#" class="show-modal btn btn-info btn-sm" data-id="{{$theme_en_ligne->id}}" data-titre="{{$theme_en_ligne->titre}}" data-resume="{{$theme_en_ligne->resume}}" data-date="{{$theme_en_ligne->date_publication}}">
+          <i class='fa fa-eye'></i>
+          </a>
+          <a href="#" class="edit-modal btn btn-warning btn-sms" data-id="{{$theme_en_ligne->id}}" data-titre="{{$theme_en_ligne->titre}}" data-resume="{{$theme_en_ligne->resume}}" data-date="{{$theme_en_ligne->date_publication}}" >
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>
+          <a href="#" class="archive-modal btn btn-success btn-sms" data-id="{{$theme_en_ligne->id}}" data-titre="{{$theme_en_ligne->titre}}" >
+            <!--<i class="glyphicon glyphicon-trash"></i> -->
+            <i class="fa fa-archive" aria-hidden="true"></i>
+          </a>
+         </th>
+            </tr>
+            @endif
       @foreach($theme as $key => $value)
-     <tr class="theme{{$value->id}}">
+     <tr class=" theme{{$value->id}}">
          <th> {{$n++}}
          </th>
          <th> 
@@ -126,6 +150,7 @@
                         Est voua sure de suprimer <span class="titre"></span>
                         <span class="hidden id"></span>
                     </div>
+                    
                 <div class="modal-footer">
                     <button type="buttton" class="btn actionBtn" data-dismiss="modal">
                         <span id="footer_action_button" class="glyphicon"></span>
@@ -137,6 +162,8 @@
         </div>
     </div>
 </div>
+       
+
 @endsection
 @section('monjs')
  <script>
@@ -264,6 +291,8 @@
               var date = $(this).data('date');
               var resume = $(this).data('resume');
              $('#show').modal('show');
+             $("#myarchive").addClass('hidden');
+             $('#archives').addClass('hidden')
              $('.modal-titre').text('show-theme');
              $('#show-modal').append("<div id='contentshow'><p>TITRE: "+titre+"</p><p>RESUME: "+resume+"</p><p>Status du theme:</p></div>");
           });
@@ -304,6 +333,34 @@
                   }
               });
           });
+           $(document).on('click','.archive-modal',function(){
+            $('#show').modal('show');
+            $("#myarchive").removeClass('hidden');
+            $('#archives').removeClass('hidden')
+            var titre = $(this).data('titre')
+           // var titre = $(this).data('titre');
+            var id = $(this).data('id')
+            $('#numarchive').text(id)
+            $('#idarchive').append(id);
+           })
+           $('#archives').click(function()
+           {
+            var id =$('#numarchive').text()
+            $.ajax({
+                   type: 'POST',
+                   url: 'archivertheme',
+                   data: {
+                    '_token' : $('input[name=_token]').val(),
+                    'id': $('#numarchive').text(),
+                   },
+                   success: function(data){
+                    $('.theme'+$('.id').text()).remove()
+                    $('#show').modal('hide')
+                    alert('theme archiver')
+                   }
+
+               })
+           });
            $(document).on('click','.delete-modal',function(){
                            $('#footer_action_button').text("SUPRIMER");
                            $('#footer_action_button').removeClass('glyphicon-check')

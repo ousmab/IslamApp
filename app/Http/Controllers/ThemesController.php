@@ -22,8 +22,9 @@ class ThemesController extends Controller
      */
     public function index()
     {
-        $theme = Theme::all();
-        return view('admin.theme_liste',compact('theme'));
+        $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
+        $theme = Theme::all()->where('is_brouillon',true)->where('is_archive',false);
+        return view('admin.theme_liste',compact('theme','theme_en_ligne'));
     }
 
     /**
@@ -177,5 +178,12 @@ class ThemesController extends Controller
            $theme = Theme::find($request->id)->delete();
            return response()->json();
        }
+       public function archivageTheme(Request $request)
+        {
+            $theme = Theme::find($request->id);
+            $theme->is_archive = true;
+            $theme->save();
+            return response()->json($theme);
+        }
     
 }

@@ -15,7 +15,7 @@ class AccueilController extends Controller
      $theme =  $theme_en_ligne;
      $carbon = Carbon::today();
      $carbon->format('Y-d-m');
-     $themecompare=Theme::where('date_publication',$carbon)->first();
+     $themecompare=Theme::where('date_publication',$carbon)->where('is_brouillon',true)->first();
         if($themecompare)
             {
                 $theme->is_archive = true;

@@ -1,5 +1,5 @@
 <?php
-
+use App\Theme;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,8 @@
 
 Route::get('/', 'AccueilController@index');
 Route::get('archive', function () {
-    return view('admin/archive');
+    $themes= Theme::all()->where('is_archive',true);
+    return view('admin/archive',compact('themes'));
 });
 Route::get('brouillon', function () {
     return view('admin/brouillon');
@@ -29,6 +30,7 @@ Route::post('addTheme',function()
      Route::POST('addTheme','ThemesController@addTheme');
      Route::POST('themeUpdate','ThemesController@update');
      Route::POST('deleteTheme','ThemesController@deleteTheme');
+     Route::POST('archivertheme','ThemesController@archivageTheme');
    /* Route::get('/admin.theme',function()
     {
      return view('admin.theme_liste');

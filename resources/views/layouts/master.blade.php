@@ -59,7 +59,8 @@
                               </div>
                               <div class="container">
                                       <div class="row row-offcanvas row-offcanvas-right">
-                                  @include('include.content')
+                                 
+                                  @yield('container')
                                   @include('include.sidebardroite')
                                   
                               </div>

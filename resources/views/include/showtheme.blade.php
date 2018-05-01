@@ -6,9 +6,12 @@
                 <h4 claas="modal-title"></h4>
             </div>
             <div class="modal-body" id="show-modal">
-               
+               <p id="myarchive" class="hidden">Voulez vous archiver le theme <em id="idarchive"></em>
+               <span class="hidden" id="numarchive"></span>
+                </p>
             </div>
                 <div class="modal-footer">
+                <button type="submit" id="archives" class="btn btn-success"></span class="glyphicon glyphicon-plus"></span>Archiver</button>
                     <button type="buttton" class="btn btn-warning" data-dismiss="modal" id="closeshow">
                         <span class="glyphicon glyphicon-remove"></span>close
                     </button>
