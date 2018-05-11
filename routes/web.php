@@ -45,5 +45,6 @@ Route::get('/home', 'HomeController@index')->name('accueil');
 
 /*--GESTION DES QUESTIONS REPONSES------------------------
 -------------------------------------------------------------------------------*/
-Route::get('/question','QuestionController@home')->name('question');
-Route::get('/question/poser_question','QuestionController@askQuestion')->name('poserQuestion');
+Route::get('/question','QuestionController@index')->name('question');
+Route::get('/question/poser_question/{id}','QuestionController@askQuestion');
+Route::post('/question/poser_question/addquestion','QuestionController@addQuestion');

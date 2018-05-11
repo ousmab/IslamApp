@@ -1,20 +1,113 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use  App\http\Requests;
 use Illuminate\Http\Request;
-
+use App\Theme;
+use App\Question;
+use Validator;
+use Response;
+use Carbon\Carbon;
 class QuestionController extends Controller
 {
-
-	/*--retourne la page d'accueil lorsqu'on clique sur question reponses
-	---------------------------------------------------------------------------*/
-    public function home(){
-
-    	return view("questions.home");
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view("questions.home");
     }
 
-    public function askQuestion(){
-    	return view("questions.askQuestionForm");
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+    public function askQuestion($theme_id){
+        $theme = Theme::find($theme_id);
+            
+    	return view("questions.askQuestionForm",compact('theme'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        return 'salu';
+    }
+    public function addQuestion(Request $request)
+    {
+        $question = new Question;
+        $validator = Validator::make($request->all(),$question->rules);
+        if($validator->fails())
+           {
+           
+               return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
+           }
+           else{
+            $carbon = Carbon::today();
+              $question->contenue = $request->question;
+              $question->emeteur = $request->nom;
+              $question->id_theme = (int) $request->idtheme;
+              $question->email = $request->email;
+              $question->date_creation = $carbon;
+              $question->is_private = $request->status === 'true' ? true:false;
+             $question->save();
+             return 'pas erreur';
+           }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

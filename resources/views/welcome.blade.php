@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('theme')
+  @include('include.themebanire')
+@endsection
 @section('container')
   <div class="col-12 col-md-9">
       <div class="row">

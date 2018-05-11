@@ -45,19 +45,15 @@
                            <div class="alert alert-success marouf">
                           
                             <h1 class="col-md-8">La plate forme d'apprentissage et connaissance de l'islam</h1>
-                            
+                            <div class="mydiv2">
+                            @yield('theme')
+                            </div>
                                 
-                                  <div class="mydiv2">
-                                   <center> <h4>
-                                   @if($theme)
-                                   {{ $theme->titre}}
-                                   @else
-                                     PAS DE THEME PUBLIER
-                                     @endif
-                                   <button class="btn btn-primary">Poser une question</button> </h4> </center>
-                                    </div>
+                           
                               </div>
+                             
                               <div class="container">
+                             
                                       <div class="row row-offcanvas row-offcanvas-right">
                                  
                                   @yield('container')
@@ -67,5 +63,9 @@
                              
                             </div>
                             @include('include.footervue')
+                            <script src="{{ asset('js/jquery.js') }}"></script>
+                            <script src="{{ asset('js/bootstrap.js') }}"></script>
+                         <script src="{{ asset('js/mdb.min.js') }}"></script>
+                        @yield('script')
         </body>
 </html>

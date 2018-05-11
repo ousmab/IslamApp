@@ -93,6 +93,17 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
+    //fonction pour afficher ou cacher les sous menus de administration
+    function afficher(idvaleur)
+               {
+                if($(idvaleur).is(":hidden"))
+                        {
+                            $(idvaleur).show();
+                        }
+                        else{
+                            $(idvaleur).hide();
+                        }
+               }
       $( function() {
 		$( "#datepicker1,#datepicker2" ).datepicker({
 			showWeek: true,
@@ -103,17 +114,6 @@
     </script>
          @yield('monjs')
       <script>
-        //fonction pour afficher ou cacher les sous menus de administration
-         function afficher(idvaleur)
-               {
-                if($(idvaleur).is(":hidden"))
-                        {
-                            $(idvaleur).show();
-                        }
-                        else{
-                            $(idvaleur).hide();
-                        }
-               }
       $('#navcach').click(function(){
              var id='#ulmenu';
                 afficher(id);
@@ -126,9 +126,13 @@
                             $('#ulmenu').hide();
                         } */
               });
-             
-
-   
       </script>
+      @yield('script.question')
+       <script>
+        $('#navquestion').click(function(){
+             var id='#ulmenu2';
+                afficher(id);
+        });
+       </script>
 </body>
 </html>
