@@ -14,23 +14,22 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                          <div id="mynav1"> 
                           <a class="navbar-brand"   href="#" id="mynav1">
-                            <img style="width: 50%;height: 50%;text-shadow: 0px 5px #000" src="{{ asset('images/small_logo.png') }}" alt=""></a>
+        <img style="width: 50%;height: 50%;text-shadow: 0px 5px #000" src="{{ asset('images/small_logo.png') }}" alt=""></a>
                          </div>
                           <ul style="margin-top: 60px !important" class="navbar-nav mr-sm-5 mt-2 mt-lg-0">
                             <li class="nav-item active">
-                              <a class="nav-link"  href="#" id="mynav1">Conference <span class="sr-only">(current)</span></a>
+                              <a class="nav-link"  href="{{route('accueil')}}" id="mynav1">Accueill<span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
-                                    <a class="nav-link" id="mynav" href="#">Cours</a>
+                          
+                                
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{{url('/localisation')}}" id="mynav1">Geolocalisation</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="#" id="mynav1">Articles</a>
+                                  <a class="nav-link" href="{{url('/localisation')}}" id="mynav1">Application mobile</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="#" id="mynav1">Vendredi</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#" id="mynav1">Geolocalisation</a>
+                                  <a class="nav-link" href="{{url('/localisation')}}" id="mynav1">Les ecoles</a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link" href="{{ route('question') }}" id="mynav1">Questions/reponses</a>
@@ -43,8 +42,10 @@
                             </div>
                      </nav>
                            <div class="alert alert-success marouf">
-                          
-                            <h1 class="col-md-8">La plate forme d'apprentissage et connaissance de l'islam</h1>
+                           <h3 class="col-md-8">
+                    
+                           IslamApp La plate forme d'apprentissage et connaissance de l'islam</h3>
+
                             <div class="mydiv2">
                             @yield('theme')
                             </div>
@@ -66,6 +67,7 @@
                             <script src="{{ asset('js/jquery.js') }}"></script>
                             <script src="{{ asset('js/bootstrap.js') }}"></script>
                          <script src="{{ asset('js/mdb.min.js') }}"></script>
+                         @yield('script.map')
                         @yield('script')
         </body>
 </html>

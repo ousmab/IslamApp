@@ -106,8 +106,23 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+         
+       $questions = Question::find($request->id);
+       $questions->delete();
+        return response()->json(array('response'=>['id'=>$questions->id]));
     }
+    public function validerQuestion(Request $request)
+       {
+        $questions = Question::find($request->id);
+         $questions->is_approuve=true;
+         $questions->update();
+         return response()->json(array('response'=>['id'=>$questions->id]));
+       }
+       public function Vuequestion()
+          {
+            $questions = Question::where('is_approuve',false)->paginate(5);
+            return view('admin.question_valider',compact('questions'));
+          }
 }

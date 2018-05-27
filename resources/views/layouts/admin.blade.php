@@ -134,5 +134,6 @@
                 afficher(id);
         });
        </script>
+       @yield('script.question2')
 </body>
 </html>

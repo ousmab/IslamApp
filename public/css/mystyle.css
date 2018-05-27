@@ -19,6 +19,10 @@
   width: 230px;
   white-space: 230px;
 }
+#ulmenu2
+{
+  display: none;
+}
 .menujs
 {
   display: none;
@@ -383,5 +387,8 @@ width: 900px;
 #myreponse
 {
   margin-top: 40px;
+}
+#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  height:400px;
 }
 

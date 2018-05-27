@@ -31,6 +31,9 @@ Route::post('addTheme',function()
      Route::POST('themeUpdate','ThemesController@update');
      Route::POST('deleteTheme','ThemesController@deleteTheme');
      Route::POST('archivertheme','ThemesController@archivageTheme');
+     Route::get('vue_question','QuestionController@Vuequestion');
+     Route::GET('valider_question','QuestionController@validerQuestion');
+     Route::GET('delete_question','QuestionController@destroy');
    /* Route::get('/admin.theme',function()
     {
      return view('admin.theme_liste');
@@ -48,3 +51,8 @@ Route::get('/home', 'HomeController@index')->name('accueil');
 Route::get('/question','QuestionController@index')->name('question');
 Route::get('/question/poser_question/{id}','QuestionController@askQuestion');
 Route::post('/question/poser_question/addquestion','QuestionController@addQuestion');
+//--MODULE GEOLOCALISATION-----------
+Route::get('/localisation',function()
+   {
+       return view('geolocalisation.localisation');
+   });
