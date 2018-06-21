@@ -15,7 +15,7 @@
                   <li><a id="navquestion" class="mymenu mtheme menujs" href="#"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp; QUESTION-REPONSE <span class="fa fa-chevron-down"></a>
                   <ul class="nav child_menu" id="ulmenu2">
                       <li><a href="{{url('vue_question')}}" class="menunavs"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;Valider une question </a></li>
-                      <li><a href="{{url('themes')}}" class="menunavs"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Repondre aux question</a></li>
+                      <li><a href="{{url('vue_reponse_question')}}" class="menunavs"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Repondre aux question</a></li>
                       <li><a href="{{url('brouillon')}}" class="menunavs"><i class="fa fa-hourglass-end" aria-hidden="true"></i>&nbsp;Conclure un theme</a></li>
                     </ul>
                   

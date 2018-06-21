@@ -34,6 +34,8 @@ Route::post('addTheme',function()
      Route::get('vue_question','QuestionController@Vuequestion');
      Route::GET('valider_question','QuestionController@validerQuestion');
      Route::GET('delete_question','QuestionController@destroy');
+     Route::GET('vue_reponse_question','ReponseController@index');
+     Route::POST('solutions','ReponseController@create');
    /* Route::get('/admin.theme',function()
     {
      return view('admin.theme_liste');

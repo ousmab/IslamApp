@@ -135,5 +135,6 @@
         });
        </script>
        @yield('script.question2')
+       @yield('script.reponse')
 </body>
 </html>
