@@ -1,5 +1,6 @@
 <?php
 use App\Theme;
+use App\Mail\MailReponseQuestion;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +36,11 @@ Route::post('addTheme',function()
      Route::GET('valider_question','QuestionController@validerQuestion');
      Route::GET('delete_question','QuestionController@destroy');
      Route::GET('vue_reponse_question','ReponseController@index');
+     Route::GET('vue_conclure','ReponseController@vueConclureTheme');
      Route::POST('solutions','ReponseController@create');
+     Route::POST('conclusion_theme','ReponseController@saveConclureTheme');
+   //  Route::GET('myreponse'.'ReponseController@showQuestionsReponses');
+     
    /* Route::get('/admin.theme',function()
     {
      return view('admin.theme_liste');
@@ -56,5 +61,9 @@ Route::post('/question/poser_question/addquestion','QuestionController@addQuesti
 //--MODULE GEOLOCALISATION-----------
 Route::get('/localisation',function()
    {
-       return view('geolocalisation.localisation');
+    $myreponses = \DB::table('questions')->join('reponses','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where(['questions.is_private'=>false])->paginate(5);
+    return $myreponses;
+   });
+   Route::get('/mymail',function(){
+          return new MailReponseQuestion('saly','c est bien');
    });

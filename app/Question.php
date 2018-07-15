@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $fillable=['id_theme','contenue','email','emeteur','is_public'];
+    protected $fillable=['id_theme','contenue','email','emeteur','is_public','is_repondue'];
     protected $dates=['date_creation'];
     public $rules = [
         'email' => 'required|email|string|min:5',

@@ -18,7 +18,7 @@
                          </div>
                           <ul style="margin-top: 60px !important" class="navbar-nav mr-sm-5 mt-2 mt-lg-0">
                             <li class="nav-item active">
-                              <a class="nav-link"  href="{{route('accueil')}}" id="mynav1">Accueill<span class="sr-only">(current)</span></a>
+                              <a class="nav-link"  href="{{url('/')}}" id="mynav1">Accueill<span class="sr-only">(current)</span></a>
                             </li>
                           
                                 
@@ -32,7 +32,7 @@
                                   <a class="nav-link" href="{{url('/localisation')}}" id="mynav1">Les ecoles</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{{ route('question') }}" id="mynav1">Questions/reponses</a>
+                                  <a class="nav-link" href="#" id="mynav1">Questions/reponses</a>
                                 </li>
                               </ul>
                               <form class="form-inline my-lg-0">

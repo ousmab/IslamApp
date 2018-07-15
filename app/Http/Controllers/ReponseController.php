@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Reponse;
+use Illuminate\Support\Facades\Mail;
 use App\Question;
+use App\Mail\MailReponseQuestion;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
+use App\Theme;
 use Auth;
 use carbon\Carbon;
 
@@ -18,10 +21,36 @@ class ReponseController extends Controller
      */
     public function index()
     {
-        $questions = Question::where('is_approuve',true)->paginate(5);
+     $questions = Question::where([['is_approuve','=',true],['is_repondue','=',false]])->paginate(5);
+    // $questions = \DB::table('questions')->join('reponses','questions.id','<>','reponses.id_question')->select('questions.*','reponses.*')->where(['reponses.id_question'=>null])->paginate(5);
         return view('admin.question_reponse',compact('questions'));
     }
-
+        //methode pour afficher la vue pour la conclusion de theme
+            public function vueConclureTheme()
+               {
+                
+                $theme=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
+                if(empty($theme))
+                 {
+                $theme=['titre'=>'PAS DE THEME EN LIGNE'];
+                 }
+                return view('admin.conclure_theme',compact('theme'));
+               }
+               //methode pour conclure le theme en ligme
+               public function saveConclureTheme(Request $request)
+                  {
+                        $this->validate($request,[
+                         'editordata'=>'required|min:20'
+                        ]); 
+                        $validator = '';
+                        $theme = Theme::find($rquest->id_theme);
+                        $reponse = new Reponse;
+                        $reponses->reponse_contenue = $request->reponse;
+                        $carbon = Carbon::today();
+                        $reponses->date_creation = $carbon;
+                        $reponses->is_final_reponse = true;
+                        $reponses->id_user = $id_user;
+                  }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,25 +62,27 @@ class ReponseController extends Controller
         $reponses= new Reponse;
         $id_user = Auth::user()->id;
         $carbon = Carbon::today();
-          if($questions->is_private)
+        $validator = Validator::make($request->all(),$reponses->rules);
+            if($validator->fails())
             {
-                return 'private';
+                return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
             }
             else{
+                $reponses->reponse_contenue = $request->reponse;
+                $reponses->date_creation = $carbon;
+                $reponses->is_final_reponse = false;
+                $reponses->id_question = $request->id;
+                $reponses->id_user = $id_user;
                 
-                $validator = Validator::make($request->all(),$reponses->rules);
-                if($validator->fails())
-                   {
-                       return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
-                   }
-                   else{
-                      $reponses->contenue = $request->reponse;
-                      $reponses->date_creation = $carbon;
-                      $reponses->is_final_reponse = false;
-                      $reponses->id_question = $request->id;
-                      $reponses->id_user = $id_user;
+                if($questions->is_private)
+                {
+                    $myemail = new MailReponseQuestion($questions->emeteur,$request->reponse);
+                    Mail::to($questions->email)->send($myemail);
+                }
+                      $questions->is_repondue = true;
+                      $questions->save();
                       $reponses->save();
-                   }
+                      return response()->json(array('response'=>['id'=>$questions->id]));
             }
     }
 
@@ -76,6 +107,11 @@ class ReponseController extends Controller
     {
         //
     }
+       public function showQuestionsReponses()
+           {
+         $myreponses = \DB::table('questions')->join('reponses','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where(['questions.is_private'=>false])->paginate(5);
+            dd($myreponses);
+           }
 
     /**
      * Show the form for editing the specified resource.

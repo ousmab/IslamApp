@@ -413,3 +413,7 @@ width: 900px;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+.input_conclusion_theme
+{
+  margin-left: 20px;
+}

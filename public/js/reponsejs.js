@@ -46,6 +46,7 @@ $(document).on('click','#reponse_modal',function()
                           $("#divsuccess").removeClass('hidden')
                           $("#button_annuler").addClass('hidden')
                           $("#button_repondre").addClass('hidden')
+                          $('#que'+data.response.id).remove()
                           $("#myreponse").val('')
 
                     }
@@ -54,3 +55,8 @@ $(document).on('click','#reponse_modal',function()
         )
 
       })
+      $('#brouillon_reponse').click(function()
+          {
+              $('#modal_reponse_final').modal('show')
+          }
+    )

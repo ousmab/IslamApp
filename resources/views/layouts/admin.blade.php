@@ -18,6 +18,7 @@
      <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
      <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
      <link href="{{ asset('css/stylejq.css') }}" rel="stylesheet">
+     <link href="{{ asset('summernote/summernote.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -92,6 +93,7 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('summernote/summernote.js') }}"></script>
     <script>
     //fonction pour afficher ou cacher les sous menus de administration
     function afficher(idvaleur)
