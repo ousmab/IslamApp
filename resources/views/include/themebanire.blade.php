@@ -1,9 +1,13 @@
 
                                    <center> <h4>
-                                   @if($theme)
-                                   {{ $theme->titre}}
+                                   @if(is_array($theme))
+                                      PAS DE THEME
                                    @else
-                                     PAS DE THEME PUBLIER
+                                      @if($theme)
+                                      {{ $theme->titre}}
+                                          @else
+                                            PAS  DE THEME EN LIGNE
+                                            @endif
                                      @endif
-                                   <a class="btn btn-primary" href='{{url("/question/poser_question/{$theme->id}")}}' style="color: white;">Poser une question</a></h4> </center>
+                                   <a class="btn btn-primary" href='@if(! is_array($theme)){{url("/question/poser_question/{$theme->id}")}} @else # @endif' style="color: white;">Poser une question</a></h4> </center>
                                   

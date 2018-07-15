@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionsTable extends Migration
+class CreateThemesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('themes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_user');
+            $table->string('titre');
+            $table->text('resume');
+            $table->date('date_publication');
+            $table->boolean('is_brouillon')->default(true);
+            $table->boolean('is_archive')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('themes');
     }
 }

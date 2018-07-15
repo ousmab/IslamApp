@@ -12,7 +12,11 @@ class AccueilController extends Controller
     {
         $theme = new Theme;
      $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
+     if(empty($theme_en_ligne))
+     $theme=['titre'=>'PAS DE THEME EN LIGNE'];
+     else
      $theme =  $theme_en_ligne;
+      
      $carbon = Carbon::today();
      $carbon->format('Y-d-m');
      $themecompare=Theme::where('date_publication',$carbon)->where('is_brouillon',true)->first();
@@ -27,6 +31,7 @@ class AccueilController extends Controller
             }
      //dd( $themecompare);
        else
-            return view('welcome',compact('theme'));
+        return view('welcome',compact('theme'));
+           // return $theme;
     }
 }
