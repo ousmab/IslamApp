@@ -13,7 +13,7 @@ use Auth;
 use carbon\Carbon;
 
 class ReponseController extends Controller
-{
+             {
     /**
      * Display a listing of the resource.
      *
@@ -34,22 +34,46 @@ class ReponseController extends Controller
                  {
                 $theme=['titre'=>'PAS DE THEME EN LIGNE'];
                  }
-                return view('admin.conclure_theme',compact('theme'));
+                 $reponse = Reponse::where('is_brouillon_reponse',true)->where('is_final_reponse',true)->first();
+                 if(empty($reponse))
+                    {
+                        $reponse=['reponse'=>'pas de reponse en brouillon'];
+                    }
+                return view('admin.conclure_theme',compact('theme','reponse'));
                }
                //methode pour conclure le theme en ligme
                public function saveConclureTheme(Request $request)
                   {
-                        $this->validate($request,[
-                         'editordata'=>'required|min:20'
-                        ]); 
-                        $validator = '';
-                        $theme = Theme::find($rquest->id_theme);
-                        $reponse = new Reponse;
-                        $reponses->reponse_contenue = $request->reponse;
-                        $carbon = Carbon::today();
-                        $reponses->date_creation = $carbon;
-                        $reponses->is_final_reponse = true;
-                        $reponses->id_user = $id_user;
+                        
+                        $validator = Validator::make($request->all(),[
+                            'editordata'=>'required|min:20'
+                           ]);
+                           if($validator->fails())
+                           {
+                               return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
+                           }
+                           
+                           else{
+                            //$theme = Theme::find($request->codetheme);
+                            $reponses =Reponse::find($request->idreponse);
+                            $reponses->reponse_contenue = $request->editordata;
+                            
+                            $carbon = Carbon::today();
+                            $reponses->date_creation = $carbon;
+                            $reponses->is_final_reponse = true;
+                            $reponses->id_user =  Auth::user()->id;
+                            $reponses->id_question=$request->codetheme;
+                               if($request->is_brouillon)
+                                    {
+                                    $reponses->is_brouillon_reponse=true;
+                                    $reponses->save();
+                                   return response()->json($reponses);
+                                    }
+                                    else{
+
+                                    }
+                        
+                           }  
                   }
     /**
      * Show the form for creating a new resource.
