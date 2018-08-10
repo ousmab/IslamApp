@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumIdUser extends Migration
+class AddColumLogoTheme extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumIdUser extends Migration
      */
     public function up()
     {
-        Schema::table('reponses', function (Blueprint $table) {
-          // $table->integer('id_user');
+        Schema::table('themes', function (Blueprint $table) {
+            $table->string('logo_theme')->nullable();
         });
     }
 
@@ -25,6 +25,6 @@ class AddColumIdUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reponses');
+        Schema::dropIfExists('themes');
     }
 }

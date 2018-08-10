@@ -55,6 +55,14 @@ $(document).on('click','#reponse_modal',function()
         )
 
       })
+         function idcode()
+            { 
+                var id = parseInt($('#themecode').text())
+                var idreponse = parseInt($('#id_reponse').text())
+                var idcode= new Array(id,idreponse);
+                return idcode
+
+            }
       $('#brouillon_reponse').click(function()
           {
               $('.help-block').text(' ')
@@ -62,12 +70,13 @@ $(document).on('click','#reponse_modal',function()
               $('#modal_reponse_final').modal('show')
               var id = parseInt($('#themecode').text())
               var idreponse = parseInt($('#id_reponse').text())
+                //alert(id)
               $.ajax({
                 type:'POST',
                 url:'conclusion_theme',
                 data:{
                   '_token' : $('input[name=_token]').val(),
-                   'is_brouillon': true,
+                   'is_brouillon': 1,
                    'editordata' : $('#summernote').val(),
                    'codetheme' : id,
                    'idreponse': idreponse,
@@ -93,6 +102,7 @@ $(document).on('click','#reponse_modal',function()
                        else{
                         $('.modal-content').show()
                         $('#divsuccess').removeClass('hidden')
+                        $('#save_conclusion').addClass('hidden')
                         $('.loader').addClass('hidden')
                         $('#save_brouillon').removeClass('hidden')
                         $('#summernote').summernote('code',data.reponses.reponse_contenue)
@@ -105,7 +115,65 @@ $(document).on('click','#reponse_modal',function()
     $('#bouton_publier').click(function(){
         $('#modal_reponse_final').modal('show')
         $("#message_conclure").removeClass('hidden')
+        $('#divsuccess').addClass('hidden')
         $(".modal-content").show()
         $(".loader").addClass('hidden')
-        $('#divsuccess').addClass('hidden')
+        $('#save_brouillon').addClass('hidden')
+        $('#save_conclusion').removeClass('hidden')
+        $('#reprendre_conclusion').addClass('hidden')
+        $('#diverrors').addClass('hidden')
+        $('#diverrors').text(' ')
+    
+    })
+    $('#save_conclusion').click(function(){
+        var code =idcode()
+        $('#message_conclure').removeClass('hidden')
+
+        alert(code[0])
+        $.ajax({
+            type:'POST',
+            url:'conclusion_theme',
+            data:{
+                '_token' : $('input[name=_token]').val(),
+                   'is_brouillon': 0,
+                   'editordata' : $('#summernote').val(),
+                   'codetheme' : code[0],
+                   'idreponse': code[1], 
+            },
+            beforeSend:function(){
+                $(".modal-content").hide()
+                $(".loader").removeClass('hidden')
+             },
+             complete: function(){
+              $('.loader').addClass('hidden')
+             },
+             success:function(data)
+              {
+                  if(data.errors)
+                   {
+                    $(".modal-content").show()
+                    $("#diverrors").removeClass('hidden')
+                    $('#message_conclure').addClass('hidden')
+                    $.each(data.errors, function(key,value){
+                        $('#diverrors').append(value) 
+                        }) 
+                        $('#reprendre_conclusion').removeClass('hidden')
+                        $('#save_conclusion').addClass('hidden')
+
+                   }
+                   else
+                   {
+                    $(".modal-content").show()
+                    $("#divsuccess").removeClass('hidden')
+                    $('#message_conclure').addClass('hidden')
+                    $('#closebutton').addClass('hidden')
+                    $('#save_conclusion').addClass('hidden')
+                   // $('#closebutton').addClass('hidden')
+                    $('#divsuccess').text(' ')
+                    $('#divsuccess').text('THEME COCNCLUT ET ARCHIVER AVEC SUCCESS')
+                    $("#themesuccess").removeClass('hidden') 
+                   }
+              }
+        })
+          
     })

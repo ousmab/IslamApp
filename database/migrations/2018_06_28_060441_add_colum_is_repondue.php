@@ -14,7 +14,7 @@ class AddColumIsRepondue extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->boolean('is_repondue')->default(false);
+            //$table->boolean('is_repondue')->default(false);
         });
     }
 

@@ -46,7 +46,7 @@ class ReponseController extends Controller
                   {
                         
                         $validator = Validator::make($request->all(),[
-                            'editordata'=>'required|min:20'
+                            'editordata'=>'required|min:50'
                            ]);
                            if($validator->fails())
                            {
@@ -54,15 +54,25 @@ class ReponseController extends Controller
                            }
                            
                            else{
-                            //$theme = Theme::find($request->codetheme);
-                            $reponses =Reponse::find($request->idreponse);
-                            $reponses->reponse_contenue = $request->editordata;
                             
+                           // $reponses =Reponse::find($request->idreponse);
+                              if(!$request->idreponse)
+                                  {
+                                $reponses= new Reponse;
+                                  }
+                                  else{
+                                   $reponses=Reponse::find($request->idreponse);
+                                  }
+                            $theme= Theme::find($request->codetheme);
+                            $reponses->reponse_contenue = $request->editordata;
+                            $request->is_brouillon=(bool)$request->is_brouillon;
                             $carbon = Carbon::today();
                             $reponses->date_creation = $carbon;
                             $reponses->is_final_reponse = true;
                             $reponses->id_user =  Auth::user()->id;
+                            //ici comme c'est la conclusion du theme le id_question devient plus top id du theme qu'on doit conclure
                             $reponses->id_question=$request->codetheme;
+                           // $request->is_brouillon=(bool)$request->is_brouillon;
                                if($request->is_brouillon)
                                     {
                                     $reponses->is_brouillon_reponse=true;
@@ -70,7 +80,11 @@ class ReponseController extends Controller
                                    return response()->json($reponses);
                                     }
                                     else{
-
+                                        $reponses->is_brouillon_reponse=false;
+                                        $reponses->save();
+                                        $theme->is_archive=true;
+                                        $theme->save();
+                                        return 'bon';
                                     }
                         
                            }  

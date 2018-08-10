@@ -6,7 +6,7 @@
 <h1>Conclusion du theme {{ $theme->titre}} (theme en ligne)</h1>
    <p class="hidden" id="themecode">{{$theme->id}}</p>
  @endif
- <p id='id_reponse' class='hidden'>@if(is_array($reponse))  @else {{$reponse->id}} @endif</p>
+ <p id='id_reponse' class='hidden'>@if(is_array($reponse))0  @else {{$reponse->id}} @endif</p>
 <hr>
 <form method="POST" role="form" class="@if(is_array($theme)) hidden @else  @endif">
                 {{ csrf_field() }}
@@ -19,10 +19,10 @@
 </form>
 <div class="form-group">
                             
-                            <button  class="btn btn-success btn-lg" id="bouton_publier">
+                            <button  class="btn btn-success btn-lg @if(is_array($theme)) hidden @else  @endif" id="bouton_publier">
                                 PUBLIER
                             </button>
-                            <button id="brouillon_reponse" class="btn btn-primary btn-lg">
+                            <button id="brouillon_reponse" class="btn btn-primary btn-lg @if(is_array($theme)) hidden @else  @endif">
                                 Mettre en brouillon
                             </button>
                         
@@ -35,12 +35,13 @@
         <div class="modal-content">
             <div class="modal-header">
             
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" id="closebutton" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
             
             <div class="hidden" id="message_conclure" >Voulez vous publier cette conclusion</div>
             <div class="alert alert-success hidden" id="divsuccess" >Reponse envoyer</div>
+            <div class="alert alert-danger hidden" id="diverrors" ></div>
             </div>
             <div class="modal-footer">
             <button  class="btn btn-success btn-lg hidden" id="save_conclusion">
@@ -49,6 +50,12 @@
                             <button  class="btn btn-success btn-lg hidden" id="save_brouillon" data-dismiss="modal">
                                 OK
                             </button>
+                            <button  class="btn btn-warning btn-lg hidden" id="reprendre_conclusion" data-dismiss="modal">
+                                REPRENDRE
+                            </button>
+                            <a href="vue_conclure"  class="btn btn-success btn-lg hidden" id="themesuccess" >
+                                RETOUR
+                            </a>
                 </div>
                 </div>
     </div>
@@ -71,7 +78,7 @@
   maxHeight: null,             // set maximum height of editor
   focus: true                  // set focus to editable area after initializing summernote
 });
-$('#summernote').summernote("code","@if(is_array($reponse))  @else {!!$reponse->reponse_contenue!!} @endif")
+$('#summernote').summernote('code','@if(is_array($reponse))  @else {!!$reponse->reponse_contenue!!} @endif')
    </script>
 @endsection
 @section('script.reponse')

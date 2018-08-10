@@ -14,7 +14,7 @@ class AddColumIsBrouillon extends Migration
     public function up()
     {
         Schema::table('reponses', function (Blueprint $table) {
-            $table->boolean('is_brouillon_reponse')->default(false);
+            //$table->boolean('is_brouillon_reponse')->default(false);
         });
     }
 
