@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumLogoTheme extends Migration
+class CreateImageModel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddColumLogoTheme extends Migration
      */
     public function up()
     {
-        Schema::table('themes', function (Blueprint $table) {
-           // $table->string('logo_theme')->nullable();
+        Schema::create('pictures', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_model');
+            $table->string('type_model');
+            $table->string('chemin_model');
         });
     }
 
@@ -25,6 +28,6 @@ class AddColumLogoTheme extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('themes');
+        //
     }
 }

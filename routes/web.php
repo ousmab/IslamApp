@@ -39,6 +39,7 @@ Route::post('addTheme',function()
      Route::GET('vue_conclure','ReponseController@vueConclureTheme');
      Route::POST('solutions','ReponseController@create');
      Route::POST('conclusion_theme','ReponseController@saveConclureTheme');
+     Route::POST('picture_theme','PictureModelController@store');
    //  Route::GET('myreponse'.'ReponseController@showQuestionsReponses');
      
    /* Route::get('/admin.theme',function()

@@ -192,17 +192,27 @@
      //ajout de theme (theme_publi permet de savoir si c'est une publication ou un enregistrement de theme)
      $('#add').click(function()
           {
+              alert('salu')
+              var formdata = new FormData();
+              formdata.append('theme_publi',false);
+              //formdata.append($('#theme_image')[0]);
+              // formdata.append('theme_image',$('#theme_image')[0].files[0])
+              formdata.append('theme_image', $('input[type=file]')[0].files[0]); 
+              // formdata.append('_token',  $('input[name=_token]'))
+              var data = new FormData($('input[name="images"]'));     
+jQuery.each($('input[name="images"]')[0].files, function(i, file) {
+    data.append(i, file);
+});
             $.ajax(
           {
               type: 'POST',
               url: 'addTheme',
-              data: {
-                  '_token' : $('input[name=_token]').val(),
+             data: {
+                '_token' : $('input[name=_token]').val(),
                   'theme_titre' : $('input[name=theme_titre]').val(),
-                  'date_publication' : $('input[name=theme_date]').val(),
                   'resume' : $('#resume').val(),
                   'theme_publi': false,
-              },
+             },
               success: function(data){
                          if((data.errors))
                            {

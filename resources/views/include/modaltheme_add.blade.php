@@ -18,14 +18,14 @@
                 <p class=" text-center alert alert-danger hidden" id="error"></p>                               
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
+                       <!--   <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
                             <label for="name" class="control-label col-sm-2">Image du theme</label>
 
-                            <div class="col-sm-10">
-                                <input id="theme_image" type="file" class="form-control" name="theme_titre" value="{{ old('theme_titre') }}" required autofocus>
+                           <div class="col-sm-10">
+                               <input id="images" type="file" class="form-control" name="theme_image" value="{{ old('theme_image') }}" required autofocus>
                 <p class=" text-center alert alert-danger hidden" id="error"></p>                               
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('theme_date') ? ' has-error' : '' }}" id="divdate">
                             <label for="theme_titre"class="control-label col-sm-2">Date de publication</label>

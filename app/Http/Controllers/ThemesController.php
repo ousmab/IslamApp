@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Theme;
+use App\Reponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\File;
 use Auth;
 use Validator;
 use Response;
@@ -34,7 +37,9 @@ class ThemesController extends Controller
      */
     public function create()
     {
-        return view('admin.theme_add');
+        $themes=Theme::all()->where('is_archive',false);
+       // dd($themes);
+        return view('admin.theme_picture',compact('themes'));
     }
 
     /**
@@ -65,6 +70,11 @@ class ThemesController extends Controller
        public function addTheme(Request $request)
           {
                     $theme = new Theme;
+                  //  $file = Input::file('theme_image');
+                    
+                      //return response()->json($file->getClientOriginalName()); 
+                      //return $request->theme_titre;
+                    
                     if($request->theme_publi==false)
                           {
                             $themes=Theme::where('is_brouillon',false)->where('is_archive',false)->get();
@@ -181,6 +191,14 @@ class ThemesController extends Controller
        public function archivageTheme(Request $request)
         {
             $theme = Theme::find($request->id);
+            //dans le system id question est confondu id theme
+            $reponse=Reponse::where('id_question',$request->id)->first();
+            if(!empty($reponse))
+               {
+                 $reponse->is_brouillon_reponse=false;
+                 $reponse->save();
+               }
+
             $theme->is_archive = true;
             $theme->save();
             return response()->json($theme);
