@@ -51,7 +51,7 @@ Route::post('addTheme',function()
  });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('accueil');
+Route::get('/geolocalisation', 'HomeController@index')->name('accueil');
 
 
 /*--GESTION DES QUESTIONS REPONSES------------------------

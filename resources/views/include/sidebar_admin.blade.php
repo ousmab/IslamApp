@@ -2,7 +2,9 @@
            <div class="row">
               <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-menu">
-                <li ><a id="menunavs" class="mymenu" href="/home"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;ADMIN</a></li>
+                <li ><a id="menunavs" class="mymenu" href="/geolocalisation"><i class="fa fa-map fa-fw" aria-hidden="true"></i>&nbsp;GEOLOCALISATION</a></li>
+                <li ><a id="menunavs" class="mymenu" href="/geolocalisation"><i class="fa fa-map fa-fw" aria-hidden="true"></i>&nbsp;Application mobille</a></li>
+                <li ><a id="menunavs" class="mymenu" href="/geolocalisation"><i class="fa fa-map fa-fw" aria-hidden="true"></i>&nbsp;Gestion des Comptes</a></li>
                   <li ><a id="navcach" class="mymenu" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp;THEME &nbsp;&nbsp;&nbsp; <span class="fa fa-chevron-down"></a>
                   
                     <ul class="nav child_menu menujs" id="ulmenu">
