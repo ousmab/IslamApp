@@ -37,9 +37,11 @@ Route::post('addTheme',function()
      Route::GET('delete_question','QuestionController@destroy');
      Route::GET('vue_reponse_question','ReponseController@index');
      Route::GET('vue_conclure','ReponseController@vueConclureTheme');
+     Route::GET('/geolocalisation','MapLocalisationController@index');
      Route::POST('solutions','ReponseController@create');
      Route::POST('conclusion_theme','ReponseController@saveConclureTheme');
      Route::POST('picture_theme','PictureModelController@store');
+     Route::POST('/save_map','MapLocalisationController@store');
    //  Route::GET('myreponse'.'ReponseController@showQuestionsReponses');
      
    /* Route::get('/admin.theme',function()
@@ -51,7 +53,7 @@ Route::post('addTheme',function()
  });
 Auth::routes();
 
-Route::get('/geolocalisation', 'HomeController@index')->name('accueil');
+Route::get('/home', 'HomeController@index')->name('accueil');
 
 
 /*--GESTION DES QUESTIONS REPONSES------------------------

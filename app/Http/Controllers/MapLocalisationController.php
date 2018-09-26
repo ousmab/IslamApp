@@ -14,7 +14,8 @@ class MapLocalisationController extends Controller
      */
     public function index()
     {
-        //
+        $mymaps= MapLocalisation::where('type_map','<>','')->paginate(6);
+        return view('admin.geolocalisation',compact('mymaps'));
     }
 
     /**
@@ -35,7 +36,13 @@ class MapLocalisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $maps= new MapLocalisation;
+        $maps->nom_map = $request->map_name;
+        $maps->type_map=$request->map_type;
+        $maps->ville_map=$request->map_ville;
+        $maps->longitude=$request->map_long;
+        $maps->latitude=$request->map_lat;
+        $maps->save();
     }
 
     /**
