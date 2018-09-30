@@ -21,7 +21,7 @@
       <?php $n=1; ?>
       @foreach($mymaps as $key => $value)
      <tr class=" ">
-         <th> {{$n}}
+         <th> {{$n++}}
          </th>
          <th> 
         {{$value->nom_map}}
@@ -36,10 +36,10 @@
          {{ $value->longitude }} ,  {{ $value->latitude }}
          </th>
          <th>
-          <a href="#" class="edit-modal btn btn-warning btn-sms" data-id="" data-titre="" data-resume="" data-date="" >
+         <a href="#" class="edit-modal btn btn-warning btn-sms" data-id="{{$value->id}}" data-name="{{$value->nom_map}}" data-type="{{$value->type_map}}" data-ville="{{$value->ville_map}}" data-long="{{$value->longitude}}" data-lat="{{$value->latitude}}" >
             <i class="glyphicon glyphicon-pencil"></i>
           </a>
-          <a href="#" class="delete-modal btn btn-danger btn-sms" data-id="" data-titre="" >
+          <a href="#" class="delete-modal btn btn-danger btn-sms" data-id="{{$value->id}}" >
             <i class="glyphicon glyphicon-trash"></i>
           </a>
          </th>
@@ -47,83 +47,10 @@
             @endforeach
     </tbody>
 </table>
-<div id="modal_map" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-    <div class="loader hidden">
-    </div>
-        <div class="modal-content">
-            <div class="modal-header">
-            
-                <button type="button" class="close" id="closebutton" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-            
-            <form class="form-horizontal" enctype="multipart/form-data" method="POST" role="form" >
-                        {{ csrf_field() }}
-
-                        <div class="form-group" id="map_name-div">
-                            <label for="name" class="control-label col-sm-2">Nom du local</label>
-
-                            <div class="col-sm-10">
-                                <input id="map_name" type="text" class="form-control" name="map_name" value="{{ old('map_name') }}" required autofocus>
-                <p class=" text-center alert alert-danger hidden" id="map_name-error"></p>                               
-                            </div>
-                        </div>
-                      
-
-                        <div class="form-group">
-                            <label for="map_ville"class="control-label col-sm-2">Ville map</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-control"  required name="map_ville" id="map_ville">
-                                <option>Douala</option>
-                                <option>Yaounde</option>
-                                <option>Garoua</option>
-                                <option>Ngaoundere</option>
-                                </select>
-                                                           </div>
-                        </div>
-                        <div class="form-group" >
-                            <label for="map_type"class="control-label col-sm-2">Type map</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-control" name="map_type" id="map_type"  required>
-                                <option>Mosquée</option>
-                                <option>Restaurant</option>
-                                <option>Ecole islamique</option>
-                                </select>
-                                                           </div>
-                        </div>
-                        <div class="form-group" id="map_long-div">
-                            <label for="map_long" class="control-label col-sm-2">Longitude</label>
-
-                            <div class="col-sm-10">
-                                <input id="map_long" type="number" class="form-control" name="map_long" value="{{ old('map_long') }}" required autofocus>
-                <p class=" text-center alert alert-danger hidden" id="map_long-error"></p>                               
-                            </div>
-                        </div>
-                        <div class="form-group" id="map_lat-div">
-                            <label for="name" class="control-label col-sm-2">Latitude</label>
-
-                            <div class="col-sm-10">
-                                <input id="theme_titre" type="number" class="form-control" name="map_lat" value="{{ old('map_lat') }}" required autofocus>
-                <p class=" text-center alert alert-danger hidden" id="map_lat-error"></p>                               
-                            </div>
-                        </div>
-                    </form>
-            </div>
-            <div class="modal-footer">
-          
-                            <button  class="btn btn-success" id="save_map" data-dismiss="modal">
-                                ENREGISTRER
-                            </button>
-                            <button type="button"   class="btn btn-warning"  data-dismiss="modal" >
-                                RETOUR
-                            </button>
-                </div>
-                </div>
-    </div>
-</div>
+   <!--  Div pour la creation de donnee de geolocalisation  -->
+   @include('include/modal_map')
+ <!-- Div pour l'edition et la supression donne de geolocalisation -->
+ 
 {{$mymaps->links()}}
 
                         

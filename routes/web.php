@@ -42,6 +42,8 @@ Route::post('addTheme',function()
      Route::POST('conclusion_theme','ReponseController@saveConclureTheme');
      Route::POST('picture_theme','PictureModelController@store');
      Route::POST('/save_map','MapLocalisationController@store');
+     Route::POST('/update_map','MapLocalisationController@update2');
+     Route::POST('/delete_map','MapLocalisationController@mydestroy');
    //  Route::GET('myreponse'.'ReponseController@showQuestionsReponses');
      
    /* Route::get('/admin.theme',function()

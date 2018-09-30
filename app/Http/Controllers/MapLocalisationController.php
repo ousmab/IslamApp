@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\MapLocalisation;
 use Illuminate\Http\Request;
+use Validator;
+use Response;
 
 class MapLocalisationController extends Controller
 {
@@ -36,6 +38,16 @@ class MapLocalisationController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'map_name' => 'required|min:3',
+            'map_long'=>'required|numeric|max:500',
+             'map_lat' => 'required|numeric|max:500'
+        ]);
+        if($validator->fails())
+         {
+        return response()->json(array('errors'=>$validator->getMessageBag()->toarray())); 
+          }
+           else{
         $maps= new MapLocalisation;
         $maps->nom_map = $request->map_name;
         $maps->type_map=$request->map_type;
@@ -43,6 +55,7 @@ class MapLocalisationController extends Controller
         $maps->longitude=$request->map_long;
         $maps->latitude=$request->map_lat;
         $maps->save();
+           }
     }
 
     /**
@@ -74,10 +87,31 @@ class MapLocalisationController extends Controller
      * @param  \App\MapLocalisation  $mapLocalisation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MapLocalisation $mapLocalisation)
+   /* public function update(Request $request, MapLocalisation $mapLocalisation)
     {
         //
-    }
+    }*/
+    public function update2(Request $request)
+      {
+        $validator = Validator::make($request->all(),[
+            'map_name' => 'required|min:3',
+            'map_long'=>'required|numeric|max:500',
+             'map_lat' => 'required|numeric|max:500'
+        ]);
+        if($validator->fails())
+         {
+        return response()->json(array('errors'=>$validator->getMessageBag()->toarray())); 
+          }
+           else{
+        $maps=MapLocalisation::find($request->id);
+        $maps->nom_map = $request->map_name;
+        $maps->type_map=$request->map_type;
+        $maps->ville_map=$request->map_ville;
+        $maps->longitude=$request->map_long;
+        $maps->latitude=$request->map_lat;
+        $maps->save();
+           }
+      }
 
     /**
      * Remove the specified resource from storage.
@@ -89,4 +123,8 @@ class MapLocalisationController extends Controller
     {
         //
     }
+    public function mydestroy(Reequest $request)
+     {
+        $maps=MapLocalisation::find($request->id);
+     }
 }
