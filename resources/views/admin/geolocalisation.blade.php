@@ -20,7 +20,7 @@
       {{csrf_field()}}
       <?php $n=1; ?>
       @foreach($mymaps as $key => $value)
-     <tr class=" ">
+     <tr class="map{{$value->id}}">
          <th> {{$n++}}
          </th>
          <th> 

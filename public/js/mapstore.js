@@ -3,6 +3,7 @@ $(document).on('click','.edit-modal',function()
 {
   $('#modal_map').modal('show')
   $('#delete_div').addClass('hidden')
+  $("#modif_map").removeClass('hidden')
   $('.form-horizontal').removeClass('hidden')
   $('#modif_map').removeClass('hidden')
   $('#save_map').addClass('hidden')
@@ -125,11 +126,49 @@ $(document).on('click','#add_map',function(){
   });
  //affichage modal pour la supression d'une geolocalisation
  $(document).on('click','.delete-modal',function(){
-  $("#map_id").val($(this).data('id'))
-  var id = parseInt($('#map_id').val())
+  $("#my_id").text($(this).data('id'))
   $('#delete_div').removeClass('hidden')
   $('.form-horizontal').addClass('hidden')
   $('#delete_map').removeClass('hidden')
+  $("#modif_map").addClass('hidden')
   $('#save_map').addClass('hidden')
   $('#modal_map').modal('show')
+ })
+ $('#delete_map').click(function()
+ {
+  var id = $('#my_id').text()
+   id = parseInt(id)
+  $.ajax({
+     type:'POST',
+     url:'/delete_map',
+     data:
+     {
+      '_token' : $('input[name=_token]').val(),
+      'id':id,
+     },
+     beforeSend:function(){
+      $(".modal-content").hide()
+      $(".loader").removeClass('hidden')
+   },
+   complete: function(){
+    $(".modal-content").show()
+    $(".loader").addClass('hidden')
+   },
+   success:function(data)
+     {
+       if(data.errors)
+       {
+               alert('Une erreur c"est produt')
+       }else{
+        $('#retour_map').removeClass('hidden')
+        $('.btn-warning').addClass('hidden')
+        $('#delete_map').addClass('hidden')
+        $("#block-ok").text('')
+        $("#block-ok").text('SUPPRESSION REUSSI'+id)
+        $('#block-ok').removeClass('hidden')
+        $('#delete_div').addClass('hidden')
+        $('.map'+$('#my_id').text()).remove()
+       }
+     }
+  })
  })

@@ -123,8 +123,8 @@ class MapLocalisationController extends Controller
     {
         //
     }
-    public function mydestroy(Reequest $request)
+    public function mydestroy(Request $request)
      {
-        $maps=MapLocalisation::find($request->id);
+        $maps=MapLocalisation::find($request->id)->delete();
      }
 }

@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p class="text-center alert alert-success hidden" id="block-ok">SAUVEGARDE DES COORDONNEE GEOGRAPHIQUE REUSSIES</p>
-                <p class="text-center hidden" id="delete_div">ETES VOUS SURE DE SUPRIMER CETTE LOCALISATION</p>
+                <p class="text-center hidden" id="delete_div">ETES VOUS SURE DE SUPRIMER CETTE LOCALISATION DE ID:<span id="my_id"></span></p>
             <form class="form-horizontal"  method="POST" role="form" id="form-store" >
                         {{ csrf_field() }}
                         <input id="map_id" type="number" class="hidden" name="map_id" >
