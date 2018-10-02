@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Theme;
+use App\PictureModel;
 
 class AccueilController extends Controller
 {
@@ -27,11 +28,13 @@ class AccueilController extends Controller
                 $themecompare->is_brouillon= false;
                 $themecompare->save();
                  $theme=$themecompare;
-                  return view('welcome',compact('theme'));
+                 $photo=PictureModel::where('id_model',$themecompare->id)->first();
+                  return view('welcome',compact('theme','photo'));
             }
      //dd( $themecompare);
        else
-        return view('welcome',compact('theme'));
+       $photo=PictureModel::where('id_model',$theme->id)->first();
+        return view('welcome',compact('theme','photo'));
            // return $theme;
     }
 }
