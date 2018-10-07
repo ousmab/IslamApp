@@ -5,6 +5,7 @@ use  App\http\Requests;
 use Illuminate\Http\Request;
 use App\Theme;
 use App\Question;
+use App\PictureModel;
 use Validator;
 use Response;
 use Carbon\Carbon;
@@ -31,8 +32,9 @@ class QuestionController extends Controller
     }
     public function askQuestion($theme_id){
         $theme = Theme::find($theme_id);
-            
-    	return view("questions.askQuestionForm",compact('theme'));
+        $photo=PictureModel::where('id_model',$theme->id)->first();
+        
+    	return view("questions.askQuestionForm",compact('theme','photo'));
     }
 
     /**
@@ -48,6 +50,17 @@ class QuestionController extends Controller
     public function addQuestion(Request $request)
     {
         $question = new Question;
+        $this->validate($request,[
+            'question'=> 'required',
+            'email'=> 'required|email',
+            'emeteur'=>'required'
+           ]);
+        if($request->question_status=='on')
+           {
+            $request->question_status=true;
+           }else
+           $request->question_status=false;
+        /*
         $validator = Validator::make($request->all(),$question->rules);
         if($validator->fails())
            {
@@ -64,7 +77,7 @@ class QuestionController extends Controller
               $question->is_private = $request->status === 'true' ? true:false;
              $question->save();
              return 'pas erreur';
-           }
+           } */
     }
     /**
      * Display the specified resource.

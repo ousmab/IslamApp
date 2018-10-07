@@ -1,5 +1,3 @@
-@extends('layouts.mdbmaster')
-@section('masection')
 <div class="container">
              <!--  <div class="media d-block d-md-flex mt-4">
   <img class="d-flex mb-3 mx-auto media-image z-depth-1" height="300" src="file:///C:/Users/Nexttel/Desktop/SALY-ABBO/Tamplate-test/camex.jpg"
@@ -90,7 +88,6 @@
                 </div>
                 <!-- Content -->
             </section>
-            
             <!--Section: Jumbotron-->
 
             <hr class="my-5">
@@ -109,7 +106,7 @@
 
                             <!--Card image-->
                             <div class="view overlay">
-                                <img src="{{ asset('images/carte3.png') }}" class="card-img-top" alt="">
+                                <img src="file:///C:/Users/Nexttel/Desktop/SALY-ABBO/Tamplate-test/carte3.png" class="card-img-top" alt="">
                                 <a href="https://mdbootstrap.com/automated-app-start/" target="_blank">
                                     <div class="mask rgba-white-slight"></div>
                                 </a>
@@ -120,39 +117,8 @@
                                 <!--Title-->
                                 <h4 class="card-title">GEOLOCALISATION DES MOSQUEE</h4>
                                 <!--Text-->
-                                <p class="card-text">Geolocalisation des mosquees,les ecoles de sciences islamiques,les restaurant halal,les zones qui necessite la constructions d'une mosqueee</p>
-                                <a href="file:///C:/Users/Nexttel/Desktop/SALY-ABBO/Tamplate-test/carte.jpg" target="_blank" class="btn btn-primary btn-md">Voir la carte
-                                    <i class="fa fa-play ml-2"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                        <!--/.Card-->
-
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-6 mb-4">
-
-                        <!--Card-->
-                        <div class="card">
-
-                            <!--Card image-->
-                            <div class="view overlay taille">
-                                <img src="{{ asset('images/app.jpg') }}"   class="card-img-top" alt="">
-                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-
-                            <!--Card content-->
-                            <div class="card-body">
-                                <!--Title-->
-                                <h4 class="card-title">Application mobille</h4>
-                                <!--Text-->
-                                <p class="card-text">Geolocalisation des mosquees,les ecoles de sciences islamiques,les restaurant halal,les zones qui necessite la constructions d'une mosqueee.</p>
-                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank" class="btn btn-primary btn-md">Voir les applications
+                                <p class="card-text">Learn how to create a smart website which learns your user and reacts properly to his behavior.</p>
+                                <a href="file:///C:/Users/Nexttel/Desktop/SALY-ABBO/Tamplate-test/carte.jpg" target="_blank" class="btn btn-primary btn-md">Start tutorial
                                     <i class="fa fa-play ml-2"></i>
                                 </a>
                             </div>
@@ -171,7 +137,38 @@
 
                             <!--Card image-->
                             <div class="view overlay">
-                                <img src="{{asset('images/logo-vrai.gif')}}" class="card-img-top" alt="">
+                                <img src="https://mdbootstrap.com/wp-content/uploads/2017/11/brandflow-tutorial-fb.jpg" class="card-img-top" alt="">
+                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">Bootstrap Automation</h4>
+                                <!--Text-->
+                                <p class="card-text">Learn how to create a smart website which learns your user and reacts properly to his behavior.</p>
+                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank" class="btn btn-primary btn-md">Start tutorial
+                                    <i class="fa fa-play ml-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/wp-content/uploads/2018/01/push-fb.jpg" class="card-img-top" alt="">
                                 <a href="https://mdbootstrap.com/web-push-start/" target="_blank">
                                     <div class="mask rgba-white-slight"></div>
                                 </a>
@@ -180,11 +177,11 @@
                             <!--Card content-->
                             <div class="card-body">
                                 <!--Title-->
-                                <h4 class="card-title">IslamApp future plate forme de e-learning</h4>
+                                <h4 class="card-title">Push notifications</h4>
                                 <!--Text-->
                                 <p class="card-text">Push messaging provides a simple and effective way to re-engage with your users and in this
                                     tutorial you'll learn how to add push notifications to your web app</p>
-                                <a href="https://mdbootstrap.com/web-push-start/" target="_blank" class="btn btn-primary btn-md">En savoir plus
+                                <a href="https://mdbootstrap.com/web-push-start/" target="_blank" class="btn btn-primary btn-md">Start tutorial
                                     <i class="fa fa-play ml-2"></i>
                                 </a>
                             </div>
@@ -198,13 +195,101 @@
                 </div>
                 <!--Grid row-->
 
-               
-                    
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
 
                     <!--Grid column-->
-                    
+                    <div class="col-lg-4 col-md-12 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-angular.jpg" class="card-img-top" alt="">
+                                <a href="https://mdbootstrap.com/angular/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">MDB with Angular</h4>
+                                <!--Text-->
+                                <p class="card-text">Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. </p>
+                                <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Free download
+                                    <i class="fa fa-download ml-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
                     <!--Grid column-->
-                    <div class="card mb-4 wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-react.jpg" class="card-img-top" alt="">
+                                <a href="https://mdbootstrap.com/react/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">MDB with React</h4>
+                                <!--Text-->
+                                <p class="card-text">Based on the latest Bootstrap 4 and React 16. </p>
+                                <a href="https://mdbootstrap.com/react/" target="_blank" class="btn btn-primary btn-md">Free download
+                                    <i class="fa fa-download ml-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-vue.jpg" class="card-img-top" alt="">
+                                <a href="https://mdbootstrap.com/vue/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">MDB with Vue</h4>
+                                <!--Text-->
+                                <p class="card-text">Based on the latest Bootstrap 4 and Vue 2.5.7. </p>
+                                <a href="https://mdbootstrap.com/vue/" target="_blank" class="btn btn-primary btn-md">Free download
+                                    <i class="fa fa-download ml-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
 
                 </div>
                 <!--Grid row-->
@@ -214,4 +299,4 @@
             </section>
             <!--Section: Cards-->
 
-@stop
+        </div>

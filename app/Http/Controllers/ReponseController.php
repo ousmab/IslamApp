@@ -21,7 +21,8 @@ class ReponseController extends Controller
      */
     public function index()
     {
-     $questions = Question::where([['is_approuve','=',true],['is_repondue','=',false]])->paginate(5);
+     $theme=Theme::where('is_brouillon',false)->where('is_archive',false)->first();   
+     $questions = Question::where([['is_approuve','=',true],['is_repondue','=',false]])->where('id_theme',$theme->id)->paginate(5);
     // $questions = \DB::table('questions')->join('reponses','questions.id','<>','reponses.id_question')->select('questions.*','reponses.*')->where(['reponses.id_question'=>null])->paginate(5);
         return view('admin.question_reponse',compact('questions'));
     }

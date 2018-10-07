@@ -56,3 +56,7 @@
 .radio label input[type="radio"]:disabled + .cr {
     opacity: .5;
 }
+.taille
+{
+    width: 400px;
+}
