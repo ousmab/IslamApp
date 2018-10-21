@@ -1,6 +1,7 @@
 <?php
 use App\Theme;
 use App\Mail\MailReponseQuestion;
+use App\Question;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,14 +61,17 @@ Route::get('/home', 'HomeController@index')->name('accueil');
 
 /*--GESTION DES QUESTIONS REPONSES------------------------
 -------------------------------------------------------------------------------*/
-Route::get('/question','QuestionController@index')->name('question');
+Route::get('/question/vue_question/{id}','QuestionController@index');
 Route::get('/question/poser_question/{id}','QuestionController@askQuestion');
 Route::post('/question/poser_question/addquestion','QuestionController@addQuestion');
 //--MODULE GEOLOCALISATION-----------
 Route::get('/localisation',function()
    {
     $myreponses = \DB::table('questions')->join('reponses','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where(['questions.is_private'=>false])->paginate(5);
-    return $myreponses;
+   // $question_reponse = \DB::table('questions')->join('reponses','questions.id','=','reponses.id_question')->orWhereNull('reponses.id_question')->select('questions.*','reponses.*')->where('questions.id_theme',25)->get();
+      $questions= Question::all()->where('id_theme',25);
+      $reponses = \DB::table('reponses')->join('questions','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where('questions.id_theme',25)->get();
+   return $reponses;
    });
    Route::get('/mymail',function(){
           return new MailReponseQuestion('saly','c est bien');

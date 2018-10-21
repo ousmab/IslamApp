@@ -46,13 +46,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">Theme Islamique</a>
+                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank"><strong class="blue-text">Theme Islamique</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="https://mdbootstrap.com/getting-started/" target="_blank">Geolocalisation des mosquee</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank">Application mobille</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href='{{url("/question/vue_question/{$theme->id}")}}' target="_blank">Question/repone</a>
                         </li>
                     </ul>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Theme;
 use App\Question;
 use App\PictureModel;
+use App\Reponse;
 use Validator;
 use Response;
 use Carbon\Carbon;
@@ -16,9 +17,16 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($theme_id)
     {
-        return view("questions.home");
+        $questions= Question::all()->where('id_theme',$theme_id)->where('questions.is_private',false)->sortByDesc('id');
+        $reponses = \DB::table('reponses')->join('questions','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where('questions.id_theme',25)->get();
+        $theme = Theme::find($theme_id);
+        $themearchive = \DB::table('themes')->where('is_archive',true)->select('themes.*')->latest('id')->limit(2)->get();
+        $conclusion = Reponse::where('id_question',$theme_id)->where('is_final_reponse',true)->first();     
+         $photo=PictureModel::where('id_model',$theme->id)->first();
+        // $photoarchive = \DB::table('picture_models')->join('themes','themes.id','=','picture_models.id_model')->select('picture_models.*','themes.*')->where('themes.is_archive',true)->latest('themes.id')->limit(2)->get();
+    	return view("questions.questionreponse",compact('theme','photo','reponses','questions','conclusion','themearchive','photoarchive'));
     }
 
     /**
@@ -32,9 +40,9 @@ class QuestionController extends Controller
     }
     public function askQuestion($theme_id){
         $theme = Theme::find($theme_id);
-        $photo=PictureModel::where('id_model',$theme->id)->first();
+      //  $photo=PictureModel::where('id_model',$theme->id)->first();
         
-    	return view("questions.askQuestionForm",compact('theme','photo'));
+    	return view("questions.askQuestionForm",compact('theme'));
     }
 
     /**
@@ -51,7 +59,7 @@ class QuestionController extends Controller
     {
         $question = new Question;
         $this->validate($request,[
-            'question'=> 'required',
+            'question'=> 'required|min:10',
             'email'=> 'required|email',
             'emeteur'=>'required'
            ]);
@@ -60,24 +68,18 @@ class QuestionController extends Controller
             $request->question_status=true;
            }else
            $request->question_status=false;
-        /*
-        $validator = Validator::make($request->all(),$question->rules);
-        if($validator->fails())
-           {
-           
-               return response()->json(array('errors'=>$validator->getMessageBag()->toarray()));
-           }
-           else{
+        
             $carbon = Carbon::today();
               $question->contenue = $request->question;
               $question->emeteur = $request->nom;
               $question->id_theme = (int) $request->idtheme;
               $question->email = $request->email;
+              $question->emeteur=$request->emeteur;
               $question->date_creation = $carbon;
               $question->is_private = $request->status === 'true' ? true:false;
-             $question->save();
-             return 'pas erreur';
-           } */
+              $question->save();
+             return redirect("/question/poser_question/{$question->id_theme}")->with('response','Question envoyer avec success');
+           
     }
     /**
      * Display the specified resource.

@@ -17,5 +17,9 @@ class Question extends Model
     protected $table = 'questions';
 
     public $timestamps = false;
+    public function reponse()
+       {
+           return $this->hasOne('App\Reponse','id_question');
+       }
 
 }

@@ -16,4 +16,8 @@ class Reponse extends Model
         'editordata'=>'required|min:20'
     ];
      public $timestamps = false;
+     public function question()
+          {
+              return $this->belongsTo('App\Question');
+          }
 }
