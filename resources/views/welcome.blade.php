@@ -1,17 +1,7 @@
 @extends('layouts.mdbmaster')
 @section('masection')
 <div class="container">
-             <!--  <div class="media d-block d-md-flex mt-4">
-  <img class="d-flex mb-3 mx-auto media-image z-depth-1" height="300" src="file:///C:/Users/Nexttel/Desktop/SALY-ABBO/Tamplate-test/camex.jpg"
-    alt="Generic placeholder image">
-  <div class="media-body text-center text-md-left ml-md-3 ml-0">
-    <h5 class="mt-0 font-weight-bold">Le camex 2018</h5>
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-    <h5 class="mt-0 font-weight-bold"><button class="btn btn-success btn-md btn-block" type="button"><h5>Posez une question</h5></button></h5>
-  </div>
-</div> -->
+           
      <section class="my-5">
          <!-- Grid row -->
   <div class="row">

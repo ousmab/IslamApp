@@ -25,7 +25,7 @@
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">
+                <a class="navbar-brand waves-effect" href="/" target="_blank">
                     <strong class="blue-text">IslamApp</strong>
                 </a>
 
@@ -41,21 +41,21 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link waves-effect" href="#">Accueill
+                            <a class="nav-link waves-effect" href="/">Accueill
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank"><strong class="blue-text">Theme Islamique</strong></a>
+                            <a class="nav-link waves-effect" href="/liste_theme" target="_blank"><strong class="blue-text">Theme Islamique</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="https://mdbootstrap.com/getting-started/" target="_blank">Geolocalisation des mosquee</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank">Application mobille</a>
+                            <a class="nav-link waves-effect" href='/myapplication' target="_blank">Application mobille</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href='{{url("/question/vue_question/{$theme->id}")}}' target="_blank">Question/repone</a>
+                            <a class="nav-link waves-effect" href='@if(is_array($theme)) # @else @if($theme){{url("/question/vue_question/{$theme->id}")}}@else # @endif @endif' target="_blank">Question/repone</a>
                         </li>
                     </ul>
 

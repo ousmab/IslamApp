@@ -41,8 +41,8 @@ class QuestionController extends Controller
     public function askQuestion($theme_id){
         $theme = Theme::find($theme_id);
       //  $photo=PictureModel::where('id_model',$theme->id)->first();
-        
-    	return view("questions.askQuestionForm",compact('theme'));
+      $themearchive = \DB::table('themes')->where('is_archive',true)->select('themes.*')->latest('id')->limit(2)->get();
+    	return view("questions.askQuestionForm",compact('theme','themearchive'));
     }
 
     /**

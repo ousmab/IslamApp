@@ -19,6 +19,9 @@ class CreateReponsesTable extends Migration
             $table->longText('reponse_contenue');
             $table->date('date_creation');
             $table->boolean('is_final_reponse')->default(false);
+            $table->boolean('is_brouillon_reponse')->default(false);
+            $table->integer('id_user');
+
             
         });
     }

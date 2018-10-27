@@ -15,6 +15,7 @@ use  App\http\Requests;
 use App\Http\Requests\ThemeRequest;
 use App\Rules\ThemePublier;
 use Carbon\Carbon;
+use App\PictureModel;
 
 class ThemesController extends Controller
 {
@@ -26,7 +27,7 @@ class ThemesController extends Controller
     public function index()
     {
         $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
-        $theme = Theme::all()->where('is_brouillon',true)->where('is_archive',false);
+       $theme = Theme::all()->where('is_brouillon',true)->where('is_archive',false);
         return view('admin.theme_liste',compact('theme','theme_en_ligne'));
     }
 
@@ -37,9 +38,7 @@ class ThemesController extends Controller
      */
     public function create()
     {
-        $themes=Theme::all()->where('is_archive',false);
-       // dd($themes);
-        return view('admin.theme_picture',compact('themes'));
+       
     }
 
     /**
@@ -203,5 +202,12 @@ class ThemesController extends Controller
             $theme->save();
             return response()->json($theme);
         }
-    
+    //methode qui affiche tous les themes archiver dans le front end
+    public function themeArchive()
+      {
+          $themesarchiver = Theme::orderBy('id','desc')->where('is_archive',true)->paginate(5);
+          $theme = Theme::where('is_archive',false)->where('is_brouillon',false)->first();
+          $photos = \DB::table('picture_models')->join('themes','themes.id','=','picture_models.id_model')->select('picture_models.*','themes.*')->where('themes.is_archive',true)->get();
+        return view('frontend.liste_theme_archiver',compact('photos','theme','themesarchiver'));
+      }
 }

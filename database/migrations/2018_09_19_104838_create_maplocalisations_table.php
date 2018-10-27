@@ -16,7 +16,7 @@ class CreateMaplocalisationsTable extends Migration
         Schema::create('map_localisations', function (Blueprint $table) {
             $table->increments('id');
             $table->float('longitude',20);
-            $table->floatr('latitude',20);
+            $table->float('latitude',20);
             $table->string('nom_map');
             $table->string('type_map');
             $table->string('ville_map');

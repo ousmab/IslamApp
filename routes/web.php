@@ -18,6 +18,7 @@ Route::get('archive', function () {
     $themes= Theme::all()->where('is_archive',true);
     return view('admin/archive',compact('themes'));
 });
+Route::get('/myapplication','AccueilController@vue_application');
 Route::get('brouillon', function () {
     return view('admin/brouillon');
 });
@@ -45,6 +46,7 @@ Route::post('addTheme',function()
      Route::POST('/save_map','MapLocalisationController@store');
      Route::POST('/update_map','MapLocalisationController@update2');
      Route::POST('/delete_map','MapLocalisationController@mydestroy');
+     Route::GET('/myphotos','PictureModelController@index');
    //  Route::GET('myreponse'.'ReponseController@showQuestionsReponses');
      
    /* Route::get('/admin.theme',function()
@@ -57,8 +59,7 @@ Route::post('addTheme',function()
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('accueil');
-
-
+ Route::get('/liste_theme','ThemesController@themeArchive');
 /*--GESTION DES QUESTIONS REPONSES------------------------
 -------------------------------------------------------------------------------*/
 Route::get('/question/vue_question/{id}','QuestionController@index');

@@ -21,7 +21,8 @@ class CreateQuestionsTable extends Migration
             $table->string('emeteur');
             $table->date('date_creation');
             $table->boolean('is_approuve')->default(false);
-            $table->boolean('is_public');
+            $table->boolean('is_private');
+            $table->boolean('is_repondue');
         });
     }
 

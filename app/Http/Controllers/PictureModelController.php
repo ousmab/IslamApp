@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\PictureModel;
 use Illuminate\Http\Request;
-
+use App\Theme;
+//use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PictureModelController extends Controller
 {
@@ -15,7 +18,8 @@ class PictureModelController extends Controller
      */
     public function index()
     {
-        //
+       $themes = Theme::where('is_archive',false)->get();
+        return view('admin.theme_picture',compact('themes'));
     }
 
     /**
@@ -39,6 +43,7 @@ class PictureModelController extends Controller
            $this->validate($request,[
             'theme_logo'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2080'
            ]);
+           $idpicture = PictureModel::where('id_model',$request->theme_option)->first();
            $images= $request->file('theme_logo');
            if($request->hasFile('theme_logo'))
                         {

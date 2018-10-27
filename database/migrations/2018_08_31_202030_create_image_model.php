@@ -13,7 +13,7 @@ class CreateImageModel extends Migration
      */
     public function up()
     {
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('picture_models', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_model');
             $table->string('type_model');

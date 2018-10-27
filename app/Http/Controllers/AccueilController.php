@@ -33,8 +33,18 @@ class AccueilController extends Controller
             }
      //dd( $themecompare);
        else
-       $photo=PictureModel::where('id_model',$theme->id)->first();
+       //$photo=PictureModel::where('id_model',$theme->id)->first();
         return view('welcome',compact('theme','photo'));
            // return $theme;
     }
+    public function vue_application()
+        {
+            $theme = new Theme;
+     $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
+     if(empty($theme_en_ligne))
+     $theme=['titre'=>'PAS DE THEME EN LIGNE'];
+     else
+     $theme =  $theme_en_ligne;
+            return view('frontend.vue_application',compact('theme'));
+        }
 }
