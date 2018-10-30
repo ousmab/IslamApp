@@ -43,7 +43,6 @@ class PictureModelController extends Controller
            $this->validate($request,[
             'theme_logo'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2080'
            ]);
-           $idpicture = PictureModel::where('id_model',$request->theme_option)->first();
            $images= $request->file('theme_logo');
            if($request->hasFile('theme_logo'))
                         {
@@ -55,7 +54,7 @@ class PictureModelController extends Controller
                         $picture->id_model = $request->theme_option;
                         $picture->chemin_model=$name_image;
                         $picture->save();
-                        return redirect('themes/create')->with('response','Image selectionner avec success');
+                        return redirect('myphotos')->with('response','Image selectionner avec success');
            /* 
         $validator = Validator::make($request->all(),
         [

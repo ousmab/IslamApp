@@ -13,7 +13,10 @@
       <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
         <img class="img-fluid" src="@if(is_array($theme)) {{ asset('images/logo-vrai.gif') }}  @else 
              @if($theme)
-        {{ asset('images/'.$photo->chemin_model) }} @else {{ asset('images/logo-vrai.gif') }} @endif @endif" alt="Sample image">
+                @if(is_array($photo))
+                {{ asset('images/logo-vrai.gif') }}
+                @else
+                 {{ asset('images/'.$photo->chemin_model) }}@endif @else {{ asset('images/logo-vrai.gif') }} @endif @endif " alt="Sample image">
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
@@ -27,7 +30,7 @@
 
       <!-- Post title -->
                                 @if(is_array($theme))
-                                <h3 class="font-weight-bold mb-3"><strong>Pas de theme en BD</strong></h3>
+                                <h3 class="font-weight-bold mb-3"><strong>Aucun theme publié </strong></h3>
                                    @else
                                       @if($theme)
                                       

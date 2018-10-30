@@ -20,7 +20,7 @@ class QuestionController extends Controller
     public function index($theme_id)
     {
         $questions= Question::all()->where('id_theme',$theme_id)->where('questions.is_private',false)->sortByDesc('id');
-        $reponses = \DB::table('reponses')->join('questions','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where('questions.id_theme',25)->get();
+        $reponses = \DB::table('reponses')->join('questions','questions.id','=','reponses.id_question')->select('questions.*','reponses.*')->where('reponses.is_final_reponse',false)->where('questions.id_theme',$theme_id)->get();
         $theme = Theme::find($theme_id);
         $themearchive = \DB::table('themes')->where('is_archive',true)->select('themes.*')->latest('id')->limit(2)->get();
         $conclusion = Reponse::where('id_question',$theme_id)->where('is_final_reponse',true)->first();     

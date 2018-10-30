@@ -13,11 +13,20 @@ class AccueilController extends Controller
     {
         $theme = new Theme;
      $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
+     $photo=PictureModel::where('id_model',$theme->id)->first();
      if(empty($theme_en_ligne))
+        {
      $theme=['titre'=>'PAS DE THEME EN LIGNE'];
+     $photo= ['id'=>1];
+        }
      else
-     $theme =  $theme_en_ligne;
-      
+       {
+        $theme =  $theme_en_ligne;
+        if(empty($photo))
+        {
+            $photo = ['id'=> 1];
+        }
+       }
      $carbon = Carbon::today();
      $carbon->format('Y-d-m');
      $themecompare=Theme::where('date_publication',$carbon)->where('is_brouillon',true)->first();
@@ -32,10 +41,11 @@ class AccueilController extends Controller
                   return view('welcome',compact('theme','photo'));
             }
      //dd( $themecompare);
-       else
-       //$photo=PictureModel::where('id_model',$theme->id)->first();
-        return view('welcome',compact('theme','photo'));
-           // return $theme;
+       else{
+       
+       return view('welcome',compact('theme','photo'));
+       //  return $theme;
+       }
     }
     public function vue_application()
         {
