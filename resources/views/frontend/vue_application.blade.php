@@ -7,7 +7,7 @@
       <div class="col-lg-5">
        <!-- Featured image -->
         <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg" alt="Sample image">
+          <img class="img-fluid" src="{{asset('images/img2.jpg')}}" alt="Sample image">
             <a>
                <div class="mask rgba-white-slight"></div>
             </a>
@@ -16,15 +16,17 @@
       <!-- Grid column -->
       <div class="col-lg-7">
       <!-- Category -->
-        <a href="#!" class="green-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-cutlery pr-2"></i>Food</h6></a>
         <!-- Post title -->
-        <h3 class="font-weight-bold mb-3"><strong>Title of the news</strong></h3>
+        <h3 class="font-weight-bold mb-3"><strong>Coran en français</strong></h3>
         <!-- Excerpt -->
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus et aut officiis debitis.</p>
+        <p>- Lire le Coran en arabe à côté de sa traduction en français.
+- (NOVEAUTÉ) Color Tajweed pour aider à lire et réciter le Saint Coran! (seul les deux premiers sourates dans la version gratuite)
+- Continuer la lecture à partir de la dernière ayah en un seul clic!
+- Rappels des Prières: abonnez-vous à des notifications de vos temps de prière locaux. Auto-configuration est disponible.</p>
         <!-- Post data -->
-        <p>by <a><strong>Carine Fox</strong></a>, 19/08/2018</p>
+        <p>by <a><strong>By IsalmApp</strong></a>, 19/08/2018</p>
         <!-- Read more button -->
-        <a class="btn btn-success btn-md">Read more</a>
+        <a class="btn btn-success btn-md">Installer</a>
       </div>
       <!-- Grid column -->
     </div>
@@ -35,22 +37,24 @@
       <!-- Grid column -->
       <div class="col-lg-7">
       <!-- Category -->
-        <a href="#!" class="pink-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-image pr-2"></i>Lifestyle</h6></a>
+        
         <!-- Post title -->
-        <h3 class="font-weight-bold mb-3"><strong>Title of the news</strong></h3>
+        <h3 class="font-weight-bold mb-3"><strong>Tajwid Al Quran : Leçons, Coran lettres colorées</strong></h3>
         <!-- Excerpt -->
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+        <p>Tajwid Al Quran est une application permettant l'apprentissage de la lecture du Qur'an, donnant une vision globale sur différentes notions accompagnées avec des exemples.
+
+Cette application aura des améliorations régulières afin de satisfaire aux besoins de ses utilisateur</p>
         <!-- Post data -->
-        <p>by <a><strong>Carine Fox</strong></a>, 14/08/2018</p>
+        <p>by <a><strong>By IslamApp</strong></a>, 14/08/2018</p>
         <!-- Read more button -->
-        <a class="btn btn-pink btn-md mb-lg-0 mb-4">Read more</a>
+        <a class="btn btn-pink btn-md mb-lg-0 mb-4">Installer</a>
       </div>
 <!-- Grid column -->
 <!-- Grid column -->
       <div class="col-lg-5">
       <!-- Featured image -->
         <div class="view overlay rounded z-depth-2">
-          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img%20(34).jpg" alt="Sample image">
+          <img class="img-fluid" src="{{asset('images/screen-8.jpg')}}" alt="Sample image">
           <a>
           <div class="mask rgba-white-slight"></div>
           </a>
@@ -70,7 +74,7 @@
 
 <!-- Featured image -->
 <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-  <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg" alt="Sample image">
+  <img class="img-fluid" src="{{asset('images/img2.jpg')}}" alt="Sample image">
   <a>
     <div class="mask rgba-white-slight"></div>
   </a>
@@ -83,15 +87,16 @@
 <div class="col-lg-7">
 
 <!-- Category -->
-<a href="#!" class="indigo-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-suitcase pr-2"></i>Travels</h6></a>
+
 <!-- Post title -->
-<h3 class="font-weight-bold mb-3"><strong>Title of the news</strong></h3>
+<h3 class="font-weight-bold mb-3"><strong>	
+Tajwid Al Quran : Leçons, Coran lettres colorées</strong></h3>
 <!-- Excerpt -->
 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro qui dolorem ipsum quia sit amet.</p>
 <!-- Post data -->
-<p>by <a><strong>Carine Fox</strong></a>, 11/08/2018</p>
+<p>by <a><strong>By IslamApp</strong></a>, 11/08/2018</p>
 <!-- Read more button -->
-<a class="btn btn-indigo btn-md">Read more</a>
+<a class="btn btn-indigo btn-md">Installer</a>
 
 </div>
 

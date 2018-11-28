@@ -21,16 +21,16 @@
     <header>
 
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar navbar-dark success-color" id="monnavss">
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand waves-effect" href="/" target="_blank">
-                    <strong class="blue-text">IslamApp</strong>
+                <a class="navbar-brand waves-effect" href="/" >
+                    <strong class="white-text">IslamApp</strong>
                 </a>
 
                 <!-- Collapse -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button"  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,19 +40,19 @@
 
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link waves-effect" href="/">Accueill
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="/liste_theme" target="_blank"><strong class="blue-text">Theme Islamique</strong></a>
+                            <a class="nav-link" href="/liste_theme" ><strong class="white-text">Theme Islamique</strong></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/getting-started/" target="_blank">Geolocalisation des mosquee</a>
+                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/getting-started/" >Geolocalisation des mosquee</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href='/myapplication' target="_blank">Application mobille</a>
+                            <a class="nav-link waves-effect" href='/myapplication'>Application mobille</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href='@if(is_array($theme)) # @else @if($theme){{url("/question/vue_question/{$theme->id}")}}@else # @endif @endif' target="_blank">Question/repone</a>
@@ -96,7 +96,7 @@
 
     <!--Footer-->
     <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
- <div class="info-color-dark text-center py-4">
+ <div class="success-color-dark text-center py-4">
     <!--Newsletter-->
     <a id="footer-link-newsletter" href="/newsletter/" class="border rounded p-2 px-3 mr-4 d-none d-md-inline-block">Newsletter
       <i class="fa fa-envelope white-text ml-2"> </i>

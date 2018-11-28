@@ -72,13 +72,6 @@
                     <p>
                         <strong>La plate forme vitrine de la ouma</strong>
                     </p>
-                    <p class="mb-4">
-                        <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and written
-                            versions available. Create your own, stunning website.</strong>
-                    </p>
-                    <a target="_blank" href="https://mdbootstrap.com/bootstrap-tutorial/" class="btn btn-outline-white btn-lg">Start free tutorial
-                        <i class="fa fa-graduation-cap ml-2"></i>
-                    </a>
 
                 </div>
                 <!-- Content -->
