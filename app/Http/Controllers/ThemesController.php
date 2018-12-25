@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Theme;
+use App\PictureModel;
 use App\Reponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -15,7 +16,6 @@ use  App\http\Requests;
 use App\Http\Requests\ThemeRequest;
 use App\Rules\ThemePublier;
 use Carbon\Carbon;
-use App\PictureModel;
 
 class ThemesController extends Controller
 {
@@ -66,15 +66,24 @@ class ThemesController extends Controller
               }
               return redirect('themes/create')->with('response','Profil cree avec succes');
     }
+      private function saveImage($request,$images,$id)
+         {
+            if($request->hasFile('theme_logo'))
+            {
+                $name_image= rand().'.'.$images->getClientOriginalExtension();
+                $images->move(public_path('images'),$name_image);
+            }   
+            $picture = new PictureModel;
+            $picture->type_model='theme';
+            $picture->id_model = $id;
+            $picture->chemin_model=$name_image;
+            $picture->save();
+         }
        public function addTheme(Request $request)
           {
                     $theme = new Theme;
-                  //  $file = Input::file('theme_image');
-                    
-                      //return response()->json($file->getClientOriginalName()); 
-                      //return $request->theme_titre;
-                    
-                    if($request->theme_publi==false)
+                    $images= $request->file('theme_logo');
+                    if($request->theme_publi==0)
                           {
                             $themes=Theme::where('is_brouillon',false)->where('is_archive',false)->get();
                                if(!($themes->isEmpty()))
@@ -84,7 +93,8 @@ class ThemesController extends Controller
                                   else{
                             $validator = Validator::make($request->all(),[
                                 'theme_titre' => 'required|min:3',
-                                'resume' => 'required|min:5'
+                                'resume' => 'required|min:5',
+                                'theme_logo'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2080'
         
                             ]);
                                   }
@@ -96,6 +106,7 @@ class ThemesController extends Controller
                             }
                         
                              else{
+                                 //creation de theme et publication directe du theme en ligne
                                $carbon = Carbon::today();
                                  $id=Auth::user()->id;
                                  $theme->titre=$request->theme_titre;
@@ -106,6 +117,8 @@ class ThemesController extends Controller
                                  $theme->is_brouillon= false;
                                  $theme->is_archive= false;
                                  $theme->save();
+                                 //methode qui cree l'objet picture model pour l'image du theme
+                                 $this->saveImage($request,$images,$theme->id);
                                  return response()->json($theme); 
                              }
                           }
@@ -118,16 +131,18 @@ class ThemesController extends Controller
                         }
                         else
                         { 
+                            //cretion de theme et mise en brouillon du theme
                             $id=Auth::user()->id;
                             $theme->titre=$request->theme_titre;
                             $theme->resume= $request->input('resume');
                            // date('Y/m/d',strtotime($request->theme_date));   
-                           $theme->date_publication = $request->theme_date;
+                           $theme->date_publication = $request->date_publication;
                           $theme->date_publication->format('Y-d-m'); 
                             $theme->id_user=$id;
                             $theme->is_brouillon= true;
                             $theme->is_archive= false;
                             $theme->save();
+                            $this->saveImage($request,$images,$theme->id);
                             return response()->json($theme);
                        }
                     }

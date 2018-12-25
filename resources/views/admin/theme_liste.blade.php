@@ -106,7 +106,7 @@
                 <h4 claas="modal-title"></h4>
             </div>
             <div class="modal-body">
-            <form class="form-horizontal" method="POST" role="form" >
+            <form class="form-horizontal" method="POST" role="form" id="myform">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
                             <label for="name" class="control-label col-sm-2">ID theme</label>
@@ -119,7 +119,7 @@
                         <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
                             <label for="name" class="control-label col-sm-2">Titre theme</label>
                             <div class="col-sm-10">
-<input id="ti" type="name" class="form-control">
+<input id="ti" type="name" class="form-control" name="theme_titre">
                 <p class="error text-center alert alert-danger hidden" ></p>                               
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                             <label for="theme_titre"class="control-label col-sm-2">Date de publication</label>
 
                             <div class="col-sm-10">
-                                <input id="datepicker2" type="text" class="form-control"  value="{{ old('theme_date') }}" name='date' required>
+                                <input id="datepicker2" type="text" class="form-control"  value="{{ old('theme_date') }}" name='date_publication' required>
 
                                 <p class="error text-center alert alert-danger hidden"></p>
                                                            </div>
@@ -141,7 +141,7 @@
                             <label for="resume" class="control-label col-sm-2">Resume du theme</label>
 
                             <div class="col-sm-10">
-                                <textarea  id="fre" class="form-control" rows="5" value="{{ old('resume') }}" required></textarea>
+                                <textarea name="resume" id="fre" class="form-control" rows="5" value="{{ old('resume') }}" required></textarea>
                                 <p class="error text-center alert alert-danger hidden" ></p>
                             </div>
                         </div>
@@ -192,27 +192,24 @@
      //ajout de theme (theme_publi permet de savoir si c'est une publication ou un enregistrement de theme)
      $('#add').click(function()
           {
-              alert('salu')
-              var formdata = new FormData();
-              formdata.append('theme_publi',false);
-              //formdata.append($('#theme_image')[0]);
-              // formdata.append('theme_image',$('#theme_image')[0].files[0])
-              formdata.append('theme_image', $('input[type=file]')[0].files[0]); 
-              // formdata.append('_token',  $('input[name=_token]'))
-              var data = new FormData($('input[name="images"]'));     
-jQuery.each($('input[name="images"]')[0].files, function(i, file) {
-    data.append(i, file);
-});
+            var myForm = document.getElementById('myform1');
+            formData = new FormData(myForm);
+            formData.append('theme_publi',1)
             $.ajax(
           {
               type: 'POST',
               url: 'addTheme',
-             data: {
+             data: formData /*{
                 '_token' : $('input[name=_token]').val(),
                   'theme_titre' : $('input[name=theme_titre]').val(),
                   'resume' : $('#resume').val(),
-                  'theme_publi': false,
-             },
+                  'date_publication': $('#datepicker1').val(),
+                  'theme_publi': 1,
+             }*/,
+             dataType: 'JSON',
+                contentType:false,
+                cache:false,
+                processData:false,
               success: function(data){
                          if((data.errors))
                            {

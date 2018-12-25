@@ -11,7 +11,8 @@ class Theme extends Model
         [
               'theme_titre' => 'required|min:3',
               'date_publication'=>'required|unique:themes',
-               'resume' => 'required|min:5'
+               'resume' => 'required|min:5',
+               'theme_logo'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2080'
         ]
         ;
       protected $dates = ['date_publication'];

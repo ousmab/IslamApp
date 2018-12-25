@@ -7,7 +7,7 @@
      <div class="modal-body" id="leila2">
      
      <p class=" text-center alert alert-danger hidden" id="error"><ul></ul></p>
-     <form class="form-horizontal" enctype="multipart/form-data" method="POST" role="form" >
+     <form class="form-horizontal" enctype="multipart/form-data" method="POST" role="form" id="myform1">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
@@ -18,21 +18,21 @@
                 <p class=" text-center alert alert-danger hidden" id="error"></p>                               
                             </div>
                         </div>
-                       <!--   <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
+                         <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
                             <label for="name" class="control-label col-sm-2">Image du theme</label>
 
                            <div class="col-sm-10">
-                               <input id="images" type="file" class="form-control" name="theme_image" value="{{ old('theme_image') }}" required autofocus>
+                               <input id="images" type="file" class="form-control" name="theme_logo" value="{{ old('theme_image') }}" required autofocus>
                 <p class=" text-center alert alert-danger hidden" id="error"></p>                               
                             </div>
-                        </div> -->
+                        </div> 
 
                         <div class="form-group{{ $errors->has('theme_date') ? ' has-error' : '' }}" id="divdate">
                             <label for="theme_titre"class="control-label col-sm-2">Date de publication</label>
 
                             <div class="col-sm-10">
                             <!--<input id="theme_date" type="date" class="form-control" name="theme_date" value="{{ old('theme_date') }}" required> -->
-                                <input id="datepicker1" type="text" class="form-control" name="theme_date" value="{{ old('theme_date') }}" required>
+                                <input id="datepicker1" type="text" class="form-control" name="date_publication" value="{{ old('theme_date') }}" required>
                               
                                                            </div>
                         </div>

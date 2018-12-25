@@ -21,7 +21,7 @@
     <header>
 
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar navbar-dark success-color" id="monnavss">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar success-color">
             <div class="container">
 
                 <!-- Brand -->
@@ -30,7 +30,7 @@
                 </a>
 
                 <!-- Collapse -->
-                <button class="navbar-toggler" type="button"  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/liste_theme" ><strong class="white-text">Theme Islamique</strong></a>
+                            <a class="nav-link waves-effect" href="/liste_theme" ><strong class="white-text">Theme Islamique</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="https://mdbootstrap.com/getting-started/" >Geolocalisation des mosquee</a>
