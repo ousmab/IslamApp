@@ -13,6 +13,7 @@ $(document).on('click','#reponse_modal',function()
       //button_repondre
       $('#button_repondre').click(function(){
           var id = parseInt($('#rid').text());
+          $("#error").text(' ')
           
           $.ajax(
             {
@@ -128,8 +129,6 @@ $(document).on('click','#reponse_modal',function()
     $('#save_conclusion').click(function(){
         var code =idcode()
         $('#message_conclure').removeClass('hidden')
-
-        alert(code[0])
         $.ajax({
             type:'POST',
             url:'conclusion_theme',
@@ -146,12 +145,13 @@ $(document).on('click','#reponse_modal',function()
              },
              complete: function(){
               $('.loader').addClass('hidden')
+              $(".modal-content").show()
              },
              success:function(data)
               {
                   if(data.errors)
                    {
-                    $(".modal-content").show()
+                   
                     $("#diverrors").removeClass('hidden')
                     $('#message_conclure').addClass('hidden')
                     $.each(data.errors, function(key,value){
@@ -163,7 +163,6 @@ $(document).on('click','#reponse_modal',function()
                    }
                    else
                    {
-                    $(".modal-content").show()
                     $("#divsuccess").removeClass('hidden')
                     $('#message_conclure').addClass('hidden')
                     $('#closebutton').addClass('hidden')

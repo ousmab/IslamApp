@@ -179,12 +179,24 @@ class ThemesController extends Controller
      */
     public function update(Request $request)
     {
-        $theme = Theme::find($request->id);
-        $theme->titre=$request->titre;
-        $theme->resume=$request->resume;
-        $theme->date_publication=$request->date;
-        $theme->save();
-    return response()->json($theme);
+        $validator = Validator::make($request->all(),[
+            'titre' => 'required|min:3',
+            'resume' => 'required|min:5',
+            'date' => 'required'
+        ]);
+              
+        if($validator->fails())
+        {
+        return response()->json(array('errors'=>$validator->getMessageBag()->toarray())); 
+        }
+        else{
+         $theme = Theme::find($request->id);
+         $theme->titre=$request->titre;
+         $theme->resume=$request->resume;
+         $theme->date_publication=$request->date;
+         $theme->save();
+         return response()->json($theme);
+        }
     }
 
     /**
@@ -199,8 +211,16 @@ class ThemesController extends Controller
     }
     public function deleteTheme(Request $request)
        {
-           $theme = Theme::find($request->id)->delete();
+           $theme=Theme::find($request->id);
+           if(($theme->is_archive==false) && ($theme->is_brouillon==false))
+             {
+                 return response()->json('THEME EN LIGNE');
+             }
+             else
+             {
+              $theme->delete();
            return response()->json();
+            }
        }
        public function archivageTheme(Request $request)
         {

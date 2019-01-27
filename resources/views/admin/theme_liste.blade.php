@@ -70,48 +70,28 @@
             @endforeach
     </tbody>
 </table>
-  <!-- <table class="table">
-    <thead class="thead-inverse">
-    <tr>
-       <th>Theme</th>
-       <th>Nombre de question </th>
-       <th>Option</th>
-    </tr>
-    </thead>
-    <tbody>
-     <tr>
-        <th>Le jeune du mois de Ramadam</th>
-        <th>10</th>
-        <th>
-        <p>
-        <a class="btn btn-success"  href=''>
-                                      MODIFIER
-                                 </a>    
-                                 <a class="btn btn-danger"  href=''>
-                                      SUPRIMER
-                                 </a>     <a class="btn btn-warning"  href=''>
-                                      ARCHIVER
-                                 </a>                                 
-        </p>
-            </tr>
-    </tbody>
-</table>-->
    @include('include/modaltheme_add')
    @include('include/showtheme')
    <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
+    <div class="loader hidden">
+    </div>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 claas="modal-title"></h4>
             </div>
             <div class="modal-body">
+            <!--formulaire utiliser pour la mise a jour d'un theme et sa supression -->
             <form class="form-horizontal" method="POST" role="form" id="myform">
                         {{ csrf_field() }}
+                    
+                      <p class=" text-center alert alert-danger hidden" id="error2"></p>
                         <div class="form-group{{ $errors->has('theme_titre') ? ' has-error' : '' }} row add">
                             <label for="name" class="control-label col-sm-2">ID theme</label>
                             <div class="col-sm-10">
 <input id="fid" type="text" class="form-control" disabled >
+               
                 <p class="error text-center alert alert-danger hidden" ></p>                               
                             </div>
                         </div>
@@ -123,20 +103,15 @@
                 <p class="error text-center alert alert-danger hidden" ></p>                               
                             </div>
                         </div>
-
                         <div class="form-group{{ $errors->has('theme_date') ? ' has-error' : '' }}">
                             <label for="theme_titre"class="control-label col-sm-2">Date de publication</label>
 
                             <div class="col-sm-10">
-                                <input id="datepicker2" type="text" class="form-control"  value="{{ old('theme_date') }}" name='date_publication' required>
+                                <input id="datepicker2" type="text" class="form-control"  value="{{ old('theme_date') }}" name='date' required>
 
                                 <p class="error text-center alert alert-danger hidden"></p>
                                                            </div>
                         </div>
-
-                       
-                        
-
                         <div class="form-group">
                             <label for="resume" class="control-label col-sm-2">Resume du theme</label>
 
@@ -146,24 +121,22 @@
                             </div>
                         </div>
                     </form>
+                    {!! success_validate("modification reussi") !!}
                     <div class="deletecontent">
                         Est voua sure de suprimer <span class="titre"></span>
                         <span class="hidden id"></span>
                     </div>
-                    
                 <div class="modal-footer">
-                    <button type="buttton" class="btn actionBtn" data-dismiss="modal">
+                    <button type="buttton" class="btn actionBtn">
                         <span id="footer_action_button" class="glyphicon"></span>
                     </button>
-                    <button type="buttton" class="btn btn-warning" data-dismiss="modal">
-                        <span class="glyphicon glyphicon"></span>close
+                    <button type="buttton" id="closeupdate" class="btn btn-warning" data-dismiss="modal">
+                        <span class="glyphicon glyphicon"></span>fermer
                     </button>
                 </div>
         </div>
     </div>
 </div>
-       
-
 @endsection
 @section('monjs')
  <script>
@@ -182,6 +155,7 @@
      );
      $(document).on('click','.public-modal',function()
      {
+        
         $('#create').modal('show');
         $('#divdate').addClass('hidden');
         $('#add').addClass('hidden')
@@ -189,27 +163,31 @@
          $('.modal-title').text('Publication de theme');  
      }
      )
-     //ajout de theme (theme_publi permet de savoir si c'est une publication ou un enregistrement de theme)
+     //ajout de theme et mise en brouillon (theme_publi permet de savoir si c'est une publication ou un enregistrement de theme)
      $('#add').click(function()
           {
             var myForm = document.getElementById('myform1');
             formData = new FormData(myForm);
             formData.append('theme_publi',1)
+            $("#error").text(" ")
+            $("#error").addClass('hidden')
             $.ajax(
           {
               type: 'POST',
               url: 'addTheme',
-             data: formData /*{
-                '_token' : $('input[name=_token]').val(),
-                  'theme_titre' : $('input[name=theme_titre]').val(),
-                  'resume' : $('#resume').val(),
-                  'date_publication': $('#datepicker1').val(),
-                  'theme_publi': 1,
-             }*/,
+             data: formData,
              dataType: 'JSON',
                 contentType:false,
                 cache:false,
                 processData:false,
+                beforeSend:function(){
+                $(".modal-content").hide()
+                $(".loader").removeClass('hidden')
+             },
+             complete: function(){
+              $('.loader').addClass('hidden')
+              $(".modal-content").show()
+             },
               success: function(data){
                          if((data.errors))
                            {
@@ -217,38 +195,19 @@
                             $('#error').removeClass('hidden')
                         $('#error').append(value) 
                         })
-                 /* if((data.errors)){
-                      if(data.errors.theme_titre)
-                      {
-                        $('#error1').removeClass('hidden')
-                        $('#error1').text(data.errors.theme_titre)
-                    
-                      }
-                      if(data.errors.theme_date)
-                      {
-                        $('#error2').removeClass('hidden')
-                        $('#error2').text(data.errors.theme_date)
-                      }
-                      if(data.errors.resume)
-                      {
-                        $('#error3').removeClass('hidden')
-                        $('#error3').text(data.errors.resume)
-                      } */
-                     // $('.error,#error1,#error2').removeClass('hidden');
-                     // $('#error1').text(data.errors.theme_titre);
-                      //$('#error2').text(data.errors.theme_date);
-                     //$('#error3').text(data.errors.resume);
                   }
                   else{
+
                 $('.error').remove();
                 $('.table').append("<tr class='theme"+ data.id+"'>"+"<th>"+data.id+"</th>"
                 +"<th>"+data.titre+"</th>"+"<th>10</th>"+"<th><a href='#' class='show-modal btn btn-info btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='fa fa-eye'></i></a>"
                 +"<a href='#' class='edit-modal btn btn-warning btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='glyphicon glyphicon-pencil'></i></a>"
                 +"<a href='#' class='delete-modal btn btn-danger btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='glyphicon glyphicon-trash'></i></a>"+
                 "</th></tr>");
-                  alert('ENREGISTREMENT TERMINER')
-                  $('#create').modal('hide');
-         $('.form-horizontal').hide();
+                  //$('#create').modal('hide');
+                 $('.form-horizontal').hide();
+                 $("#id_success").removeClass('hidden')
+                 $('.modal-footer').hide()
                   }
               },
           }
@@ -256,19 +215,29 @@
            $("#titre").val();
            $('#resume').val();
           }); 
-          //enregistrement theme
+          //publication et mise en ligne d'un theme
           $('#themepubli').click(function()
              {
-               // var fullDate = new Date();
+                $('#error').text(' ')
+                var myForm = document.getElementById('myform1');
+                formData = new FormData(myForm);
                 $.ajax(
           {
               type: 'POST',
               url: 'addTheme',
-              data: {
-                  '_token' : $('input[name=_token]').val(),
-                  'theme_titre' : $('input[name=theme_titre]').val(),
-                  'resume' : $('#resume').val(),
-              },
+              data:  formData,
+              dataType: 'JSON',
+              contentType:false,
+              cache:false,
+              processData:false,
+              beforeSend:function(){
+                $(".modal-content").hide()
+                $(".loader").removeClass('hidden')
+             },
+             complete: function(){
+              $('.loader').addClass('hidden')
+              $(".modal-content").show()
+             },
               success: function(data){
                          if((data.errors))
                            {
@@ -318,9 +287,10 @@
     $("#ti").val($(this).data('titre'));
     $("#fre").val($(this).data('resume'));
     $("#datepicker2").val($(this).data('date'));
-    
           });
+        //mise a jour theme
           $('.modal-footer').on('click','.edit',function(){
+            $('#error2').text(' ')
               $.ajax({
                   type: 'POST',
                   url: 'themeUpdate',
@@ -331,12 +301,28 @@
                 'resume': $("#fre").val(),
                  'date': $("input[name=date]").val(),
                   },
+                  beforeSend:function(){
+                $(".modal-content").hide()
+                $(".loader").removeClass('hidden')
+             },
+             complete: function(){
+              $('.loader').addClass('hidden')
+              $(".modal-content").show()},
                   success: function(data){
-                    $('.theme'+data.id).replaceWith(" "+
+                      if((data.errors))
+                        {
+                            $.each(data.errors, function(key,value){
+                            $('#error2').removeClass('hidden')
+                        $('#error2').append(value) 
+                        })
+                        }else{
+                            $("#myModal").modal('hide');
+                            $('.theme'+data.id).replaceWith(" "+
                     "<tr class='theme"+data.id+"' ><th>"+data.id+"</th>"+"<th>"+data.titre+"</th>"+"<th>10</th>"+"<th><a href='#' class='show-modal btn btn-info btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='fa fa-eye'></i></a>" +"<a href='#' class='edit-modal btn btn-warning btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' data-resume='"+data.resume+"' data-date='"+data.date_publication+"' >"+"<i class='glyphicon glyphicon-pencil'></i></a>"
                 +"<a href='#' class='delete-modal btn btn-danger btn-sm' data-id='"+data.id+"' data-titre='"+data.titre+"' >"+"<i class='glyphicon glyphicon-trash'></i></a>"+
                 "</th></tr>"
                     )
+                        }
                   }
               });
           });
@@ -399,5 +385,14 @@
           $(document).on('click','#closeshow',function(){
             $('#contentshow').remove();
           });
+          $(document).on('click','#closeupdate',function(){
+              $("#error2").hide()
+          })
+          $("#cancel_modal").click(function(){
+              $('#error').addClass('hidden')
+              $("#error").text(' ')
+              $("#myform1")[0].reset()
+              $("#myform")[0].reset()
+          })
   </script>
 @endsection

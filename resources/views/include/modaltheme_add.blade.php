@@ -1,12 +1,15 @@
 <div id="create" class="modal fade" role="dialog">
  <div class="modal-dialog">
+ <div class="loader hidden">
+    </div>
   <div class="modal-content" >
    <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
      <div class="modal-body" id="leila2">
-     
-     <p class=" text-center alert alert-danger hidden" id="error"><ul></ul></p>
+     <!-- message erreur -->
+    <p class=" text-center alert alert-danger hidden" id="error"><ul></ul></p>
+    <div id="savesss"></div>
      <form class="form-horizontal" enctype="multipart/form-data" method="POST" role="form" id="myform1">
                         {{ csrf_field() }}
 
@@ -49,14 +52,18 @@
                             </div>
                         </div>
                     </form>
-                   
-                           
+                    <!--  Message d'enregistrement reussi-->
+                    <div class="hidden" id="id_success">
+     <p class="alert alert-success">Enregistrement reussie </p>
+      <br>
+      <center> <button type="button" id="success_add" class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>OK</button></center>
+                </div>               
       </div>
        <div class="modal-footer">
       
           <button type="submit" id="add" class="btn btn-success"></span class="glyphicon glyphicon-plus"></span>Enregistrer</button>
           <button id="themepubli" type="button"  class="btn btn-primary"></span class="glyphicon glyphicon-remobe"></span>PUBLIER THEME</button>
-          <button type="button"  class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>annuler</button>
+          <button type="button" id="cancel_modal" class="btn btn-warning" data-dismiss="modal"></span class="glyphicon glyphicon-remobe"></span>annuler</button>
         </div>
 </div>
 </div>
