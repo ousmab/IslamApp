@@ -9,7 +9,7 @@
                   
                     <ul class="nav child_menu menujs" id="ulmenu">
                       <li><a href="/myphotos" class="menunavs"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Ajouter image theme </a></li>
-                      <li><a href="{{url('themes')}}" class="menunavs"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp; Tous les themes</a></li>
+                      <li><a href="{{url('adminIslam_app_codezxdert/themes')}}" class="menunavs"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp; Tous les themes</a></li>
                       <li><a href="{{url('brouillon')}}" class="menunavs"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Brouillon</a></li>
                       <li><a href="{{url('archive')}}" class="menunavs"><i class="fa fa-archive" aria-hidden="true"></i>&nbsp;Theme archivés</a></li>
                     </ul>

@@ -4,26 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'IslamApp') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/bootstrap-iso.css') }}" rel="stylesheet">
-     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/stylejq.css') }}" rel="stylesheet">
-     <link href="{{ asset('summernote/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-inverse" id="personav">
+        <nav class="navbar navbar-default navbar-static-top" id="loginnav">
             <div class="container">
                 <div class="navbar-header">
 
@@ -36,8 +29,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'IslamApp') }}
+                    <a class="navbar-brand" href="{{ url('/') }}" id="titre">
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
@@ -51,8 +44,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('admin.auth.login') }}">Login</a></li>
-                            <li><a href="{{ route('admin.register') }}">Register</a></li>
+                            <li><a href="{{ route('admin.auth.login') }}" id="titre">connexion</a></li>
+                            <li><a href="{{ route('admin.register') }}">Register</a></li> 
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -78,66 +71,11 @@
                 </div>
             </div>
         </nav>
-                @guest
-                  
-                  @else
-                  @include('include.sidebar_admin')
-                  @endguest
-              <div class=" col-md-16 col-md-offset-2 main">
-              @yield('content')
-              </div>
-           </div>
-          </div>  
+
+        @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('summernote/summernote.js') }}"></script>
-    <script>
-    //fonction pour afficher ou cacher les sous menus de administration
-    function afficher(idvaleur)
-               {
-                if($(idvaleur).is(":hidden"))
-                        {
-                            $(idvaleur).show();
-                        }
-                        else{
-                            $(idvaleur).hide();
-                        }
-               }
-      $( function() {
-		$( "#datepicker1,#datepicker2" ).datepicker({
-			showWeek: true,
-			firstDay: 1,
-            dateFormat: 'yy-mm-dd'
-		});
-	} );
-    </script>
-         @yield('monjs')
-      <script>
-      $('#navcach').click(function(){
-             var id='#ulmenu';
-                afficher(id);
-                /*$('#ulmenu').show();
-                      if($('#ulmenu').is(":hidden"))
-                        {
-                            $('#ulmenu').show();
-                        }
-                        else{
-                            $('#ulmenu').hide();
-                        } */
-              });
-      </script>
-      @yield('script.question')
-       <script>
-        $('#navquestion').click(function(){
-             var id='#ulmenu2';
-                afficher(id);
-        });
-       </script>
-       @yield('script.question2')
-       @yield('script.reponse')
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

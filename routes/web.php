@@ -29,7 +29,7 @@ Route::post('addTheme',function()
 );
 
  Route::group(['middleware'=>'auth'],function(){
-     Route::resource('themes','ThemesController');
+    // Route::resource('themes','ThemesController');
      Route::POST('addTheme','ThemesController@addTheme');
      Route::POST('themeUpdate','ThemesController@update');
      Route::POST('deleteTheme','ThemesController@deleteTheme');
@@ -56,7 +56,21 @@ Route::post('addTheme',function()
    );*/
 
  });
-Auth::routes();
+//Auth::routes();
+//route du system administration de islam-tous nouveau system d'authentification
+Route::group(['prefix' => 'adminIslam_app_codezxdert'],function () {
+    // Route::middleware(['admin'])->group(function(){
+    Route::resource('themes','ThemesController',['as'=> 'adminIslam_app_codezxdert']);
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
+    Route::get('dashboard', 'AdminController@index')->name('dashboard');
+    Route::get('register', 'AdminController@create')->name('admin.register');
+    Route::post('register', 'AdminController@store')->name('admin.register.store');
+    Route::get('login', 'Auth\Admin\LoginController@login')->name('admin.auth.login');
+    Route::post('login', 'Auth\Admin\LoginController@loginAdmin')->name('admin.auth.loginAdmin');
+    Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.auth.logout');
+     //});
+  });
 
 Route::get('/home', 'HomeController@index')->name('accueil');
  Route::get('/liste_theme','ThemesController@themeArchive');

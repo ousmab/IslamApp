@@ -28,7 +28,11 @@ class ThemesController extends Controller
     {
         $theme_en_ligne=Theme::where('is_brouillon',false)->where('is_archive',false)->first();
        $theme = Theme::all()->where('is_brouillon',true)->where('is_archive',false);
+          if(Auth::guard('admin')->check())
+            {
         return view('admin.theme_liste',compact('theme','theme_en_ligne'));
+            }
+            else return view('admins.auth.login');
     }
 
     /**
