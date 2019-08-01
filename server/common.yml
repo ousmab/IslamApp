@@ -1,5 +1,0 @@
-islam_app:
-  build: .
-  ports:
-    - "8181:8181"
-  container_name: islam_app
