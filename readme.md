@@ -8,7 +8,7 @@ enseigner aux musulmans la religion de l'islam.
 
 - La version 1.0.0 fût dévelopé en 2014 mais n'a pas connu de succès
 - La version 2.0.0 fût développé en 2018 mais n'a pas été mis en production
-- Ceci est la version 2.1.0
+- Ceci est la version 3.0.0
 
 # Fonctionnalités
 
@@ -22,7 +22,7 @@ enseigner aux musulmans la religion de l'islam.
 # Technologies
 
 - Python-3.7 / Flask
-- Javascript / ReactJS
+- Javascript / JQuery
 - SQL database
 - Progressive Web Application
 
@@ -31,11 +31,77 @@ enseigner aux musulmans la religion de l'islam.
 Il s'agit d'une application client - serveur en mode web service (REST API).
 - Le dossier **application** contient le code source de l'application. Dans ce dossier on retrouve:
     - **local_config.py**: il contient les configurationss de base de l'application
-    - **modules**: ce dossier contient les modules métiers de l'application (fichiers statiques, geolocalisation, themes, etc...)
+    - **plugins**: ce dossier contient les modules métiers de l'application (fichiers statiques, geolocalisation, themes, etc...)
     - **core**: il contient les scripts et autres codes utiles au fonctionnement de l'application
     - **api**: il contient toutes les api de l'application
+    - **models**: il contient tous les modèles de l'application. C'est la représentation de la BD via SQLAlchemy
 
 # Comment installer l'application?
+
+## Sur Windows 10 (64 bits)
+
+1. Installer Python 3.7.0: https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe
+Au lancement de l'installation, choisissez les options tels que définis ci dessous
+
+![wizard install python](docs/images/install_python.jpg)
+
+Après installation, Python37 sera présent dans le répertoire C:\Users\VotreNomUtilisateur\AppData\Local\Programs\Python\Python37
+
+2. Une fois installer vous pouvez exécuter Python37 ou PIP37 en tapant l'une de ces commandes
+
+    ```
+    py -3.7 # pour exécuter Python37
+    py -3.7 -m  pip # pour exécuter PIP37
+    ```
+
+3. Créer votre _virtualenv_ dans lequel vous allez travaillez sur le projet
+
+    ```
+    py -3.7 -m  venv \chemin\vers\votre\dossier\de\projet
+    ```
+
+4. Activer le virtualenv en tapant la commande suivante
+
+    ```
+     \chemin\vers\votre\dossier\de\projet\Scripts\activate
+    ```
+
+5. Ensuite il faut mettre à jour PIP
+
+  ```
+   python -m pip install --upgrade pip
+  ```
+
+6. Installer git si vous ne l'avez pas encore fait
+
+7. Cloner le dépôt du projet
+
+    ```
+    git clone https://github.com/proxima-cm/IslamApp.git
+    ```
+
+8. Installer les dépendances de l'application
+
+    ```
+    cd IslamApp
+    pip install -r requirements.txt
+    ```
+
+# Comment exécuter l'application?
+
+1.  Activer le virtualenv si ce n'est pas encore fait
+
+    ```
+     \chemin\vers\votre\dossier\de\projet\Scripts\activate
+    ```
+
+2. Vous pouvez maintenant démarrer l'application
+
+    ```
+    python run.py
+    ```
+
+3. Ouvrez votre navigateur et tapez l'adresse http://localhost:5000/
 
 
 
