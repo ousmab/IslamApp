@@ -1,5 +1,6 @@
-flask==1.1.1
+flask==1.0.2
 flask-sqlalchemy==2.4.0
 flask-restplus==0.12.1
 flask-wtf==0.14.2
 flask-debugtoolbar==0.10.1
+flask-login==0.4.1
