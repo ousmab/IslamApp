@@ -94,22 +94,54 @@ Après installation, Python37 sera présent dans le répertoire C:\Users\VotreNo
      \chemin\vers\votre\dossier\de\projet\Scripts\activate
     ```
 
-2. Vous pouvez maintenant démarrer l'application
+2. Activer l'environnement de développement
 
     ```
-    python run.py
+    set FLASK_APP=run.py
+    set FLASK_ENV=development
     ```
 
-3. Ouvrez votre navigateur et tapez l'adresse http://localhost:5000/
+3. Effectuer la migration de la BD si nécessaire
+
+    ```
+    flask db init
+    ```
+
+    ou
+
+    ```
+    flask db migrate
+    ```
+
+    ou
+
+    ```
+    flask db upgrade
+    ```
+
+    Pour en savoir plus sur les commandes de migration
+
+    ```
+    flask db --help
+    ```
+
+4. On peut maintenant démarrer l'application
+
+    ```
+    python -m flask run
+    ```
+
+5. IslamApp est disponible à l'adresse http://localhost:5000/
 
 
 
 # Bon à savoir
+
 - La branche dev est la branche principale de développement et des tests
-- La branche master est la branche qui est en production (release)
+- La branche master est la branche de production (release)
 - Le versionning sera géré suivant la gestion sémantique de version. Chaque version
-sera matérialisé par 3 chiffres (x, y, z) où x est la version majeur de l'application,
-y représentant la modification au niveau d'un module et z représentant la correction d'un bug
+sera matérialisé par 3 chiffres (x, y, z) où **x** est la version majeur de l'application,
+**y** représentant la modification au niveau d'un module et **z** représentant la correction d'un bug
 ou une modification mineure qui ne change pas un comportement au niveau de l'application.
 - Nous utilisons Travis CI comme outil d'intégration continue. Il va permettre de compiler, tester
 et déployer le code source.
