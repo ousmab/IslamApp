@@ -41,7 +41,7 @@ FOOTER_LINKS = [
 MODULES = [
 
     # index module
-    # {'path': 'path/to/controller/index', 'blueprint': 'blueprint_name', 'url':None},
+    {'path': 'application.plugins.index.controllers.index', 'blueprint': 'app_index', 'url':None},
 
 ]
 
