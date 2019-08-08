@@ -31,10 +31,9 @@ enseigner aux musulmans la religion de l'islam.
 Il s'agit d'une application client - serveur en mode web service (REST API).
 - Le dossier **application** contient le code source de l'application. Dans ce dossier on retrouve:
     - **local_config.py**: il contient les configurationss de base de l'application
-    - **plugins**: ce dossier contient les modules métiers de l'application (fichiers statiques, geolocalisation, themes, etc...)
+    - **plugins**: ce dossier contient les modules métiers de l'application (fichiers statiques, geolocalisation, themes, modèles, etc...)
     - **core**: il contient les scripts et autres codes utiles au fonctionnement de l'application
     - **api**: il contient toutes les api de l'application
-    - **models**: il contient tous les modèles de l'application. C'est la représentation de la BD via SQLAlchemy
 
 # Comment installer l'application?
 
