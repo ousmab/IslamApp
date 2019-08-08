@@ -6,6 +6,9 @@ __pycache__/
 *.yaml
 *$py.class
 
+# Custom files
+.db
+
 # C extensions
 *.so
 
