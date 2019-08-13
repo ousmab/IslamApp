@@ -2,4 +2,4 @@
 
 from flask import Blueprint
 app_index = Blueprint('index', __name__, template_folder='views',
-                        static_folder='static')
+                        static_folder='assets')
