@@ -13925,7 +13925,7 @@ a.text-danger:focus
 
 .text-light
 {
-    color: #adb5bd !important;
+    color: #49545f !important;
 }
 
 a.text-light:hover,
@@ -14783,7 +14783,7 @@ button.section-darker:focus
 
 .bg-gradient-default
 {
-    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important;
+    background: linear-gradient(150deg, #3e822d 15%, #67e5d4 70%, #555abf 94%) !important;
 }
 
 .bg-gradient-white
@@ -19789,7 +19789,7 @@ article h5 + figure
     padding-top: .5rem;
     padding-bottom: .5rem;
 
-    background-color: #172b4d !important;
+    background-color: #3e822d !important;
     box-shadow: 0 1px 10px rgba(130, 130, 134, .1);
 }
 

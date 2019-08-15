@@ -42,6 +42,7 @@ MODULES = [
 
     # index module
     {'path': 'application.plugins.index.controllers.index', 'blueprint': 'app_index', 'url':None},
+    {'path': 'application.plugins.index.controllers.user', 'blueprint': 'app_index', 'url':None},
 
 ]
 
