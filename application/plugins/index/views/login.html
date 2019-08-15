@@ -2,7 +2,7 @@
 
 {% block meta %}{% endblock%}
 
-{% block title %}<title>IslamApp - Login</title>{% endblock%}
+{% block title %}<title>IslamApp - Connexion</title>{% endblock%}
 
 {% block main %}
 <section class="section section-shaped section-lg">
@@ -58,7 +58,7 @@
             <a href="#" class="text-light"><small>Mot de passe oublié?</small></a>
           </div>
           <div class="col-6 text-right">
-            <a href="#" class="text-light"><small>Créer un compte</small></a>
+            <a href="{{url_for('index.register')}}" class="text-light"><small>Créer un compte</small></a>
           </div>
         </div>
       </div>
