@@ -8,6 +8,7 @@ import importlib
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_restplus import Api
 
 from application.core.tools import date_time, security
 
@@ -36,6 +37,9 @@ db_file = "sqlite:///{}".format(os.path.join(project_dir, "islamapp.db"))
 app.config['SQLALCHEMY_DATABASE_URI'] = db_file
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+api = Api(app, version='1.0', title='IslamApp API',
+    description='An API that communicates with IslamApp instances',
+)
 
 
 # =================
