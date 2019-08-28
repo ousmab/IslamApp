@@ -16,8 +16,10 @@ class UserModel(UserMixin, db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime)
     active = db.Column(db.Boolean)
+    cgu_accepted = db.Column(db.Boolean) # cgu = conditions generales d'utilisation
 
     def create(self, **kwargs):
+        print(kwargs)
         pass
 
     def update(self, id, **kwargs):

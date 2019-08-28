@@ -30,6 +30,7 @@ class UserListApi(Resource):
     @endpoint.expect(user_obj)
     def post(self):
         """ create user """
+        print(request.json)
         return user_entity.create(request.json)
 
 @endpoint.route('/user-service/<int:id>')

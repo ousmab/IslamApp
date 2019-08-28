@@ -22,6 +22,7 @@ app = FlaskApp(__name__, static_folder='core/static',
 # CONFIGURATIONS
 # ==============
 try:
+    app.secret_key = security.secret_key
     app.config.from_pyfile('local_config.py')
 except IOError:
     raise IOError('No configuration setup: local_config.py not found!')
