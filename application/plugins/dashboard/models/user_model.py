@@ -1,5 +1,6 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
 
+from datetime import datetime
 from flask_login import UserMixin
 from application import db
 
@@ -35,4 +36,7 @@ class UserModel(UserMixin, db.Model):
         pass
 
     def get_all_users(self):
+        pass
+
+    def get_user(self, id):
         pass
