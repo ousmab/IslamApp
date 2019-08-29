@@ -45,7 +45,7 @@ MODULES = [
 
     # index
     {'path': 'application.plugins.index.controllers.index', 'blueprint': 'app_index', 'url':None},
-    {'path': 'application.plugins.index.controllers.user', 'blueprint': 'app_index', 'url':None},
+    {'path': 'application.plugins.index.controllers.connexion', 'blueprint': 'app_index', 'url':None},
 
     # dashboard
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},

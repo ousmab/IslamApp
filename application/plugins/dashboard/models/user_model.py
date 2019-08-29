@@ -3,6 +3,7 @@
 from datetime import datetime
 from flask_login import UserMixin
 from application import db
+from werkzeug.security import generate_password_hash
 
 class UserModel(UserMixin, db.Model):
     """This class is the user entity. It inherit from UserMixin so it can
@@ -19,13 +20,18 @@ class UserModel(UserMixin, db.Model):
     cgu_accepted = db.Column(db.Boolean) # cgu = conditions generales d'utilisation
 
     def create(self, **kwargs):
-        print(kwargs)
-        pass
+        data = kwargs['data']
+        self.fullname = data.get('fullname')
+        self.email = data.get('email')
+        self.password = generate_password_hash(data.get('password'))
+        self.cgu_accepted = True
+        db.session.add(self)
+        db.session.commit()
 
     def update(self, id, **kwargs):
         pass
 
-    def update_password(self, id, new_password):
+    def reset_password(self, id, new_password):
         pass
 
     def delete(self, id):
