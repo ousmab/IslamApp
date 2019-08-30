@@ -42,6 +42,10 @@ MODULES = [
 
     # index module
     {'path': 'application.plugins.index.controllers.index', 'blueprint': 'app_index', 'url':None},
+    # theme module
+    {'path': 'application.plugins.theme.controllers.theme_controller', 'blueprint': 'app_theme', 'url':None},
+      # dashboard module
+    {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
 
 ]
 

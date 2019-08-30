@@ -1,0 +1,9 @@
+$(function(){
+    $("#customCheck1").click(function(){
+        if($(this).is(":checked")){
+            $("#divdates").hide()
+        }else{
+            $("#divdates").show()
+        }
+    })
+})

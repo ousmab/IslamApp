@@ -1,0 +1,56 @@
+<!--
+
+=========================================================
+* Argon Design System - v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-design-system
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="IslamApp contributors and Proxima Technologies">
+  {% block meta %}{% endblock %}
+  {% block title %}{% endblock %}
+  <!-- Favicon -->
+  <link href="{{url_for('static', filename='img/brand/fav.png')}}" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="{{url_for('static', filename='vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <!-- Argon CSS -->
+  <link type="text/css" href="{{url_for('static', filename='css/argon.css')}}" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  {% include 'header.html' %}
+
+  <!-- Main -->
+  <main>
+  {% block main %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+
+  <!-- Core -->
+  <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/popper/popper.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/headroom/headroom.min.js')}}"></script>
+  <!-- Argon JS -->
+  <script src="{{url_for('static', filename='js/argon.js')}}"></script>
+</body>
+
+</html>

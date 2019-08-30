@@ -1,0 +1,51 @@
+{% extends 'dash_base.html' %}
+
+{% block dashboard %}
+<div class="container-fluid ">
+        <div class="row">
+                <div class="col">
+                        <div class="card shadow">
+                                <div class="card-header border-0">
+                                  <h3 class="mb-0">Nouveau Theme</h3>
+                                </div>
+                                <form>
+                                    <div class="form-group col-8">
+                                        <label for="">Titre du themes</label>
+                                        <input type="email" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="name@example.com">
+                                    </div>
+                                    <div class="form-group col-8" id="divdates" style="display: none">
+                                            <label for="">Date publication du theme</label>
+                                            <div class="input-group input-group-alternative">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                                </div>
+                                                <input class="form-control datepicker" placeholder="Select date" type="text">
+                                            </div>
+                                        </div>
+                                    <div class="form-group col-8">
+                                            <label for="">Description du theme</label>
+                                            <textarea class="form-control form-control-alternative" id="exampleFormControlTextarea1" rows="3" placeholder="Write a large text here ..."></textarea>
+                                    </div>
+                                    <div class="form-group col-8">
+                                            <div class="custom-control custom-checkbox col-8">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">Mettre en brouillon</label>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-8">
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                </div>
+         </div>
+</div>
+
+{% endblock %}
+{% block datejs%}
+<script src="{{url_for('static', filename='vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+{% endblock%}
+{% block themejs%}
+<script src="{{url_for('static', filename='js/theme.js')}}"></script>
+{% endblock%}

@@ -1,0 +1,69 @@
+<!--
+
+=========================================================
+* Argon Dashboard - v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>IslamApp - Dashboard</title>
+  <!-- Favicon -->
+  <link href="{{url_for('static', filename='img/brand/fav.png')}}" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="{{url_for('static', filename='vendor/nucleo/css/nucleo.css')}}" rel="stylesheet" />
+  <link href="{{url_for('static', filename='vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="{{url_for('dashboard.static', filename='css/argon-dashboard.css')}}" rel="stylesheet" />
+</head>
+
+<body class="">
+  <!-- Navigation -->
+  {% include 'left_menu.html' %}
+  <div class="main-content">
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Header -->
+    {% include 'dash_header.html' %}
+
+
+    <div class="container-fluid mt--7">
+      <div class="row">
+      {% block dashboard %}{% endblock %}
+      </div>
+
+      <!-- Footer -->
+      {% include 'dash_footer.html' %}
+    </div>
+  </div>
+
+
+
+  <!--   Core   -->
+  <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
+  {% block datejs %}{% endblock %}
+  <!--   Optional JS   -->
+  <script src="{{url_for('static', filename='vendor/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/chart.js/dist/Chart.extension.js')}}"></script>
+  <!--   Argon JS   -->
+  <script src="{{url_for('dashboard.static', filename='js/argon-dashboard.min.js')}}"></script>
+  {% block themejs%}{% endblock%}
+</body>
+
+</html>
