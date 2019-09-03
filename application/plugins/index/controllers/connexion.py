@@ -1,15 +1,44 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
 
 
-import requests, json, werkzeug
+import werkzeug
 from application.plugins.index import app_index
 from application.plugins.dashboard.models.user_model import UserModel
 from flask import render_template, request, url_for, flash, redirect
+from application.core.interface import user_exist
+from application import login_manager
+from flask_login import login_user, current_user, login_required, logout_user
 
-@app_index.route('/login')
+
+@login_manager.user_loader
+def load_user(user_id):
+    return UserModel().get_user(user_id)
+
+@app_index.route('/login', methods=['GET', 'POST'])
 def login():
+    if not user_exist():
+        return redirect(url_for('dashboard.register'))
+    else:
+        if request.method == 'POST':
+            user = UserModel.query.filter_by(
+                email = request.form['email'],
+            ).first()
+            if werkzeug.security.check_password_hash(user.password,
+                                                    request.form['password']):
+                login_user(user)
+                this_user = current_user
+                return redirect(url_for('dashboard.dash_home'))
+            else:
+                flash('Vos identifiants sont incorrects!')
+                return redirect(url_for('dashboard.login'))
     return render_template('login.html')
 
+
+@app_index.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index.home'))
 
 @app_index.route('/register', methods=['GET', 'POST'])
 def register():

@@ -46,5 +46,5 @@ class UserModel(UserMixin, db.Model):
     def get_all_users(self):
         pass
 
-    def get_user(self, id):
-        pass
+    def get_user(self, user_id):
+        return self.query.filter_by(id = user_id).first()
