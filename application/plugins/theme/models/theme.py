@@ -1,17 +1,13 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
-
 __version__ = '3.0.0'
-
-
+'''
+file model theme describe database
+import package datetime
+'''
 from datetime import datetime
-'''
-package for date
-'''
 
+#package describe database
 from application import db
-'''
-package describe database
-'''
 
 class Theme(db.Model):
     '''
@@ -23,4 +19,4 @@ class Theme(db.Model):
     resume = db.Column(db.String(100), nullable=False)
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
     is_brouillon = db.Column(db.Boolean, default=False)
-    is_archive = db.Column(db.Boolean,default=False)
+    is_archive = db.Column(db.Boolean, default=False)
