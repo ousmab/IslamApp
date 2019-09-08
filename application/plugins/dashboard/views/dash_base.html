@@ -31,25 +31,19 @@
   <link href="{{url_for('dashboard.static', filename='css/argon-dashboard.css')}}" rel="stylesheet" />
 </head>
 
-<body class="">
+<body>
   <!-- Navigation -->
-  {% include 'left_menu.html' %}
+  {% include 'navbar.html' %}
+
   <div class="main-content">
-    <!-- Navbar -->
-    {% include 'navbar.html' %}
 
-    <!-- Header -->
-    {% include 'dash_header.html' %}
+      <!-- Header -->
+      <div class="header bg-gradient-primary pb-4 pt-5 pt-md-"></div>
 
-
-    <div class="container-fluid mt--7">
-      <div class="row">
       {% block dashboard %}{% endblock %}
-      </div>
 
-      <!-- Footer -->
       {% include 'dash_footer.html' %}
-    </div>
+
   </div>
 
 
