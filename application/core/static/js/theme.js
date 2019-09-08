@@ -1,0 +1,10 @@
+$(function(){
+    //$("#divdates").hide();
+    $("#customCheck1").click(function(){
+        if($(this).is(":checked")){
+            $("#divdates").show()
+        }else{
+            $("#divdates").hide()
+        }
+    })
+})
