@@ -21,10 +21,15 @@
       <div class="card shadow">
 
         <div class="card-header">
-          <h3 class="mb-0">Utilisateurs</h3><br>
+          <h3 class="mb-0">
+            Roles
+            <a href="{{url_for('dashboard.role_create')}}" class="btn btn-icon btn-2 btn-primary">
+              <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+            </a>
+          </h3><br>
           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
             <li class="nav-item">
-              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{url_for('dashboard.roles_view')}}" aria-selected="true">Gestion des rôles</a>
+              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Gestion des utilisateurs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Administrateurs</a>
@@ -47,33 +52,19 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">
-                                Noms & Prenom
+                                Nom
                             </th>
                             <th scope="col">
-                                Email
-                            </th>
-                            <th scope="col">
-                                Statut
+                                description
                             </th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody class="list">
-                        {% for user in users %}
+                        {% for role in roles %}
                         <tr>
-                            <th scope="row" class="name"><a href="{{url_for('dashboard.user_profile_detail', id=user.id)}}">{{user.fullname}}</a></th>
-                            <td class="name">{{user.email}}</td>
-                            <td class="status">
-                                {% if user.active == True %}
-                                <span class="badge badge-dot mr-4">
-                                  <i class="bg-success"></i> Compte Actif
-                                </span>
-                                {% else %}
-                                <span class="badge badge-dot mr-4">
-                                  <i class="bg-danger"></i> Compte Pas Actif
-                                </span>
-                                {% endif %}
-                            </td>
+                            <th scope="row" class="name"><a href="{{url_for('dashboard.role_detail', id=role.id)}}">{{role.name}}</a></th>
+                            <td class="name">{{role.description}}</td>
 
                             <td class="text-right">
                                 <div class="dropdown">
@@ -81,7 +72,7 @@
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="{{url_for('dashboard.user_profile_edit', id=user.id)}}">Modifier</a>
+                                        <a class="dropdown-item" href="{{url_for('dashboard.role_edit', id=role.id)}}">Modifier</a>
                                         <a class="dropdown-item" href="#">Désactiver</a>
                                         <a class="dropdown-item" href="#">Supprimer</a>
                                     </div>

@@ -49,6 +49,7 @@ MODULES = [
 
     # dashboard
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
+    {'path': 'application.plugins.dashboard.controllers.role_ctrl', 'blueprint': 'app_dashboard', 'url':'/admin'},
 
 ]
 
