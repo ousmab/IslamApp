@@ -6,13 +6,7 @@ from application.plugins.index import app_index
 from application.plugins.dashboard.models.user_model import UserModel
 from flask import render_template, request, url_for, flash, redirect
 from application.core.interface import user_exist
-from application import login_manager
 from flask_login import login_user, current_user, login_required, logout_user
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return UserModel().get_user(user_id)
 
 @app_index.route('/login', methods=['GET', 'POST'])
 def login():
