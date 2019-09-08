@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
   <div class="container-fluid">
     <!-- Toggler -->
@@ -27,14 +28,42 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+=======
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Dashboard</a>
+    <!-- Form -->
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+      <div class="form-group mb-0">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+          </div>
+          <input class="form-control" placeholder="Search" type="text">
+        </div>
+      </div>
+    </form>
+    <!-- User -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      <li class="nav-item dropdown">
+        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+>>>>>>> 1271da43620f8d80958912e954e831fe5b06541d
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
               <img alt="Image placeholder" src="{{url_for('static', filename='img/brand/fav.png')}}">
             </span>
+<<<<<<< HEAD
+=======
+            <div class="media-body ml-2 d-none d-lg-block">
+              <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+            </div>
+>>>>>>> 1271da43620f8d80958912e954e831fe5b06541d
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
           <div class=" dropdown-header noti-title">
+<<<<<<< HEAD
             <h6 class="text-overflow m-0">Bienvenue {{current_user.fullname.upper()}} !</h6>
           </div>
           <a href="{{url_for('dashboard.user_profile_detail', id=current_user.id)}}" class="dropdown-item">
@@ -57,10 +86,35 @@
           <a href="{{url_for('index.logout')}}" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Déconnexion</span>
+=======
+            <h6 class="text-overflow m-0">Welcome!</h6>
+          </div>
+          <a href="./examples/profile.html" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
+          <a href="./examples/profile.html" class="dropdown-item">
+            <i class="ni ni-settings-gear-65"></i>
+            <span>Settings</span>
+          </a>
+          <a href="./examples/profile.html" class="dropdown-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <span>Activity</span>
+          </a>
+          <a href="./examples/profile.html" class="dropdown-item">
+            <i class="ni ni-support-16"></i>
+            <span>Support</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#!" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>Logout</span>
+>>>>>>> 1271da43620f8d80958912e954e831fe5b06541d
           </a>
         </div>
       </li>
     </ul>
+<<<<<<< HEAD
 
     <!-- Collapse -->
     <div class="collapse navbar-collapse" id="sidenav-collapse-main">
@@ -143,5 +197,7 @@
       </ul>
       {% endif %}
     </div>
+=======
+>>>>>>> 1271da43620f8d80958912e954e831fe5b06541d
   </div>
 </nav>
