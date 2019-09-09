@@ -8,6 +8,7 @@ __pycache__/
 
 # Custom files
 .db
+migrations/
 
 # C extensions
 *.so
