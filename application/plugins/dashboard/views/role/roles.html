@@ -63,7 +63,7 @@
                     <tbody class="list">
                         {% for role in roles %}
                         <tr>
-                            <th scope="row" class="name"><a href="{{url_for('dashboard.role_detail', id=role.id)}}">{{role.name}}</a></th>
+                            <th scope="row" class="name"><a href="{{url_for('dashboard.role_detail', id=role.id)}}">{{role.name.upper()}}</a></th>
                             <td class="name">{{role.description}}</td>
 
                             <td class="text-right">

@@ -12,14 +12,14 @@ class RoleModel(db.Model):
 
     def create(self, **kwargs):
         data = kwargs['data']
-        self.name = data.get('name')
+        self.name = data.get('name').lower()
         self.description = data.get('description')
         db.session.add(self)
         db.session.commit()
 
     def update(self, obj, **kwargs):
         data = kwargs['data']
-        obj.name = data.get('name')
+        obj.name = data.get('name').lower()
         obj.description = data.get('description')
         db.session.flush()
         db.session.commit()
