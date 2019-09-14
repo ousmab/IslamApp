@@ -5,6 +5,7 @@ from application.plugins.dashboard import app_dashboard
 from flask_login import login_required
 from flask import render_template, request, redirect, url_for
 from application.plugins.dashboard.models.role_model import RoleModel
+from application.plugins.dashboard.models.user_model import UserModel
 
 
 @app_dashboard.route('/roles')
@@ -12,6 +13,30 @@ from application.plugins.dashboard.models.role_model import RoleModel
 def roles_view():
     roles = RoleModel.query.all()
     return render_template('role/roles.html', **locals())
+
+@app_dashboard.route('/roles/admins')
+@login_required
+def roles_admins_view():
+    role = RoleModel.query.filter_by(name='administrateur').first()
+    if role:
+        users = UserModel.query.filter_by(role_id=role.id).all()
+    return render_template('role/roles_admins.html', **locals())
+
+@app_dashboard.route('/roles/oulemas')
+@login_required
+def roles_oulemas_view():
+    role = RoleModel.query.filter_by(name='oulema').first()
+    if role:
+        users = UserModel.query.filter_by(role_id=role.id).all()
+    return render_template('role/roles_oulemas.html', **locals())
+
+@app_dashboard.route('/roles/redacteurs')
+@login_required
+def roles_redacteurs_view():
+    role = RoleModel.query.filter_by(name='redacteur').first()
+    if role:
+        users = UserModel.query.filter_by(role_id=role.id).all()
+    return render_template('role/roles_redacteurs.html', **locals())
 
 @app_dashboard.route('/role/create', methods=['GET', 'POST'])
 @login_required

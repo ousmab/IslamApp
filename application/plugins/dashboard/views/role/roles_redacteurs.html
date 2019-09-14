@@ -21,10 +21,15 @@
       <div class="card shadow">
 
         <div class="card-header">
-          <h3 class="mb-0">Utilisateurs</h3><br>
+          <h3 class="mb-0">
+            Administrateurs
+            <a href="{{url_for('dashboard.role_create')}}" class="btn btn-icon btn-2 btn-primary">
+              <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+            </a>
+          </h3><br>
           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
             <li class="nav-item">
-              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{url_for('dashboard.roles_view')}}" aria-selected="false">Gestion des rôles</a>
+              <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-1-tab" href="{{url_for('dashboard.user_profile')}}" role="tab" aria-selected="false">Gestion des utilisateurs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" href="{{url_for('dashboard.roles_admins_view')}}" role="tab" aria-selected="false">Administrateurs</a>
@@ -33,7 +38,7 @@
               <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" href="{{url_for('dashboard.roles_oulemas_view')}}" role="tab" aria-selected="false">Oulémas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" href="{{url_for('dashboard.roles_redacteurs_view')}}" role="tab" aria-selected="false">Rédacteurs</a>
+              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-3-tab" href="{{url_for('dashboard.roles_redacteurs_view')}}" role="tab" aria-selected="false">Rédacteurs</a>
             </li>
           </ul>
         </div>
