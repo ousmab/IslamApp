@@ -16,3 +16,10 @@ class RoleModel(db.Model):
         self.description = data.get('description')
         db.session.add(self)
         db.session.commit()
+
+    def update(self, obj, **kwargs):
+        data = kwargs['data']
+        obj.name = data.get('name')
+        obj.description = data.get('description')
+        db.session.flush()
+        db.session.commit()

@@ -26,10 +26,17 @@ def role_create():
         return redirect(url_for('dashboard.roles_view'))
     return render_template('role/create.html')
 
-@app_dashboard.route('/roles/edit/<id>')
+@app_dashboard.route('/roles/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def role_edit(id):
+    model = RoleModel()
     role = RoleModel.query.filter_by(id=int(id)).first()
+    if request.method == 'POST':
+        data = dict()
+        data['name'] = request.form['name']
+        data['description'] = request.form['description']
+        model.update(role, data=data)
+        return redirect(url_for('dashboard.role_detail', id=role.id))
     return render_template('role/edit.html', **locals())
 
 @app_dashboard.route('/role/detail/<id>')
