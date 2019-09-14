@@ -3,7 +3,7 @@
 
 from application.plugins.dashboard import app_dashboard
 from flask_login import login_required
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 from application.plugins.dashboard.models.role_model import RoleModel
 
 
@@ -13,9 +13,17 @@ def roles_view():
     roles = RoleModel.query.all()
     return render_template('role/roles.html', **locals())
 
-@app_dashboard.route('/role/create')
+@app_dashboard.route('/role/create', methods=['GET', 'POST'])
 @login_required
 def role_create():
+    if request.method == 'POST':
+        role = RoleModel()
+        data = {
+            'name': request.form['name'],
+            'description': request.form['description']
+        }
+        role.create(data=data)
+        return redirect(url_for('dashboard.roles_view'))
     return render_template('role/create.html')
 
 @app_dashboard.route('/roles/edit/<id>')

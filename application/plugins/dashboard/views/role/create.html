@@ -33,7 +33,8 @@
         <div class="card-body">
 
 
-            <form action="post">
+            <form method="post">
+              <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

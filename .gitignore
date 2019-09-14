@@ -98,3 +98,5 @@ ENV/
 
 #outil visual code
 .vscode/
+
+*.db
