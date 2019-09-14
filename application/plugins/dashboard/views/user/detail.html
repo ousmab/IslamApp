@@ -55,7 +55,11 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
+                    {% if user.active == True %}
                     <a href="{{url_for('dashboard.user_profile_edit', id=user.id)}}" class="form-control btn btn-success">Modifier</a>
+                    {% else %}
+                    <button class="form-control btn btn-danger" disabled>Compte désactivé</button>
+                    {% endif %}
                   </div>
                 </div>
               </div>

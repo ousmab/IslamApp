@@ -45,3 +45,17 @@ def user_profile_detail(id):
     user = UserModel.query.filter_by(id=int(id)).first()
     user_role = RoleModel.query.filter_by(id=user.role_id).first()
     return render_template('user/detail.html', **locals())
+
+@app_dashboard.route('/user/profile/activate/<id>')
+@login_required
+def user_profile_activate(id):
+    user = UserModel()
+    user.activate(int(id))
+    return redirect(url_for('dashboard.user_profile_detail', id=id))
+
+@app_dashboard.route('/user/profile/deactivate/<id>')
+@login_required
+def user_profile_deactivate(id):
+    user = UserModel()
+    user.deactivate(int(id))
+    return redirect(url_for('dashboard.user_profile_detail', id=id))

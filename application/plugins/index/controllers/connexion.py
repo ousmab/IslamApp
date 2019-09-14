@@ -16,15 +16,21 @@ def login():
         if request.method == 'POST':
             user = UserModel.query.filter_by(
                 email = request.form['email'],
+                active = True
             ).first()
-            if werkzeug.security.check_password_hash(user.password,
-                                                    request.form['password']):
-                login_user(user)
-                this_user = current_user
-                return redirect(url_for('dashboard.dash_home'))
-            else:
-                flash('Vos identifiants sont incorrects!')
-                return redirect(url_for('dashboard.login'))
+            try:
+                if werkzeug.security.check_password_hash(user.password,
+                                                        request.form['password']):
+                    login_user(user)
+                    this_user = current_user
+                    return redirect(url_for('dashboard.dash_home'))
+                else:
+                    flash('Vos identifiants sont incorrects!')
+                    return redirect(url_for('index.login'))
+            except AttributeError:
+                flash("""Vous n'êtes pas autorisés à vous connectés,
+                veuillez contactez les Administrateurs de la plateforme!""")
+                return redirect(url_for('index.login'))
     return render_template('login.html')
 
 

@@ -82,8 +82,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="{{url_for('dashboard.user_profile_edit', id=user.id)}}">Modifier</a>
-                                        <a class="dropdown-item" href="#">Désactiver</a>
-                                        <a class="dropdown-item" href="#">Supprimer</a>
+                                        <a class="dropdown-item" href="{{url_for('dashboard.user_profile_activate', id=user.id)}}">Activer</a>
+                                        <a class="dropdown-item" href="{{url_for('dashboard.user_profile_deactivate', id=user.id)}}">Désactiver</a>
                                     </div>
                                 </div>
                             </td>

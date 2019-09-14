@@ -27,6 +27,8 @@ class UserModel(UserMixin, db.Model):
         self.email = data.get('email')
         self.password = generate_password_hash(data.get('password'))
         self.cgu_accepted = True
+        if len(self.query.all()) == 0:
+            self.active = True
         db.session.add(self)
         db.session.commit()
 
@@ -40,20 +42,23 @@ class UserModel(UserMixin, db.Model):
         db.session.flush()
         db.session.commit()
 
-    def reset_password(self, id, new_password):
-        pass
-
-    def delete(self, id):
-        pass
-
     def activate(self, id):
-        pass
+        user = self.query.filter_by(id=id).first()
+        user.active = True
+        db.session.flush()
+        db.session.commit()
 
     def deactivate(self, id):
-        pass
+        user = self.query.filter_by(id=id).first()
+        user.active = False
+        db.session.flush()
+        db.session.commit()
 
     def get_all_users(self):
-        pass
+        return self.query.all()
 
     def get_user(self, user_id):
         return self.query.filter_by(id = user_id).first()
+
+    def reset_password(self, id, new_password):
+        pass
