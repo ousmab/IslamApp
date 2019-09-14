@@ -33,14 +33,18 @@
         <div class="card-body">
 
 
-            <form action="post">
+          <form method="post">
+            <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <select class="form-control" name="role">
-                      <option value="">Choisissez un role</option>
-                      <option value="">Administrateur</option>
-                      <option value="">Modérateur</option>
+                      {% if user_role %}
+                      <option value="{{user_role.name}}">{{user_role.name.upper()}}</option>
+                      {% endif %}
+                      {% for role in roles %}
+                      <option value="{{role.name}}">{{role.name.upper()}}</option>
+                      {% endfor %}
                     </select>
                   </div>
                 </div>

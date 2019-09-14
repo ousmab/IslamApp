@@ -19,6 +19,8 @@ class UserModel(UserMixin, db.Model):
     active = db.Column(db.Boolean)
     cgu_accepted = db.Column(db.Boolean) # cgu = conditions generales d'utilisation
 
+    role_id = db.Column(db.Integer, db.ForeignKey('role_model.id'))
+
     def create(self, **kwargs):
         data = kwargs['data']
         self.fullname = data.get('fullname')
@@ -28,8 +30,15 @@ class UserModel(UserMixin, db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def update(self, id, **kwargs):
-        pass
+    def update(self, obj, **kwargs):
+        data = kwargs['data']
+        obj.fullname = data.get('fullname')
+        obj.email = data.get('email')
+        obj.role_id = data.get('role_id')
+        if data.get('password'):
+            obj.password = generate_password_hash(data.get('password'))
+        db.session.flush()
+        db.session.commit()
 
     def reset_password(self, id, new_password):
         pass

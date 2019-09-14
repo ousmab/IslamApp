@@ -35,16 +35,14 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <select class="form-control" name="role" disabled>
-                      <option value="">Choisissez un role</option>
-                      <option value="">Administrateur</option>
-                      <option value="">Modérateur</option>
+                    <select class="form-control" disabled>
+                      <option value="">{{user_role.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name='fullname' class="form-control" id="exampleFormControlInput1" value='{{user.fullname}}' disabled>
+                    <input type="text" class="form-control" value='{{user.fullname}}' disabled>
                   </div>
                 </div>
               </div>
@@ -52,7 +50,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="email" name='email' class="form-control" id="exampleFormControlInput1" value='{{user.email}}' disabled>
+                    <input type="email" class="form-control" value='{{user.email}}' disabled>
                   </div>
                 </div>
                 <div class="col-md-6">
