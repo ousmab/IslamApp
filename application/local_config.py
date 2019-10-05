@@ -52,7 +52,11 @@ MODULES = [
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
     {'path': 'application.plugins.dashboard.controllers.role_ctrl', 'blueprint': 'app_dashboard', 'url':'/admin'},
 
+
+    #contenu module
+    {'path': 'application.plugins.contenu.controllers.contenu_ctrl', 'blueprint': 'contenu', 'url':'/admin'},
 ]
+
 
 MODULE_MENUS = [
     # html files for menus
