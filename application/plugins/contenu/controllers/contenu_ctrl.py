@@ -13,4 +13,7 @@ def contenu_home():
 @contenu.route("/new_post")
 @login_required
 def contenu_create():
-	return render_template("contenu_create.html")
+	return render_template("posts/create.html")
+
+
+	
