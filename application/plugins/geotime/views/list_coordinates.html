@@ -1,0 +1,83 @@
+{% extends 'dash_base.html' %}
+
+{% block dashboard %}
+<div class="container-fluid pt-3 pt-md-3">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+
+        <div class="card-header">
+          <h3 class="mb-0">Coordonnées</h3><br>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+
+            <div class="table-responsive">
+              <div>
+                <table class="table align-items-center">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">
+                                Lieux
+                            </th>
+                            <th scope="col">
+                                Type
+                            </th>
+                            <th scope="col">
+                                Longitude
+                            </th>
+                            <th scope="col">
+                                Latitude
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for coord in coordinates %}
+                        <tr>
+                            <th scope="row" class="name"><a href=""></a></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right">
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        <a class="dropdown-item" href="">Modifier</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
