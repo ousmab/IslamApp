@@ -1,5 +1,9 @@
 {% extends 'dash_base.html' %}
 
+{% block styleFile %}
+  <link rel="stylesheet" href="{{url_for('static',filename='contenu/css/style.css')}}">
+{% endblock %}
+
 {% block dashboard %}
 <div class="container-fluid pt-3 pt-md-3">
 
@@ -155,3 +159,4 @@
 </div>
 
 {% endblock %}
+[FEAT]:
