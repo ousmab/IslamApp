@@ -11,7 +11,7 @@ from flask_login import login_user, current_user, login_required, logout_user
 @app_index.route('/login', methods=['GET', 'POST'])
 def login():
     if not user_exist():
-        return redirect(url_for('dashboard.register'))
+        return redirect(url_for('index.register'))
     else:
         if request.method == 'POST':
             user = UserModel.query.filter_by(
