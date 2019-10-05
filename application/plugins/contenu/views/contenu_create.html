@@ -23,17 +23,101 @@
         <div class="card-header">
 
           <h3 class="mb-0">
-            <a href="{{url_for('dashboard.roles_view')}}" class="btn btn-icon btn-2 btn-primary">
-              <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
-            </a>
             Nouveau Post
+           
           </h3><br>
         </div>
 
         <div class="card-body">
 
 
-            
+            <form method="post">
+              <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                   <div class="row">
+                       <p class="col-md-3">Titre <span style="color:red">*</span> :</p>
+                       <p class="col-md-9"><input type="text" name='post_title' class="form-control" id="post_title" placeholder="Titre" required></p>
+                   </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="row">
+                       <p class="col-md-3">Auteur <span style="color:red">*</span> : </p>
+                       <p class="col-md-9"><input type="text" name='post_author' class="form-control" id="post_author" placeholder="Auteur" required></p>
+                   </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <p class="col-md-3">Choisir la Date de publication</p>
+                      <p class="col-md-9"><input type="date" name='post_date_publication' class="form-control" id="post_date_publication" placeholder="date de publication" required></p>
+                    </div>             
+                  </div>
+                </div>
+              </div>
+
+               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <p class="col-md-3">Choisir l'image...  <span style="color:red">*</span> : </p>
+                      <p class="col-md-9"><input type="file" name='post_image'  id="post_image" required></p>
+                    </div>             
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea name="post_content" class="form-control" rows="8" cols="80" placeholder="Contenu" required></textarea>
+                    </div>
+                  </div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="row">
+                  
+                        <p class="col-md-3 offset-md-6">Enregistrer en brouillon </p>
+                        <p class="" ><input type="checkbox" class="form-check-input" name='post_is_draft'  id="post_is_drafts"></p>
+                     
+                    </div>             
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="reset" class="form-control btn btn-danger" id="post_reset" value="Annuler">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="submit" class="form-control btn btn-success" id="post_submit" value="Enregistrer">
+                  </div>
+                </div>
+              </div>
+
+            </form>
 
 
         </div>
