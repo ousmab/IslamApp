@@ -24,7 +24,7 @@
           <h3 class="mb-0">Gestion du Contenu</h3><br>
           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
             <li class="nav-item">
-              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="" aria-selected="false">Gestion des Posts</a>
+              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ url_for('contenu.contenu_create')  }} " aria-selected="false">Gestion des Posts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" href="" role="tab" aria-selected="false">Gestion des Commentaires</a>
@@ -53,7 +53,7 @@
                                 Titre
                             </th>
                             <th scope="col">
-                               Auteur
+                             Auteur
                             </th>
                             <th scope="col">
                                 Fichier

@@ -8,4 +8,9 @@ from flask_login import login_required
 @contenu.route('/contents')
 @login_required
 def contenu_home():
-    return render_template('index1.html')
+    return render_template('contenu_index.html')
+
+@contenu.route("/new_post")
+@login_required
+def contenu_create():
+	return render_template("contenu_create.html")
