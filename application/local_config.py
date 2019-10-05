@@ -51,6 +51,8 @@ MODULES = [
       # dashboard module
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
     {'path': 'application.plugins.dashboard.controllers.role_ctrl', 'blueprint': 'app_dashboard', 'url':'/admin'},
+    # geotime module
+    {'path': 'application.plugins.geotime.controllers.geo_ctrl', 'blueprint': 'app_geotime', 'url':'/geo'},
 
 
     #contenu module
