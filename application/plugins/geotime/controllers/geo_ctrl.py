@@ -14,4 +14,4 @@ def list_coordinates():
 
 @app_geotime.route('/register', methods=["GET", "POST"])
 def coordinates_register():
-    pass
+    return render_template('coordinates_register.html', **locals())
