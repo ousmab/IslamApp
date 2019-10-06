@@ -49,8 +49,6 @@
 
   </div>
 
-
-
   <!--   Core   -->
   <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
@@ -62,6 +60,10 @@
 
   <script src="{{url_for('static', filename='contenu/js/script.js')}}"></script>
 
+
+
+  {% block script %}
+  {% endblock %}
 
 </body>
 
