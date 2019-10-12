@@ -1,0 +1,155 @@
+{% extends 'dash_base.html' %}
+{% block dashboard %}
+<div class="container-fluid ">
+        <div class="row">
+                <div class="col">
+                        <div class="card shadow">
+                                <div class="card-header border-0">
+                                  <h3 class="mb-0">Nouveau Theme</h3></br>
+                                  {% with messages = get_flashed_messages(with_categories=true) %}
+                                  {% if messages %}
+                                          {% for category, message in messages %}
+                                                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                                          {{ message }}
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                  </div>
+                                          {% endfor %}
+                                  {% endif %}
+                          {% endwith %}
+                                </div>
+                                <div class="table-responsive">
+                                    <div>
+                                    <table class="table align-items-center">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">
+                                                    Titre du theme
+                                                </th>
+                                                <th scope="col">
+                                                    Nombre question du theme
+                                                </th>
+                                                <th scope="col">
+                                                    Status du theme
+                                                </th>
+                                                
+                                                <th scope="col">
+                                                    Date de publication
+                                                </th>
+                                                <th scope="col">Option</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                         
+                                            {% for theme in themes %}
+                                            <tr>
+                                                <th scope="row" class="name">
+                                                   {{ theme.titre}} 
+                                                </th>
+                                                <td class="budget">
+                                                    10
+                                                </td>
+                                                <td class="status">
+                                                    <span class="badge badge-dot mr-4">
+                                                       {% if theme.is_brouillon %}
+                                                          theme en brouillon
+                                                        {% else %}
+                                                          theme en ligne
+                                                        {% endif%}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                        {{ theme.date_creation.strftime('%m/%d/%Y') }}
+                                                </td>
+                                                
+                                                    <td class="text-right">
+                                                        <div class="dropdown">
+                                                          <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                          </a>
+                                                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                <a class="dropdown-item archive_modal" href="#" data-toggle="modal" data-id_theme="{{theme.id}}" data-target="#exampleModal">Mettre en ligne</a>
+                                                            <a class="dropdown-item delete_modal" href="#" data-toggle="modal" data-id_theme="{{theme.id}}" data-target="#exampleModal">Suprimer</a>
+                                                          </div>
+                                                        </div>
+                                                      </td>       
+                                            </tr>
+                                            
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                </div>
+                                
+                            </div>
+                </div>
+         </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Supression de theme</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       <p class="d-none" id="p_delete_theme">  Souhaitez-vous vraiment suprimer le theme ? </p>
+       <p class="d-none" id="p_archive_theme">  Souhaitez-vous remettre le theme en ligne </p>
+         <form method="POST" class="d-none" action="{{url_for('theme.unarchive')}}" id="form_archive_theme">
+            <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+           <input type="number" name="id_theme"  class="d-none" id="archive_id_theme"></br>
+           <div class="row d-flex">
+                <div class="col-md-5">
+                        <button type="button" class="btn btn-info form-control" data-dismiss="modal">Annulé</button>
+                   </div>
+                   <div class="col-md-5">
+                        <button type="submit" class="btn btn-warning form-control">Desarchiver</button>
+                   </div>
+           </div>
+           </form>
+           <form method="POST" class="d-none" action="{{url_for('theme.delete_theme')}}" id="form_delete_theme">
+                <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+               <input type="number" name="id_theme" class="d-none"  id="delete_id_theme"></br>
+               <div class="row d-flex">
+                    <div class="col-md-5">
+                            <button type="button" class="btn btn-info form-control" data-dismiss="modal">Annulé</button>
+                       </div>
+                       <div class="col-md-5">
+                            <button type="submit" class="btn btn-danger form-control">Suprimer</button>
+                       </div>
+               </div>
+               </form>
+        </div>
+        <div class="modal-footer">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block themejs%}
+<script src="{{url_for('static', filename='js/theme.js')}}"></script>
+<script>
+  $(document).ready(function(){
+const modal_archive = () => {
+    $("#exampleModal").show(); 
+}
+      $(".delete_modal").on("click",function(){
+         modal_archive()
+         $('#delete_id_theme').val($(this).data('id_theme'))
+         $("#p_archive_theme,#form_archive_theme").addClass('d-none')
+         $("#p_delete_theme,#form_delete_theme").removeClass('d-none')
+      })
+      $(".archive_modal").on("click",function(){
+         modal_archive()
+         $('#archive_id_theme').val($(this).data('id_theme'))
+         $("#p_archive_theme,#form_archive_theme").removeClass('d-none')
+         $("#p_delete_theme,#form_delete_theme").addClass('d-none')
+      })
+  })
+</script>
+{% endblock%}
