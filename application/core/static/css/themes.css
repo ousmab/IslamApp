@@ -1,0 +1,17 @@
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+.trcolor
+  {
+      background-color: #78e08f;
+  }
+
+.nav-link[data-toggle].collapsed:after {
+  content: "▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+  content: "▴";
+}

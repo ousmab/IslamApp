@@ -29,6 +29,7 @@
   <link href="{{url_for('static', filename='vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="{{url_for('dashboard.static', filename='css/argon-dashboard.css')}}" rel="stylesheet" />
+  <link href="{{url_for('static', filename='css/themes.css')}}" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -57,11 +58,15 @@
   <!--   Core   -->
   <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
+  {% block datejs %}
+  {% endblock%}
   <!--   Optional JS   -->
   <script src="{{url_for('static', filename='vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{url_for('static', filename='vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!--   Argon JS   -->
   <script src="{{url_for('dashboard.static', filename='js/argon-dashboard.min.js')}}"></script>
+  {% block themejs%}
+  {% endblock %}
 </body>
 
 </html>
