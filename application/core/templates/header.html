@@ -1,0 +1,97 @@
+<header class="header-global">
+  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+    <div class="container">
+      <a class="navbar-brand mr-lg-5" href="{{url_for('index.home')}}">
+        <img src="{{url_for('static', filename='img/brand/logo.png')}}" alt="brand">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbar_global">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="{{url_for('index.home')}}">
+                <img src="{{url_for('static', filename='img/brand/logo.png')}}" alt="brand">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+              <i class="ni ni-ui-04 d-lg-none"></i>
+              <span class="nav-link-inner--text">Fonctionnalités</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-xl">
+              <div class="dropdown-menu-inner">
+                <a href="#" class="media d-flex align-items-center">
+                  <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
+                    <i class="ni ni-spaceship"></i>
+                  </div>
+                  <div class="media-body ml-3">
+                    <h6 class="heading text-primary mb-md-1">Thématiques / Questions / Réponses</h6>
+                    <p class="description d-none d-md-inline-block mb-0">Posez des questions privés ou publiques en fonction des thématiques mensuelles</p>
+                  </div>
+                </a>
+                <a href="#" class="media d-flex align-items-center">
+                  <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                    <i class="ni ni-palette"></i>
+                  </div>
+                  <div class="media-body ml-3">
+                    <h6 class="heading text-primary mb-md-1">Calendrier & Horaires des salats par villes</h6>
+                    <p class="description d-none d-md-inline-block mb-0">Affichez un calendrier interactif et les horaires des salats en fonction du lieu où vous vous trouvez</p>
+                  </div>
+                </a>
+                <a href="#" class="media d-flex align-items-center">
+                  <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                    <i class="ni ni-ui-04"></i>
+                  </div>
+                  <div class="media-body ml-3">
+                    <h5 class="heading text-warning mb-md-1">Contenus multimédias</h5>
+                    <p class="description d-none d-md-inline-block mb-0">Accédez aux articles intéressants, aux programmes des émissions islamiques, des audios et vidéos (Coran, Hadiths, Rappels...)</p>
+                  </div>
+                </a>
+                <a href="#" class="media d-flex align-items-center">
+                  <div class="icon icon-shape bg-gradient-default rounded-circle text-white">
+                    <i class="ni ni-planet"></i>
+                  </div>
+                  <div class="media-body ml-3">
+                    <h5 class="heading text-default mb-md-1">Géolocalisation interactive</h5>
+                    <p class="description d-none d-md-inline-block mb-0">Retrouvez à l'aide d'une carte interactive les mosquées, restaurants et écoles les plus proches de vous</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+          <li class="nav-item d-none d-lg-block ml-lg-4">
+            {% if current_user.is_authenticated %}
+            <a href="{{url_for('dashboard.user_profile')}}" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon">
+                <i class="fa fa-sign-in mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">Profil</span>
+            </a>
+            {% else %}
+            <a href="{{url_for('index.login')}}" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon">
+                <i class="fa fa-sign-in mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text">Connexion</span>
+            </a>
+            {% endif %}
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

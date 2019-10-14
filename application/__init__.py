@@ -8,6 +8,8 @@ import importlib
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
+
 
 from application.core.tools import date_time, security
 
@@ -22,6 +24,7 @@ app = FlaskApp(__name__, static_folder='core/static',
 # CONFIGURATIONS
 # ==============
 try:
+    app.secret_key = security.secret_key
     app.config.from_pyfile('local_config.py')
 except IOError:
     raise IOError('No configuration setup: local_config.py not found!')
@@ -36,6 +39,9 @@ db_file = "sqlite:///{}".format(os.path.join(project_dir, "islamapp.db"))
 app.config['SQLALCHEMY_DATABASE_URI'] = db_file
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+login_manager = LoginManager(app)
+login_manager.login_view = "index.login"
+login_manager.login_message = u"Veuillez-vous connecter SVP!"
 
 
 # =================
