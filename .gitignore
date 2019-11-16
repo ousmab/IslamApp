@@ -8,6 +8,7 @@ __pycache__/
 
 # Custom files
 .db
+migrations/
 
 # C extensions
 *.so
@@ -97,3 +98,5 @@ ENV/
 
 #outil visual code
 .vscode/
+
+*.db
