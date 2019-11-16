@@ -1,0 +1,76 @@
+{% extends 'dash_base.html' %}
+
+{% block dashboard %}
+<div class="container-fluid pt-3 pt-md-3">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+
+        <div class="card-header">
+          <h3 class="mb-0">
+            <a href="{{url_for('dashboard.user_profile')}}" class="btn btn-icon btn-2 btn-primary">
+              <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+            </a>
+            {{user.fullname.upper()}}
+          </h3><br>
+        </div>
+
+        <div class="card-body">
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" disabled>
+                      <option value="">{{user_role.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" value='{{user.fullname}}' disabled>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="email" class="form-control" value='{{user.email}}' disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {% if user.active == True %}
+                    <a href="{{url_for('dashboard.user_profile_edit', id=user.id)}}" class="form-control btn btn-success">Modifier</a>
+                    {% else %}
+                    <button class="form-control btn btn-danger" disabled>Compte désactivé</button>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

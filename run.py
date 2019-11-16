@@ -2,6 +2,14 @@
 
 from application import app
 from flask import render_template, session, abort, request
+from application import login_manager
+from application.plugins.dashboard.models.user_model import UserModel
+from application.plugins.dashboard.models.role_model import RoleModel
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return UserModel().get_user(user_id)
 
 @app.errorhandler(404)
 def page_not_found(e):
