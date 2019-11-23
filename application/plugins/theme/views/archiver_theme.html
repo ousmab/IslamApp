@@ -1,0 +1,44 @@
+{% extends 'dash_base.html' %}
+
+{% block dashboard %}
+<div class="container-fluid ">
+        <div class="row">
+                <div class="col">
+                        <div class="card shadow">
+                                <div class="card-header border-0">
+                                  <h3 class="mb-0 {% if is_archive_name: %} d-none {% endif %}">Archiver le theme {{theme.titre}}</h3></br>
+                                  {% with messages = get_flashed_messages(with_categories=true) %}
+                                  {% if messages %}
+                                          {% for category, message in messages %}
+                                                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                                          {{ message }}
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                  </div>
+                                          {% endfor %}
+                                  {% endif %}
+                          {% endwith %}
+                                </div>
+                                <form method="post" class="{% if is_archive_name: %} d-none {% endif %}">
+                                       <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}"> 
+                                    <div class="form-group col-8">
+                                            <label for="">Conclusion du theme</label>
+                                            <!-- <textarea class="form-control form-control-alternative" id="exampleFormControlTextarea1" rows="3" placeholder="Write a large text here ..."></textarea> -->
+                                            {{ form.resume_theme(class="form-control form-control-alternative", rows="3", placeholder="Write a large text here ..." )}}
+                                    </div>
+                                    
+                                    <div class="form-group col-8">
+                                       {{ form.submit(class="btn btn-success")}}
+                                    </div>
+                                </form>
+                                
+                            </div>
+                </div>
+         </div>
+</div>
+
+{% endblock %}
+{% block themejs%}
+<script src="{{url_for('static', filename='js/theme.js')}}"></script>
+{% endblock%}

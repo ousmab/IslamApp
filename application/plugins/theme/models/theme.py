@@ -17,6 +17,6 @@ class Theme(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titre = db.Column(db.String(80), nullable=False)
     resume = db.Column(db.String(100), nullable=False)
-    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    date_creation = db.Column(db.DateTime, nullable=False)
     is_brouillon = db.Column(db.Boolean, default=False)
     is_archive = db.Column(db.Boolean, default=False)
