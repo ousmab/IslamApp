@@ -200,5 +200,3 @@ def unarchive():
         return redirect(url_for('theme.all_archive'))  
 
 
-
-    
