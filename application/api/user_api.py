@@ -2,7 +2,7 @@
 
 from . import rest_api, api_v1
 from flask import request
-from flask_restplus import Resource, fields
+from flask_restx import Resource, fields
 from application.plugins.dashboard.models.user_model import UserModel
 
 
