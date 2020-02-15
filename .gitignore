@@ -9,6 +9,7 @@ __pycache__/
 # Custom files
 *.db
 migrations/
+src/
 
 # C extensions
 *.so
