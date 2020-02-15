@@ -4,15 +4,17 @@ from datetime import datetime
 from application import db
 
 class PlaceModel(db.Model):
+    """ Il s'agit des lieux: par exemple mosquée tsinga, restaurant x, etc... """
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     description = db.Column(db.String(120))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime)
+    longitude = db.Column(db.Float)
+    latitude = db.Column(db.Float)
 
     type_id = db.Column(db.Integer, db.ForeignKey('place_type_model.id'))
-    points = db.relationship('PointModel', backref='place_model', lazy=True)
 
     def create(self, **kwargs):
         data = kwargs['data']

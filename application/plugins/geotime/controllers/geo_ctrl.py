@@ -5,7 +5,6 @@ from flask_login import login_required
 from flask import render_template, request,url_for, redirect
 from application.plugins.geotime.models.place_type_model import PlaceTypeModel
 from application.plugins.geotime.models.place_model import PlaceModel
-from application.plugins.geotime.models.point_model import PointModel
 
 @app_geotime.route('/coordinates')
 def list_coordinates():
