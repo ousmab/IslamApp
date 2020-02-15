@@ -22,12 +22,9 @@
 
         <div class="card-header">
           <h3 class="mb-0">
-              Coordonnées
-              <a href="{{url_for('geotime.coordinates_register')}}" class="btn btn-icon btn-2 btn-primary">
+              Types de lieux
+              <a href="{{url_for('geotime.place_type_register')}}" class="btn btn-icon btn-2 btn-primary">
                 <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-              </a>
-              <a href="{{url_for('geotime.list_place_type')}}" class="btn btn-icon btn-2 btn-success">
-                <span class="btn-inner--icon">Type de lieux</span>
               </a>
           </h3><br>
         </div>
@@ -44,24 +41,16 @@
                                 Lieux
                             </th>
                             <th scope="col">
-                                Type
-                            </th>
-                            <th scope="col">
-                                Longitude
-                            </th>
-                            <th scope="col">
-                                Latitude
+                                Description
                             </th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody class="list">
-                        {% for coord in coordinates %}
+                        {% for type in place_types %}
                         <tr>
-                            <th scope="row" class="name"><a href="#">{{coord.name}}</a></th>
-                            <td>{{coord.type_id}}</td>
-                            <td>{{coord.longitude}}</td>
-                            <td>{{coord.latitude}}</td>
+                            <th scope="row" class="name"><a href="#">{{type.name.capitalize()}}</a></th>
+                            <td>{{type.description}}</td>
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

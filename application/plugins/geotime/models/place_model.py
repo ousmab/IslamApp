@@ -20,6 +20,9 @@ class PlaceModel(db.Model):
         data = kwargs['data']
         self.name = data.get('name').lower()
         self.description = data.get('description')
+        self.longitude = data.get('longitude')
+        self.latitude = data.get('latitude')
+        self.type_id = data.get('type_id')
         db.session.add(self)
         db.session.commit()
 
