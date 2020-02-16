@@ -6,6 +6,7 @@ import des modules
 from datetime import datetime, date
 import pprint
 from flask import render_template, flash, request, redirect, url_for, abort
+from flask_login import login_required
 
 __version__ = '3.0.0'
 
@@ -198,5 +199,11 @@ def unarchive():
         db.session.commit()
         flash("Mise en ligne du theme archiver terminer",'success')
         return redirect(url_for('theme.all_archive'))  
+
+    
+@app_theme.route('/admin/theme/index')
+@login_required
+def theme_question():
+    return render_template('theme_question_index.html')
 
 
