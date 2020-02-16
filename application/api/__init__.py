@@ -1,7 +1,4 @@
-# Part of IslamApp. See LICENSE file for full copyright and licensing details.
-
-
-from flask_restplus import Api
+from flask_restx import Api
 from flask import Blueprint
 
 rest_api = Blueprint('api', __name__)
