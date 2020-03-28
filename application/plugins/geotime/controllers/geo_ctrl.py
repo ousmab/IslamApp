@@ -6,6 +6,7 @@ from flask_login import login_required
 from flask import render_template, request,url_for, redirect, flash
 from application.plugins.geotime.models.place_type_model import PlaceTypeModel
 from application.plugins.geotime.models.place_model import PlaceModel
+from application import db
 
 @app_geotime.route('/coordinates')
 def list_coordinates():
@@ -73,3 +74,10 @@ def edit_coordinates(id):
         model.update(coordinate, data=data)
         return redirect(url_for('geotime.list_coordinates'))
     return render_template('edit_coordinate.html', **locals())
+
+@app_geotime.route('/delete/coordinates/<int:id>')
+def delete_coordinates(id):
+    place = PlaceModel.query.filter_by(id=id).first()
+    db.session.delete(place)
+    db.session.commit()
+    return redirect(url_for('geotime.list_coordinates'))
