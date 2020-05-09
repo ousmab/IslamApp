@@ -4,6 +4,10 @@ import des modules
 '''
 #module for import package datetime and methods flask
 from datetime import datetime, date
+import schedule
+import threading
+import time
+import functools
 import pprint
 from flask import render_template, flash, request, redirect, url_for, abort
 from flask_login import login_required
@@ -16,6 +20,20 @@ from application.plugins.theme import app_theme
 from application.plugins.theme.models.theme import Theme
 from application.plugins.theme.forms.form_add_theme import ThemeForm
 
+'''
+def job():
+    print('maroufa' % threading.current_thread())
+
+def run_threaded(job_func):
+    job_thread = threading.Thread(target=job_func)
+    job_thread.start()
+'''
+#schedule.every(1).minutes.do(run_threaded,job)
+'''
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+'''
 def theme_tache_fonds():
     today_date = datetime.today()
     theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
