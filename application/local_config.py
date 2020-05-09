@@ -48,11 +48,12 @@ MODULES = [
     {'path': 'application.plugins.index.controllers.connexion', 'blueprint': 'app_index', 'url':None},
     # theme module
     {'path': 'application.plugins.theme.controllers.theme_controller', 'blueprint': 'app_theme', 'url':None},
-      # dashboard module
+    # dashboard module
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
     {'path': 'application.plugins.dashboard.controllers.role_ctrl', 'blueprint': 'app_dashboard', 'url':'/admin'},
     # geotime module
     {'path': 'application.plugins.geotime.controllers.geo_ctrl', 'blueprint': 'app_geotime', 'url':'/geo'},
+    {'path': 'application.plugins.geotime.controllers.map_ctrl', 'blueprint': 'app_geotime', 'url':'/map'},
 
 
     #contenu module

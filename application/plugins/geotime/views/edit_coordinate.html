@@ -1,0 +1,126 @@
+{% extends 'dash_base.html' %}
+
+{% block dashboard %}
+<div class="container-fluid pt-3 pt-md-3">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+
+        <div class="card-header">
+
+          <h3 class="mb-0">
+            Modifier {{coordinate.name.capitalyze()}}
+          </h3><br>
+        </div>
+
+        <div class="card-body">
+
+
+            <form method="post">
+              <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                   <div class="row">
+                       <p class="col-md-3">Lieu <span style="color:red">*</span> :</p>
+                       <p class="col-md-8">
+                           <input
+                               type="text"
+                               name='geo_place'
+                               class="form-control"
+                               id="post_title"
+                               placeholder="Titre"
+                               value="{{coordinate.name}}"
+                               required>
+                       </p>
+                   </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="row">
+                       <p class="col-md-3">Type <span style="color:red">*</span> : </p>
+                       <p class="col-md-8">
+                         <select class="form-control" name="geo_type_place">
+                             {% for type in place_types %}
+                                <option value="{{type.name}}">{{type.name.capitalize()}}</option>
+                                <option value="{{type.name}}">{{type.name.capitalize()}}</option>
+                            {% endfor %}
+                         </select>
+                       </p>
+                   </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <div class="row" id='geo_points'>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <input type="text"  name='geo_longitude'
+                                class="form-control"
+                                value="{{coordinate.longitude}}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name='geo_latitude'
+                                class="form-control"
+                                value="{{coordinate.latitude}}" required>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="reset" class="form-control btn btn-danger" id="post_reset" value="Annuler">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="submit" class="form-control btn btn-success" id="post_submit" value="Enregistrer">
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}

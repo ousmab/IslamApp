@@ -2,6 +2,8 @@
 
 from datetime import datetime
 from application import db
+from application.plugins.geotime.models.place_type_model import PlaceTypeModel
+
 
 class PlaceModel(db.Model):
     """ Il s'agit des lieux: par exemple mosquée tsinga, restaurant x, etc... """
@@ -30,6 +32,15 @@ class PlaceModel(db.Model):
         data = kwargs['data']
         obj.name = data.get('name').lower()
         obj.description = data.get('description')
-        obj.updated_at = datetime.utcnow
+        obj.longitude = data.get('longitude')
+        obj.latitude = data.get('latitude')
+        obj.updated_at = datetime.utcnow()
         db.session.flush()
         db.session.commit()
+
+    def get_place_type_by_id(self, id):
+        place_type = PlaceTypeModel.query.filter_by(id=id).first()
+        if place_type:
+            return place_type.name.capitalize()
+        else:
+            return ''
