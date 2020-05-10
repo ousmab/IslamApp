@@ -1,0 +1,118 @@
+{% extends 'public.html' %}
+
+{% block title %}
+Calendrier hégirien et horaire des prières
+{% endblock %}
+
+{% block description %}
+Consulter le calendrier musulman et les horaires des prières
+{% endblock %}
+
+{% block css %}
+<link href="{{url_for('static', filename='css/datetime.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block public %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 salat">
+            <div class="card text-center">
+              <div class="card-header">
+                  <h3 class="itext">Salat suivante </h3>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title">
+                    Fajr 04:03:08
+                    <a href="#" class="btn btn-sm btn-primary"> >>> </a>
+                </h1>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-lg-6">
+
+                <div class="month">
+                  <ul>
+                    <li class="prev">&#10094;</li>
+                    <li class="next">&#10095;</li>
+                    <li>
+                      Ramadan<br>
+                      <span style="font-size:18px">1441</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <ul class="weekdays">
+                  <li>Mo</li>
+                  <li>Tu</li>
+                  <li>We</li>
+                  <li>Th</li>
+                  <li>Fr</li>
+                  <li>Sa</li>
+                  <li>Su</li>
+                </ul>
+
+                <ul class="days">
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                  <li>6</li>
+                  <li>7</li>
+                  <li>8</li>
+                  <li>9</li>
+                  <li><span class="active">10</span></li>
+                  <li>11</li>
+                  <li>12</li>
+                  <li>13</li>
+                  <li>14</li>
+                  <li>15</li>
+                  <li>16</li>
+                  <li>17</li>
+                  <li>18</li>
+                  <li>19</li>
+                  <li>20</li>
+                  <li>21</li>
+                  <li>22</li>
+                  <li>23</li>
+                  <li>24</li>
+                  <li>25</li>
+                  <li>26</li>
+                  <li>27</li>
+                  <li>28</li>
+                  <li>29</li>
+                  <li>30</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card " style="width: 18rem;">
+                  <div class="card-header bg-primary text-white itext">
+                    10 Ramadan 1441
+                  </div>
+                  <div class="card-body">
+                    lorem ipsum dolor sit amet ;;;;;; ;;;;err erfg reuvsdn
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card " style="width: 18rem;">
+                  <div class="card-header bg-success text-white itext">
+                    Horaire des prières
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h3>Fajr: 05:30</h3></li>
+                    <li class="list-group-item"><h3>Zohr: 12:30</h3></li>
+                    <li class="list-group-item"><h3>Asr: 16:00</h3></li>
+                    <li class="list-group-item"><h3>Magrib: 18:27</h3></li>
+                    <li class="list-group-item"><h3>Icha: 19:50</h3></li>
+                  </ul>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

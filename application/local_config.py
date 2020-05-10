@@ -54,6 +54,7 @@ MODULES = [
     # geotime module
     {'path': 'application.plugins.geotime.controllers.geo_ctrl', 'blueprint': 'app_geotime', 'url':'/geo'},
     {'path': 'application.plugins.geotime.controllers.map_ctrl', 'blueprint': 'app_geotime', 'url':'/map'},
+    {'path': 'application.plugins.geotime.controllers.datetime_ctrl', 'blueprint': 'app_geotime', 'url':'/geo'},
 
 
     #contenu module
