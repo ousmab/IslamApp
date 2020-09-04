@@ -198,6 +198,8 @@ Pour changer votre interpréteur par défaut
 
     ```
     cd IslamApp
+    python3 -m venv venv
+    . venv/bin/activate
     pip install -r requirements.txt
     ```
 

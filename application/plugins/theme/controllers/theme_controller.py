@@ -4,8 +4,13 @@ import des modules
 '''
 #module for import package datetime and methods flask
 from datetime import datetime, date
+import schedule
+import threading
+import time
+import functools
 import pprint
 from flask import render_template, flash, request, redirect, url_for, abort
+from flask_login import login_required
 
 __version__ = '3.0.0'
 
@@ -15,6 +20,20 @@ from application.plugins.theme import app_theme
 from application.plugins.theme.models.theme import Theme
 from application.plugins.theme.forms.form_add_theme import ThemeForm
 
+'''
+def job():
+    print('maroufa' % threading.current_thread())
+
+def run_threaded(job_func):
+    job_thread = threading.Thread(target=job_func)
+    job_thread.start()
+'''
+#schedule.every(1).minutes.do(run_threaded,job)
+'''
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+'''
 def theme_tache_fonds():
     today_date = datetime.today()
     theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
@@ -137,21 +156,17 @@ def update_theme(theme_id):
         theme_process(theme,form,message_brouillon="Modification du brouillon reussie",message_theme_ligne="modification du theme en ligne reussie",update=True)
     return render_template('add_theme.html',form=form,afficher_date=afficher_date,theme=theme)
 
-@app_theme.route('/admin/theme/delete',methods=['POST'])
-def delete_theme():
+@app_theme.route('/admin/theme/delete/<int:theme_id>')
+def delete_theme(theme_id):
     '''
     delete theme application
     '''
-    if request.method == 'POST':
-        theme_id = request.form['id_theme']
-        theme = Theme.query.get_or_404(theme_id)
-        db.session.delete(theme)
-        db.session.commit()
-        flash('Supression du theme reussie avec success','success')
-        return redirect(url_for('theme.all_theme'))
-    else:
-        return "error process"
-
+    theme = Theme.query.get_or_404(theme_id)
+    db.session.delete(theme)
+    db.session.commit()
+    flash('Supression du theme reussie avec success','success')
+    return redirect(url_for('theme.all_theme'))
+    
 
 @app_theme.route('/admin/theme/archiver', methods=['POST', 'GET'])
 def archive_theme():
@@ -198,5 +213,11 @@ def unarchive():
         db.session.commit()
         flash("Mise en ligne du theme archiver terminer",'success')
         return redirect(url_for('theme.all_archive'))  
+
+    
+@app_theme.route('/admin/theme/index')
+@login_required
+def theme_question():
+    return render_template('theme_question_index.html')
 
 

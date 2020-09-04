@@ -23,7 +23,7 @@
         <div class="card-header">
 
           <h3 class="mb-0">
-            Nouveau Lieu
+            Nouveau type
           </h3><br>
         </div>
 
@@ -36,8 +36,8 @@
                 <div class="col-md-12">
                   <div class="form-group">
                    <div class="row">
-                       <p class="col-md-3">Lieu <span style="color:red">*</span> :</p>
-                       <p class="col-md-8"><input type="text" name='geo_place' class="form-control" id="post_title" placeholder="Titre" required></p>
+                       <p class="col-md-3">Nom <span style="color:red">*</span> :</p>
+                       <p class="col-md-8"><input type="text" name='geo_place_type_name' class="form-control" id="post_title" placeholder="Nom" required></p>
                    </div>
 
                   </div>
@@ -47,29 +47,9 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <div class="row">
-                       <p class="col-md-3">Type <span style="color:red">*</span> : </p>
-                       <p class="col-md-8">
-                         <select class="form-control" name="geo_type_place">
-                             <option value="none">Veuillez choisir le type de ce lieu</option>
-                            {% for type in place_types %}
-                            <option value="{{type.name}}">{{type.name.capitalize()}}</option>
-                            {% endfor %}
-                         </select>
-                       </p>
-                   </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                      <div class="row" id='geo_points'>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-4"><input type="text"  name='geo_longitude' class="form-control" placeholder="Longitude (en dégrés)" required></div>
-                        <div class="col-md-4"><input type="text" name='geo_latitude' class="form-control" placeholder="Latitude (en dégrés)" required></div>
+                      <div class="row">
+                          <p class="col-md-3">Description <span style="color:red">*</span> :</p>
+                          <p class="col-md-8"><input type="text" name='geo_place_type_desc' class="form-control" id="post_title" placeholder="Description" required></p>
                       </div>
                   </div>
                 </div>

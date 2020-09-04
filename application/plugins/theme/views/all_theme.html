@@ -4,8 +4,18 @@
         <div class="row">
                 <div class="col">
                         <div class="card shadow">
-                                <div class="card-header border-0">
-                                  <h3 class="mb-0">Nouveau Theme</h3></br>
+                                <div class="card-header">
+                                  <h3 class="mb-0">Gestion  Theme</h3></br>
+            
+                                  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ url_for('theme.add_theme')  }} " aria-selected="false">Nouveau theme</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" href="{{ url_for('theme.all_archive')  }} " role="tab" aria-selected="false">Archives</a>
+                                    </li>
+                                    </ul>
+                                  </br>
                                   {% with messages = get_flashed_messages(with_categories=true) %}
                                   {% if messages %}
                                           {% for category, message in messages %}
@@ -128,14 +138,10 @@
         </div>
         <div class="modal-body">
          Souhaitez-vous vraiment suprimer le theme ?
-         <form method="POST" action="{{url_for('theme.delete_theme')}}">
-            <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
-           <input type="number" name="id_theme" class="d-none" id="delete_id_theme">
-         
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
-          <button type="submit" class="btn btn-danger">Suprimer</button></form>
+          <a id="lien_suprimer" href="" class="btn btn-danger">Suprimer</a>
         </div>
       </div>
     </div>
@@ -146,8 +152,9 @@
 <script>
   $(document).ready(function(){
       $(".delete_modal").on("click",function(){
+          let idtheme = $(this).data('id_theme')
+          $("#lien_suprimer").attr('href',"/admin/theme/delete/"+idtheme)
           $("#exampleModal").show();
-          $("#delete_id_theme").val($(this).data('id_theme'))
       })
   })
 </script>

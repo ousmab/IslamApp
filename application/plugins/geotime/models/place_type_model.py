@@ -4,6 +4,7 @@ from datetime import datetime
 from application import db
 
 class PlaceTypeModel(db.Model):
+    """ Il s'agit des type de lieux. Par exemple Mosquée, restaurant, etc... """
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
