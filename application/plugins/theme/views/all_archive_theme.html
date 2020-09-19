@@ -55,7 +55,7 @@
                                                        {% if theme.is_brouillon %}
                                                           theme en brouillon
                                                         {% else %}
-                                                          theme en ligne
+                                                          theme archiver
                                                         {% endif%}
                                                     </span>
                                                 </td>
@@ -99,27 +99,14 @@
         <div class="modal-body">
        <p class="d-none" id="p_delete_theme">  Souhaitez-vous vraiment suprimer le theme ? </p>
        <p class="d-none" id="p_archive_theme">  Souhaitez-vous remettre le theme en ligne </p>
-         <form method="POST" class="d-none" action="{{url_for('theme.unarchive')}}" id="form_archive_theme">
-            <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
-           <input type="number" name="id_theme"  class="d-none" id="archive_id_theme"></br>
-           <div class="row d-flex">
-                <div class="col-md-5">
-                        <button type="button" class="btn btn-info form-control" data-dismiss="modal">Annulé</button>
-                   </div>
-                   <div class="col-md-5">
-                        <button type="submit" class="btn btn-warning form-control">Desarchiver</button>
-                   </div>
-           </div>
-           </form>
-               <div class="row d-flex">
-                    <div class="col-md-5">
-                            <button type="button" class="btn btn-info form-control" data-dismiss="modal">Annulé</button>
-                       </div>
-                       <div class="col-md-5">
-                            <a id="lien_suprimer" href="" class="btn btn-danger form-control">Suprimer</a>
+               <div class="row">
+                        <div class="col-md-7">
+                          <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
+                          <a id="lien_desarchiver" href="" class="btn btn-warning">Desarchiver</a>
+                            <a id="lien_suprimer" href="" class="btn btn-danger">Suprimer</a>
                        </div>
                </div>
-               </form>
+               
         </div>
         <div class="modal-footer">
          
@@ -139,14 +126,15 @@ const modal_archive = () => {
          modal_archive()
          let idtheme = $(this).data('id_theme')
          $("#lien_suprimer").attr('href',"/admin/theme/delete/"+idtheme)
-         $("#p_archive_theme,#form_archive_theme").addClass('d-none')
-         $("#p_delete_theme,#form_delete_theme").removeClass('d-none')
+         $("#p_archive_theme,#lien_desarchiver").addClass('d-none')
+         $("#p_delete_theme,#lien_suprimer").removeClass('d-none')
       })
       $(".archive_modal").on("click",function(){
          modal_archive()
-         $('#archive_id_theme').val($(this).data('id_theme'))
-         $("#p_archive_theme,#form_archive_theme").removeClass('d-none')
-         $("#p_delete_theme,#form_delete_theme").addClass('d-none')
+         let idtheme = $(this).data('id_theme')
+         $("#lien_desarchiver").attr('href',"/admin/theme/desarchiver/"+idtheme)
+         $("#p_archive_theme,#lien_desarchiver").removeClass('d-none')
+         $("#p_delete_theme,#lien_suprimer").addClass('d-none')
       })
   })
 </script>

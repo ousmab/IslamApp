@@ -24,10 +24,11 @@ def theme_tache_fonds():
     '''
     today_date = date.today()
     today_date = datetime.combine(today_date,datetime.min.time())
-    theme_ligne = theme_en_ligne()
+    theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
     theme = Theme.query.filter_by(date_creation=today_date,is_brouillon=True).first()
     if theme:
-        theme_ligne.is_archive = True
+        if theme_ligne != None:
+            theme_ligne.is_archive = True
         theme.is_brouillon = False
         db.session.commit()
     else:
@@ -42,7 +43,7 @@ def theme_tache_fonds():
 
 @app_index.route('/')
 def home():
-    #theme_tache_fonds()
+    theme_tache_fonds()
     theme_online = theme_en_ligne()
     return render_template('index.html',theme_online=theme_online)
 
