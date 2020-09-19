@@ -25,7 +25,7 @@ def theme_tache_fonds():
     today_date = date.today()
     today_date = datetime.combine(today_date,datetime.min.time())
     theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
-    theme = Theme.query.filter_by(date_creation=today_date,is_brouillon=True).first()
+    theme = Theme.query.filter_by(date_publi=today_date,is_brouillon=True).first()
     if theme:
         if theme_ligne != None:
             theme_ligne.is_archive = True
@@ -33,7 +33,7 @@ def theme_tache_fonds():
         db.session.commit()
     else:
         if theme_ligne:
-            date_theme_online = theme_ligne.date_creation
+            date_theme_online = theme_ligne.date_publi
             date_comparaison = today_date - date_theme_online
             number_day = date_comparaison.days
             if(number_day>30):

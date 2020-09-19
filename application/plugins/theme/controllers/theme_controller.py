@@ -38,13 +38,13 @@ def theme_tache_fonds():
     today_date = datetime.today()
     theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
     #date creation corespond a la date de publication du theme
-    theme = Theme.query.filter_by(date_creation=today_date).first()
+    theme = Theme.query.filter_by(date_publi=today_date).first()
     if theme:
         theme_ligne.is_archive = True
         theme.is_brouillon = False
         db.session.commit()
     else:
-        date_theme_online = theme_ligne.date_creation
+        date_theme_online = theme_ligne.date_publi
         date_comparaison = today_date - date_theme_online
         number_day = date_comparaison.days
         if(number_day>30):
@@ -69,23 +69,23 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             theme.is_brouillon = True
             date_publi = request.form['date_publication']
             datetime_str = datetime.strptime(date_publi, "%m/%d/%Y")
-            theme.date_creation = datetime_str
+            theme.date_publi = datetime_str
             theme.resume = request.form['resume_theme']
             theme.titre = request.form['name_theme']
             #variable utiliser pour eviter de mettre en brouillon deux theme la meme date
             #  si sa date de publication corespond a une deja utilser une erreur est renvoyer.
-            brouillon_theme = Theme.query.filter_by(date_creation=datetime_str, \
+            brouillon_theme = Theme.query.filter_by(date_publi=datetime_str, \
                     is_brouillon=True).first()
             if theme_ligne:
                 if(update):
-                    if(datetime_str < theme_ligne.date_creation):
+                    if(datetime_str < theme_ligne.date_publi):
                         flash('Date publication inferieur a la date du theme en ligne','danger')
                     else:
                         db.session.commit()
                         flash(message_brouillon, 'success')
                         return redirect(url_for('theme.all_theme'))
                 else:
-                    if ((brouillon_theme) or (datetime_str < theme_ligne.date_creation)):
+                    if ((brouillon_theme) or (datetime_str < theme_ligne.date_publi)):
                             flash('Date deja choisie ou inferieur a la date du theme en ligne, \
                          veuiller choisir une autre date ', 'danger')
                     else:
@@ -110,14 +110,14 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
                     """
                     today_date = date.today()
                     today_date = datetime.combine(today_date,datetime.min.time())
-                    theme_brouillon_today = Theme.query.filter_by(date_creation=today_date,\
+                    theme_brouillon_today = Theme.query.filter_by(date_publi=today_date,\
                         is_brouillon=True).first()
                     if(theme_brouillon_today):
                         flash('Cette date correspont a un theme en brouillon','danger')
                     else:
                         theme.resume = request.form['resume_theme']
                         theme.titre = request.form['name_theme']
-                        theme.date_creation = today_date
+                        theme.date_publi = today_date
                         theme_persistence(theme)
                         flash(message_theme_ligne, 'success')
 
@@ -164,7 +164,7 @@ def update_theme(theme_id):
     form.resume_theme.data = theme.resume
     if theme.is_brouillon:
         form.is_brouillon.data = True
-        form.date_publication.data = theme.date_creation.strftime('%m/%d/%Y')
+        form.date_publication.data = theme.date_publi.strftime('%m/%d/%Y')
         #varible utiliser pour afficher la date de publication
         afficher_date = True
     if request.method == 'POST':
@@ -222,7 +222,7 @@ def unarchive(id_theme):
     theme.is_archive = False
     theme.is_brouillon = False
     today_date = datetime.today()
-    theme.date_creation=today_date
+    theme.date_publi=today_date
     db.session.commit()
     flash("Mise en ligne du theme archiver terminer",'success')
     return redirect(url_for('theme.all_archive'))  
