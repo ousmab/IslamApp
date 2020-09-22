@@ -43,7 +43,7 @@ def theme_tache_fonds():
 
 @app_index.route('/')
 def home():
-    theme_tache_fonds()
+    #theme_tache_fonds()
     theme_online = theme_en_ligne()
     return render_template('index.html',theme_online=theme_online)
 

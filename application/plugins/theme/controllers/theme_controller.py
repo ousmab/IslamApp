@@ -52,6 +52,12 @@ def theme_tache_fonds():
             db.session.commit()
         else:
             pass
+'''
+fonction qui retourne la date du jour sous un bon forma
+'''
+def date_today():
+    today_date = date.today()
+    return datetime.combine(today_date,datetime.min.time())
 
 def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
     '''
@@ -72,21 +78,23 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             theme.date_publi = datetime_str
             theme.resume = request.form['resume_theme']
             theme.titre = request.form['name_theme']
+            theme.id_user = request.form['id_user']
             #variable utiliser pour eviter de mettre en brouillon deux theme la meme date
             #  si sa date de publication corespond a une deja utilser une erreur est renvoyer.
             brouillon_theme = Theme.query.filter_by(date_publi=datetime_str, \
                     is_brouillon=True).first()
             if theme_ligne:
                 if(update):
-                    if(datetime_str < theme_ligne.date_publi):
+                    if(datetime_str <= theme_ligne.date_publi):
                         flash('Date publication inferieur a la date du theme en ligne','danger')
                     else:
+                        theme.updated_at = date_today()
                         db.session.commit()
                         flash(message_brouillon, 'success')
                         return redirect(url_for('theme.all_theme'))
                 else:
-                    if ((brouillon_theme) or (datetime_str < theme_ligne.date_publi)):
-                            flash('Date deja choisie ou inferieur a la date du theme en ligne, \
+                    if ((brouillon_theme) or (datetime_str <= theme_ligne.date_publi)):
+                            flash('Date deja choisie ou inferieur ou egale a la date du theme en ligne, \
                          veuiller choisir une autre date ', 'danger')
                     else:
                         theme_persistence(theme)
@@ -97,6 +105,7 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             if (update):
                 theme.resume = request.form['resume_theme']
                 theme.titre = request.form['name_theme']
+                theme.updated_at = date_today()
                 db.session.commit()
                 flash('Modification terminée', 'success')
             else:
@@ -108,8 +117,7 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
                      de publier un theme alors qu'il y'a un theme en brouillon
                      qui correspont a cette date
                     """
-                    today_date = date.today()
-                    today_date = datetime.combine(today_date,datetime.min.time())
+                    today_date = date_today()
                     theme_brouillon_today = Theme.query.filter_by(date_publi=today_date,\
                         is_brouillon=True).first()
                     if(theme_brouillon_today):
@@ -117,6 +125,7 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
                     else:
                         theme.resume = request.form['resume_theme']
                         theme.titre = request.form['name_theme']
+                        theme.id_user = request.form['id_user']
                         theme.date_publi = today_date
                         theme_persistence(theme)
                         flash(message_theme_ligne, 'success')
