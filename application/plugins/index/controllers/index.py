@@ -9,7 +9,7 @@ from flask import render_template
 #module application
 from application import db
 from application.plugins.index import app_index
-from application.plugins.theme.models.theme import Theme
+from application.plugins.theme.models.theme_model import Theme
 
 def theme_en_ligne():
     '''

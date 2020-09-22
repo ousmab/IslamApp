@@ -22,3 +22,4 @@ class Theme(db.Model):
     date_publi = db.Column(db.DateTime, nullable=False)
     is_brouillon = db.Column(db.Boolean, default=False)
     is_archive = db.Column(db.Boolean, default=False)
+    id_user = db.Column(db.Integer, db.ForeignKey('user_model.id'))

@@ -17,7 +17,7 @@ __version__ = '3.0.0'
 #import variable app_theme of the blueprint
 from application import db
 from application.plugins.theme import app_theme
-from application.plugins.theme.models.theme import Theme
+from application.plugins.theme.models.theme_model import Theme
 from application.plugins.theme.forms.form_add_theme import ThemeForm
 
 '''
