@@ -17,7 +17,7 @@ __version__ = '3.0.0'
 #import variable app_theme of the blueprint
 from application import db
 from application.plugins.theme import app_theme
-from application.plugins.theme.models.theme import Theme
+from application.plugins.theme.models.theme_model import Theme
 from application.plugins.theme.forms.form_add_theme import ThemeForm
 
 '''
@@ -37,19 +37,27 @@ while True:
 def theme_tache_fonds():
     today_date = datetime.today()
     theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
-    theme = Theme.query.filter_by(date_creation=today_date).first()
+    #date creation corespond a la date de publication du theme
+    theme = Theme.query.filter_by(date_publi=today_date).first()
     if theme:
         theme_ligne.is_archive = True
         theme.is_brouillon = False
-        return 'publication d"un theme'
+        db.session.commit()
     else:
-        date_theme_online = theme_ligne.date_creation
+        date_theme_online = theme_ligne.date_publi
         date_comparaison = today_date - date_theme_online
         number_day = date_comparaison.days
         if(number_day>30):
-            return 'plus grand que 30'
+            theme_ligne.is_archive = True
+            db.session.commit()
         else:
-            return 'plus petit que 30'
+            pass
+'''
+fonction qui retourne la date du jour sous un bon forma
+'''
+def date_today():
+    today_date = date.today()
+    return datetime.combine(today_date,datetime.min.time())
 
 def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
     '''
@@ -67,24 +75,26 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             theme.is_brouillon = True
             date_publi = request.form['date_publication']
             datetime_str = datetime.strptime(date_publi, "%m/%d/%Y")
-            theme.date_creation = datetime_str
+            theme.date_publi = datetime_str
             theme.resume = request.form['resume_theme']
             theme.titre = request.form['name_theme']
+            theme.id_user = request.form['id_user']
             #variable utiliser pour eviter de mettre en brouillon deux theme la meme date
             #  si sa date de publication corespond a une deja utilser une erreur est renvoyer.
-            brouillon_theme = Theme.query.filter_by(date_creation=datetime_str, \
+            brouillon_theme = Theme.query.filter_by(date_publi=datetime_str, \
                     is_brouillon=True).first()
             if theme_ligne:
                 if(update):
-                    if(datetime_str < theme_ligne.date_creation):
+                    if(datetime_str <= theme_ligne.date_publi):
                         flash('Date publication inferieur a la date du theme en ligne','danger')
                     else:
+                        theme.updated_at = date_today()
                         db.session.commit()
                         flash(message_brouillon, 'success')
                         return redirect(url_for('theme.all_theme'))
                 else:
-                    if ((brouillon_theme) or (datetime_str < theme_ligne.date_creation)):
-                            flash('Date deja choisie ou inferieur a la date du theme en ligne, \
+                    if ((brouillon_theme) or (datetime_str <= theme_ligne.date_publi)):
+                            flash('Date deja choisie ou inferieur ou egale a la date du theme en ligne, \
                          veuiller choisir une autre date ', 'danger')
                     else:
                         theme_persistence(theme)
@@ -95,18 +105,32 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             if (update):
                 theme.resume = request.form['resume_theme']
                 theme.titre = request.form['name_theme']
+                theme.updated_at = date_today()
                 db.session.commit()
-                flash('Modification zxsasa', 'success')
+                flash('Modification terminée', 'success')
             else:
                 if theme_ligne:
                     flash('IL YA DEJA UN THEME EN LIGNE','danger')
                 else:
-                    theme.resume = request.form['resume_theme']
-                    theme.titre = request.form['name_theme']
-                    today_date = date.today()
-                    theme.date_creation = today_date
-                    theme_persistence(theme)
-                    flash(message_theme_ligne, 'success')
+                    """variable qui contient un theme brouillon qui corespont a la data
+                     de creation d'un theme que le vont publier(ici on evite)
+                     de publier un theme alors qu'il y'a un theme en brouillon
+                     qui correspont a cette date
+                    """
+                    today_date = date_today()
+                    theme_brouillon_today = Theme.query.filter_by(date_publi=today_date,\
+                        is_brouillon=True).first()
+                    if(theme_brouillon_today):
+                        flash('Cette date correspont a un theme en brouillon','danger')
+                    else:
+                        theme.resume = request.form['resume_theme']
+                        theme.titre = request.form['name_theme']
+                        theme.id_user = request.form['id_user']
+                        theme.date_publi = today_date
+                        theme_persistence(theme)
+                        flash(message_theme_ligne, 'success')
+
+                    
 
 def theme_persistence(theme):
     '''
@@ -149,7 +173,7 @@ def update_theme(theme_id):
     form.resume_theme.data = theme.resume
     if theme.is_brouillon:
         form.is_brouillon.data = True
-        form.date_publication.data = theme.date_creation.strftime('%m/%d/%Y')
+        form.date_publication.data = theme.date_publi.strftime('%m/%d/%Y')
         #varible utiliser pour afficher la date de publication
         afficher_date = True
     if request.method == 'POST':
@@ -193,26 +217,24 @@ def all_archive():
     themes = Theme.query.filter_by(is_archive=True)
     return render_template('all_archive_theme.html', themes=themes)
 
-@app_theme.route('/admin/theme/desarchiver',methods=['POST'])
-def unarchive():
+@app_theme.route('/admin/theme/desarchiver/<int:id_theme>')
+def unarchive(id_theme):
     '''
     unarchive theme application
     '''
-    if request.method == 'POST':
-        theme_id = request.form['id_theme']
-        theme = Theme.query.get_or_404(theme_id)
-        theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
-        if theme_ligne:
-            theme_ligne.is_archive = True
-            theme_ligne.is_brouillon = False
-            
-        theme.is_archive = False
-        theme.is_brouillon = False
-        today_date = datetime.today()
-        theme.date_creation=today_date
-        db.session.commit()
-        flash("Mise en ligne du theme archiver terminer",'success')
-        return redirect(url_for('theme.all_archive'))  
+    theme_id = id_theme
+    theme = Theme.query.get_or_404(theme_id)
+    theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
+    if theme_ligne:
+        theme_ligne.is_archive = True
+        theme_ligne.is_brouillon = False    
+    theme.is_archive = False
+    theme.is_brouillon = False
+    today_date = datetime.today()
+    theme.date_publi=today_date
+    db.session.commit()
+    flash("Mise en ligne du theme archiver terminer",'success')
+    return redirect(url_for('theme.all_archive'))  
 
     
 @app_theme.route('/admin/theme/index')

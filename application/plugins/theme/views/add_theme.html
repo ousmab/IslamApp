@@ -6,7 +6,7 @@
                 <div class="col">
                         <div class="card shadow">
                                 <div class="card-header border-0">
-                                  <h3 class="mb-0">Nouveau Theme</h3></br>
+                                  <h3 class="mb-0">Nouveau Theme {{current_user.id}}</h3></br>
                                   {% with messages = get_flashed_messages(with_categories=true) %}
                                         {% if messages %}
                                                 {% for category, message in messages %}
@@ -21,7 +21,8 @@
                                 {% endwith %}
                                 </div>
                                 <form method="post">
-                                       <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}"> 
+                                       <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+                                       <input type="int" class="d-none" name="id_user" value="{{current_user.id}}"> 
                                        
                                     <div class="form-group col-8">
                                         <label for="">Titre du themes</label>
@@ -34,8 +35,9 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                                 </div>
+                                                
                                                 <!-- <input class="form-control datepicker" placeholder="entrer la date " type="text"> -->
-                                                {{ form.date_publication(class="form-control datepicker",  placeholder="entrer la date ")}}
+                                                {{ form.date_publication(class="form-control datepicker", placeholder="entrer la date ")}}
                                             </div>
                                         </div>
                                     <div class="form-group col-8">

@@ -16,7 +16,7 @@ from wtforms import StringField, TextAreaField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, ValidationError
 
 #import models
-from application.plugins.theme.models.theme import Theme
+from application.plugins.theme.models.theme_model import Theme
 
 
 class ThemeForm(FlaskForm):

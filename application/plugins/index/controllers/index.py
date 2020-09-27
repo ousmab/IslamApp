@@ -9,7 +9,7 @@ from flask import render_template
 #module application
 from application import db
 from application.plugins.index import app_index
-from application.plugins.theme.models.theme import Theme
+from application.plugins.theme.models.theme_model import Theme
 
 def theme_en_ligne():
     '''
@@ -24,15 +24,16 @@ def theme_tache_fonds():
     '''
     today_date = date.today()
     today_date = datetime.combine(today_date,datetime.min.time())
-    theme_ligne = theme_en_ligne()
-    theme = Theme.query.filter_by(date_creation=today_date,is_brouillon=True).first()
+    theme_ligne = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
+    theme = Theme.query.filter_by(date_publi=today_date,is_brouillon=True).first()
     if theme:
-        theme_ligne.is_archive = True
+        if theme_ligne != None:
+            theme_ligne.is_archive = True
         theme.is_brouillon = False
         db.session.commit()
     else:
         if theme_ligne:
-            date_theme_online = theme_ligne.date_creation
+            date_theme_online = theme_ligne.date_publi
             date_comparaison = today_date - date_theme_online
             number_day = date_comparaison.days
             if(number_day>30):
