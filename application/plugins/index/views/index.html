@@ -23,26 +23,24 @@
       <span></span>
       <span></span>
     </div>
+
     <div class="container py-lg-md d-flex">
       <div class="col px-0">
         <div class="row">
-          <div class="col-lg-6">
-            <h1 class="display-3  text-white">Augmentez votre foi<span>Vivez selon le Coran et la Sunna</span></h1>
-            <p class="lead  text-white">IslamApp a pour but de vous édifier sur l'islam, vous faire vivre selon les enseignements authentiques et vous éloigner de la Bid'a</p>
-            <div class="btn-wrapper">
-              <a href="{{url_for('index.about')}}" class="btn btn-info btn-icon mb-3 mb-sm-0">
-                <span class="btn-inner--icon"><i class="fa fa-info"></i></span>
-                <span class="btn-inner--text">A Propos</span>
-              </a>
-              <a href="#" class="btn btn-white btn-icon mb-3 mb-sm-0">
-                <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
-                <span class="btn-inner--text">Application Mobile</span>
-              </a>
+
+          <div class="col-lg-12">
+            <div class="alert alert-default" role="alert">
+              <h4 class="alert-heading">Theme du mois</h4>
+              <p><b>{{theme_online.titre}}</b></p>
+              <p class="mb-0">{{theme_online.resume}}</p>
+              <hr>
+              <a href="#" class="btn btn-neutral btn-icon">Posez votre question</a>
             </div>
           </div>
+
         </div>
-      </div>
-  <main>
+    </div>
+  <section>
     <div class="position-relative">
       <!-- shape Hero -->
       <section class="section section-lg section-shaped pb-250">
@@ -62,18 +60,25 @@
   </div>
 </section>
 
-<section class="section section-lg pt-0">
+<section class="section section-lg pt-10">
   <div class="container">
     <div class="card bg-gradient-warning shadow-lg border-0">
       <div class="p-5">
         <div class="row align-items-center">
-          <div class="col-lg-8">
-            <h3 class="text-white">We made website building easier for you.</h3>
-            <p class="lead text-white mt-3">I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture.</p>
+
+          <h1 class="display-3 text-white">Augmentez votre foi<span>Vivez selon le Coran et la Sunna</span></h1>
+          <p class="lead  text-white">IslamApp a pour but de vous édifier sur l'islam, vous faire vivre selon les enseignements authentiques et vous éloigner de la Bid'a</p>
+          <div class="btn-wrapper">
+            <a href="{{url_for('index.about')}}" class="btn btn-info btn-icon mb-3 mb-sm-0">
+              <span class="btn-inner--icon"><i class="fa fa-info"></i></span>
+              <span class="btn-inner--text">A Propos</span>
+            </a>
+            <a href="#" class="btn btn-white btn-icon mb-3 mb-sm-0">
+              <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
+              <span class="btn-inner--text">Application Mobile</span>
+            </a>
           </div>
-          <div class="col-lg-3 ml-lg-auto">
-            <a href="https://www.creative-tim.com/product/argon-design-system" class="btn btn-lg btn-block btn-white">Download HTML</a>
-          </div>
+
         </div>
       </div>
     </div>
@@ -84,31 +89,31 @@
   <div class="container pt-lg pb-300">
     <div class="row text-center justify-content-center">
       <div class="col-lg-10">
-        <h2 class="display-3 text-white">Build something</h2>
-        <p class="lead text-white">According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent tihs year down to low ice.</p>
+        <h2 class="display-3 text-white">Apprenez de nouvelles choses</h2>
+        <p class="lead text-white">Nous vous offrons un ensemble de ressources gratuites pour augmenter votre connaissance de la religion</p>
       </div>
     </div>
     <div class="row row-grid mt-5">
       <div class="col-lg-4">
         <div class="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
-          <i class="ni ni-settings text-primary"></i>
+          <i class="ni ni-bell-55 text-primary"></i>
         </div>
-        <h5 class="text-white mt-3">Building tools</h5>
-        <p class="text-white mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="text-white mt-3">Écoutez</h5>
+        <p class="text-white mt-3">Accédez aux audios du Qur'an et des rappels</p>
       </div>
       <div class="col-lg-4">
         <div class="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
-          <i class="ni ni-ruler-pencil text-primary"></i>
+          <i class="ni ni-collection text-primary"></i>
         </div>
-        <h5 class="text-white mt-3">Grow your market</h5>
-        <p class="text-white mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="text-white mt-3">Restez-informez</h5>
+        <p class="text-white mt-3">Consultez les horaires de prières, le calendrier et les programmes de vos émissions favorites</p>
       </div>
       <div class="col-lg-4">
         <div class="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
-          <i class="ni ni-atom text-primary"></i>
+          <i class="ni ni-pin-3 text-primary"></i>
         </div>
-        <h5 class="text-white mt-3">Launch time</h5>
-        <p class="text-white mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="text-white mt-3">Localisez-vous</h5>
+        <p class="text-white mt-3">Retrouvez les mosquées, restaurants et écoles sur une carte interactive</p>
       </div>
     </div>
   </div>
