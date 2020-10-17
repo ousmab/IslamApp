@@ -48,6 +48,9 @@ MODULES = [
     {'path': 'application.plugins.index.controllers.connexion', 'blueprint': 'app_index', 'url':None},
     # theme module
     {'path': 'application.plugins.theme.controllers.theme_controller', 'blueprint': 'app_theme', 'url':None},
+    # questions module
+    {'path': 'application.plugins.questions.controllers.question_controller', 'blueprint': 'app_questions', 'url':None},
+    {'path': 'application.plugins.questions.controllers.reponse_controller', 'blueprint': 'app_questions', 'url':None},
     # dashboard module
     {'path': 'application.plugins.dashboard.controllers.admin_user', 'blueprint': 'app_dashboard', 'url':'/admin'},
     {'path': 'application.plugins.dashboard.controllers.role_ctrl', 'blueprint': 'app_dashboard', 'url':'/admin'},
