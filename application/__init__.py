@@ -2,16 +2,15 @@
 
 __version__ = '3.0.0'
 
-import os
 import importlib
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
-
+from application.env import DATABASE_URI
 from application.core.tools import date_time, security
+
 
 class FlaskApp(Flask):
     pass
@@ -32,11 +31,10 @@ except IOError:
 app.jinja_env.globals["csrf_token"] = security.generate_token
 app.jinja_env.filters["format_date_time"] = date_time.format_date
 
-# Configure database (sqlite)
-project_dir = os.path.dirname(os.path.abspath(__file__))
-db_file = "sqlite:///{}".format(os.path.join(project_dir, "islamapp.db"))
+# Configure database
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 
-app.config['SQLALCHEMY_DATABASE_URI'] = db_file
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
