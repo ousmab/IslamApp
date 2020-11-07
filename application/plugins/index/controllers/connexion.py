@@ -1,6 +1,4 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
-
-
 import werkzeug
 from application.plugins.index import app_index
 from application.plugins.dashboard.models.user_model import UserModel

@@ -1,5 +1,4 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
-
 import sqlalchemy
 from application.plugins.geotime import app_geotime
 from flask_login import login_required

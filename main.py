@@ -1,5 +1,3 @@
-# Part of IslamApp. See LICENSE file for full copyright and licensing details.
-
 from application import app
 from flask import render_template, session, abort, request
 from application import login_manager

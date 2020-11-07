@@ -1,9 +1,4 @@
 # Part of IslamApp. See LICENSE file for full copyright and licensing details.
-__version__ = '3.0.0'
-'''
-file model reponse describe database
-import package datetime
-'''
 from datetime import datetime
 
 # package describe database
