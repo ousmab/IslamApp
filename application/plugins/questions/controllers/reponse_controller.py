@@ -1,6 +1,6 @@
+from application.plugins.questions import app_question
+from application.plugins.questions.models.reponse_model import ReponseModel
 
-from application.plugins.questions import app_questions
-
-@app_questions.route('/admin/theme/new')
+@app_question.route('/reponses/')
 def all_reponse():
     return 'ddd'
