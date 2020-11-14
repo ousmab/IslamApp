@@ -99,3 +99,5 @@ ENV/
 
 #outil visual code
 .vscode/
+
+.env.py
