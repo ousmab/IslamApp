@@ -10,6 +10,8 @@ __pycache__/
 *.db
 migrations/
 src/
+*.idea
+env.py
 
 # C extensions
 *.so

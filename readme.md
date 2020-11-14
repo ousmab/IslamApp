@@ -52,6 +52,41 @@ Il s'agit d'une application client - serveur en mode web service (REST API).
     - **plugins**: ce dossier contient les modules métiers de l'application (fichiers statiques, geolocalisation, themes, modèles, etc...)
     - **core**: il contient les scripts et autres codes utiles au fonctionnement de l'application
     - **api**: il contient toutes les api de l'application
+    
+## Installer avec docker
+
+```
+# D'abord construire l'image
+docker build -t flask .
+
+# ensuite lancer l'image
+docker-compose up
+
+# accéder aux conteneurs
+docker-compose exec flask sh
+docker exec -it isla_db psql -U admin
+```
+
+## Démarrer l'application
+
+```
+export FLASK_APP=main.py
+export FLASK_ENV=development
+
+# Migration BD
+
+flask db init
+flask db migrate
+flask db upgrade
+
+# Lancer l'application
+
+flask run --host='0.0.0.0'
+
+# Se connecter à PSQL
+
+sudo -u postgres psql
+```
 
 
 # Installer et démarrer l'application sur **Windows 10 (64 bits)**

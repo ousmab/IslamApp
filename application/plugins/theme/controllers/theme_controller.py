@@ -1,8 +1,3 @@
-# Part of IslamApp. See LICENSE file for full copyright and licensing details.
-'''
-import des modules
-'''
-#module for import package datetime and methods flask
 from datetime import datetime, date
 import schedule
 import threading
@@ -12,9 +7,6 @@ import pprint
 from flask import render_template, flash, request, redirect, url_for, abort
 from flask_login import login_required
 
-__version__ = '3.0.0'
-
-#import variable app_theme of the blueprint
 from application import db
 from application.plugins.theme import app_theme
 from application.plugins.theme.models.theme_model import Theme

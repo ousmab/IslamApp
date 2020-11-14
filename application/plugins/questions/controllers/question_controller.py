@@ -1,6 +1,6 @@
+from application.plugins.questions import app_question
+from application.plugins.questions.models.question_model import QuestionModel
 
-from application.plugins.questions import app_questions
-
-@app_questions.route('/admin/theme/new')
+@app_question.route('/questions/')
 def all_questions():
     return 'dddd'
