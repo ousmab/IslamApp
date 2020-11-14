@@ -117,7 +117,7 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
                     else:
                         theme.resume = request.form['resume_theme']
                         theme.titre = request.form['name_theme']
-                        theme.id_user = request.form['id_user']
+                        theme.user_id = request.form['user_id']
                         theme.date_publi = today_date
                         theme_persistence(theme)
                         flash(message_theme_ligne, 'success')
