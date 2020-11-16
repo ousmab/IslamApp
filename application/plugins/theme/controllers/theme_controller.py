@@ -70,7 +70,7 @@ def theme_process(theme,form,message_brouillon,message_theme_ligne,update):
             theme.date_publi = datetime_str
             theme.resume = request.form['resume_theme']
             theme.titre = request.form['name_theme']
-            theme.id_user = request.form['user_id']
+            theme.user_id = request.form['user_id']
             #variable utiliser pour eviter de mettre en brouillon deux theme la meme date
             #  si sa date de publication corespond a une deja utilser une erreur est renvoyer.
             brouillon_theme = Theme.query.filter_by(date_publi=datetime_str, \
