@@ -68,8 +68,8 @@
                                                             <i class="fas fa-ellipsis-v"></i>
                                                           </a>
                                                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="">Valider</a>
-                                                            <a class="dropdown-item delete_modal" href="#" data-toggle="modal" data-id_theme="" data-target="#exampleModal">Suprimer</a>
+                                                            <a class="dropdown-item validate_modal"  data-toggle="modal" data-question_id="{{question.id}}"  data-target="#exampleModal" href="">Valider</a>
+                                                            <a class="dropdown-item delete_modal" href="#" data-toggle="modal" data-question_id="{{question.id}}" data-target="#exampleModal">Suprimer</a>
                                                           </div>
                                                         </div>
                                                       </td>       
@@ -87,33 +87,47 @@
          </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Supression de theme</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-         Souhaitez-vous vraiment suprimer le theme ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
-          <a id="lien_suprimer" href="" class="btn btn-danger">Suprimer</a>
-        </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Validation de question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <p class="d-none" id="p_delete_theme">  Souhaitez-vous vraiment suprimer la question ? </p>
+     <p class="d-none" id="p_archive_theme">  Valider la question </p>
+             <div class="row">
+                      <div class="col-md-7">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
+                        <a id="lien_desarchiver" href="" class="btn btn-success">Valider</a>
+                          <a id="lien_suprimer" href="" class="btn btn-danger">Suprimer</a>
+                     </div>
+             </div>
+             
+      </div>
+      <div class="modal-footer">
+       
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
 {% block script %}
 <script>
   $(document).ready(function(){
-      $(".delete_modal").on("click",function(){
-          let idtheme = $(this).data('id_theme')
-          $("#lien_suprimer").attr('href',"/admin/theme/delete/"+idtheme)
-          $("#exampleModal").show();
-      })
+    const modal_view = () => {
+    $("#exampleModal").show(); 
+}
+$(".delete_modal").on("click",function(){
+  modal_view();
+  let idtquestion = $(this).data('question_id')
+  $("#lien_suprimer").attr('href',"/admin/theme/delete/"+idtquestion)
+})
+ $(".validate_modal").on("click", function(){
+   madal_view();
+ })
   })
 </script>
 {% endblock%}
