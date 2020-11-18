@@ -96,13 +96,13 @@
         </button>
       </div>
       <div class="modal-body">
-     <p class="d-none" id="p_delete_theme">  Souhaitez-vous vraiment suprimer la question ? </p>
-     <p class="d-none" id="p_archive_theme">  Valider la question </p>
+     <p class="d-none" id="p_delete_question">  Souhaitez-vous vraiment suprimer la question ? </p>
+     <p class="d-none" id="p_validate_question">  Valider la question </p>
              <div class="row">
                       <div class="col-md-7">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
-                        <a id="lien_desarchiver" href="" class="btn btn-success">Valider</a>
-                          <a id="lien_suprimer" href="" class="btn btn-danger">Suprimer</a>
+                        <a id="link_validate" href="" class="btn btn-success">Valider</a>
+                          <a id="link_remove" href="" class="btn btn-danger">Suprimer</a>
                      </div>
              </div>
              
@@ -117,17 +117,28 @@
 {% block script %}
 <script>
   $(document).ready(function(){
+    let id_question = () => {
+      return  $(this).data('question_id') 
+    }
+    
     const modal_view = () => {
     $("#exampleModal").show(); 
 }
 $(".delete_modal").on("click",function(){
   modal_view();
-  let idtquestion = $(this).data('question_id')
-  $("#lien_suprimer").attr('href',"/admin/theme/delete/"+idtquestion)
+  let idquestion = $(this).data('question_id')
+  id = id_question()
+  $("#link_remove").attr('href',"/admin/question/delete/"+idquestion)
+  $("#p_validate_question,#link_validate").addClass('d-none')
+  $("#p_delete_question,#link_remove").removeClass('d-none')
 })
  $(".validate_modal").on("click", function(){
-   madal_view();
- })
+   modal_view();
+   let idquestion = $(this).data('question_id')
+   $("#link_validate").attr('href',"/admin/question/validate/"+idquestion)
+   $("#p_delete_question,#link_remove").addClass('d-none')
+   $("#p_validate_question,#link_validate").removeClass('d-none')
+ });
   })
 </script>
 {% endblock%}
