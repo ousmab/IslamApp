@@ -134,6 +134,7 @@ def theme_persistence(theme):
 
 
 @app_theme.route('/admin/theme/new', methods=['POST', 'GET'])
+@login_required
 def add_theme():
     '''
     methodes return views and add theme
@@ -145,6 +146,7 @@ def add_theme():
     return render_template('add_theme.html', form=form)
 
 @app_theme.route('/admin/theme/all_theme')
+@login_required
 def all_theme():
     '''
     return return all theme and option update,delete and archive theme
@@ -154,6 +156,7 @@ def all_theme():
     return render_template('all_theme.html', themes=themes,theme_ligne=theme_ligne)
 
 @app_theme.route('/admin/theme/update/<int:theme_id>',methods=['POST','GET'])
+@login_required
 def update_theme(theme_id):
     '''
     update theme application
@@ -173,6 +176,7 @@ def update_theme(theme_id):
     return render_template('add_theme.html',form=form,afficher_date=afficher_date,theme=theme)
 
 @app_theme.route('/admin/theme/delete/<int:theme_id>')
+@login_required
 def delete_theme(theme_id):
     '''
     delete theme application
@@ -185,6 +189,7 @@ def delete_theme(theme_id):
     
 
 @app_theme.route('/admin/theme/archiver', methods=['POST', 'GET'])
+@login_required
 def archive_theme():
     '''
     archive theme
@@ -202,6 +207,7 @@ def archive_theme():
     return render_template('archiver_theme.html',theme=theme_online,form=form,is_archive_name=is_archive_name)
 
 @app_theme.route('/admin/theme/all_archive')
+@login_required
 def all_archive():
     '''
     return return all theme archived
@@ -210,6 +216,7 @@ def all_archive():
     return render_template('all_archive_theme.html', themes=themes)
 
 @app_theme.route('/admin/theme/desarchiver/<int:id_theme>')
+@login_required
 def unarchive(id_theme):
     '''
     unarchive theme application
