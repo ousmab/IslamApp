@@ -5,11 +5,11 @@
                 <div class="col">
                         <div class="card shadow">
                                 <div class="card-header">
-                                  <h3 class="mb-0">Validation des questions</h3></br>
+                                  <h3 class="mb-0">Affichage des questions public</h3></br>
             
                                   <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
                                     <li class="nav-item">
-                                      <a class="nav-link mb-sm-3 mb-md-0 success" id="tabs-text-1-tab" href="{{ url_for('questions.all_question_validate')  }} " aria-selected="false">Repondre aux questions</a>
+                                      <a class="nav-link mb-sm-3 mb-md-0 success" id="tabs-text-1-tab" href="{{ url_for('questions.all_questions')  }} " aria-selected="false">Retour validation des questions</a>
                                     </li>
                                     <li class="nav-item">
                                       <a class="nav-link mb-sm-3 mb-md-0 warning" id="tabs-text-2-tab" href="{{ url_for('theme.all_archive')  }} " role="tab" aria-selected="false">Questions privee</a>
@@ -44,7 +44,7 @@
                                                 <th scope="col">
                                                     Date de publication
                                                 </th>
-                                                <th scope="col">Option</th>
+                                                <th scope="col">option</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
@@ -62,16 +62,8 @@
                                                         {{ question.date_question.strftime('%m/%d/%Y') }}
                                                 </td>
                                                 
-                                                    <td class="text-right">
-                                                        <div class="dropdown">
-                                                          <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                          </a>
-                                                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item validate_modal"  data-toggle="modal" data-question_id="{{question.id}}"  data-target="#exampleModal" href="">Valider</a>
-                                                            <a class="dropdown-item delete_modal" href="#" data-toggle="modal" data-question_id="{{question.id}}" data-target="#exampleModal">Suprimer</a>
-                                                          </div>
-                                                        </div>
+                                                    <td>
+                                                        <a class="btn btn-info" href="/admin/reponse/add/{{question.id}}">Repondre</a>
                                                       </td>       
                                             </tr>
                                             
@@ -86,59 +78,4 @@
                 </div>
          </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Validation de question</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-     <p class="d-none" id="p_delete_question">  Souhaitez-vous vraiment suprimer la question ? </p>
-     <p class="d-none" id="p_validate_question">  Valider la question </p>
-             <div class="row">
-                      <div class="col-md-7">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Annulé</button>
-                        <a id="link_validate" href="" class="btn btn-success">Valider</a>
-                          <a id="link_remove" href="" class="btn btn-danger">Suprimer</a>
-                     </div>
-             </div>
-             
-      </div>
-      <div class="modal-footer">
-       
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
-{% block script %}
-<script>
-  $(document).ready(function(){
-    let id_question = () => {
-      return  $(this).data('question_id') 
-    }
-    
-    const modal_view = () => {
-    $("#exampleModal").show(); 
-}
-$(".delete_modal").on("click",function(){
-  modal_view();
-  let idquestion = $(this).data('question_id')
-  id = id_question()
-  $("#link_remove").attr('href',"/admin/question/delete/"+idquestion)
-  $("#p_validate_question,#link_validate").addClass('d-none')
-  $("#p_delete_question,#link_remove").removeClass('d-none')
-})
- $(".validate_modal").on("click", function(){
-   modal_view();
-   let idquestion = $(this).data('question_id')
-   $("#link_validate").attr('href',"/admin/question/validate/"+idquestion)
-   $("#p_delete_question,#link_remove").addClass('d-none')
-   $("#p_validate_question,#link_validate").removeClass('d-none')
- });
-  })
-</script>
-{% endblock%}

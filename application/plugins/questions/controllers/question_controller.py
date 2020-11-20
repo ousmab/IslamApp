@@ -38,3 +38,12 @@ def delete_question(question_id):
     db.session.commit()
     flash('La question a ete suprimee avec succes','success')
     return redirect(url_for('questions.all_questions'))
+
+'''
+affiche tous les question deja valider
+'''
+@app_question.route('/admin/question/reponse')
+@login_required
+def all_question_validate():
+    questions = QuestionModel.query.filter_by(is_approved=True)
+    return render_template('admin/reponse_question.html',questions=questions)
