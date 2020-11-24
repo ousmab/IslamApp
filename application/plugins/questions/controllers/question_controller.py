@@ -1,5 +1,7 @@
 from application.plugins.questions import app_question
 from application.plugins.questions.models.question_model import QuestionModel
+from application.plugins.questions.models.reponse_model import ReponseModel
+from application.plugins.dashboard.models.user_model import UserModel
 from flask import render_template, flash, request, redirect, url_for, abort
 from application.plugins.theme.models.theme_model import Theme
 from flask_login import login_required
@@ -47,3 +49,22 @@ affiche tous les question deja valider
 def all_question_validate():
     questions = QuestionModel.query.filter_by(is_approved=True)
     return render_template('admin/reponse_question.html',questions=questions)
+
+'''
+affichage du theme, des questions et de leurs reponse
+'''
+@app_question.route('/forum/theme/<int:theme_id>')
+def theme_forum(theme_id):
+    questions = QuestionModel.query.filter_by(theme_id=theme_id).all()
+    j=0
+    for question in questions:
+        reponses = ReponseModel.query.filter_by(question_id=question.id).all()
+        i=0
+        for reponse in reponses:
+            user = UserModel.query.filter_by(id=reponse.user_id).first()
+            reponses[i].author = user.fullname
+            i=i+1
+        questions[j].reponses = reponses
+        j=j+1
+    return render_template('public/theme_question.html',questions=questions)
+    

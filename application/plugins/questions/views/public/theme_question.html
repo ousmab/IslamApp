@@ -1,0 +1,7 @@
+<h1>Apercu des questions</h1>
+{% for  question in questions %}
+  <p>QUESTION_>{{question.content}}</p>
+  {% for  re in question.reponses %}
+   <p>REPONSE->{{re.content}} && auteur: {{ re.author }}</p>
+   {% endfor %}
+{% endfor %}
