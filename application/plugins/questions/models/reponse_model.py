@@ -12,3 +12,4 @@ class ReponseModel(db.Model):
     date_publication = db.Column(db.DateTime, nullable=True)
     is_draft = db.Column(db.Boolean, default=False)
     question_id = db.Column(db.Integer, db.ForeignKey('question_model.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user_model.id'))

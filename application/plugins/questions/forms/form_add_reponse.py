@@ -21,4 +21,4 @@ class ReponseForm(FlaskForm):
    class describe field add new theme
     '''
     response_question = TextAreaField('Reponse', validators=[DataRequired(), Length(min=4, max=400)])
-    submit = SubmitField('Enregistrer')
+    submit = SubmitField('Repondre')
