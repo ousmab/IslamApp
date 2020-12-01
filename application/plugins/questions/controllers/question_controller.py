@@ -8,14 +8,29 @@ from flask_login import login_required
 from application import db
 
 '''
+fonction qui return true ou false selon le theme est en ligne ou non
+'''
+def isThemeOnline():
+    theme_online = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
+    if theme_online:
+        return True
+    else :
+        return False
+
+
+'''
 controlleur pour afficher les questions en cour de validation
 '''
 @app_question.route('/admin/question/all_question')
 @login_required
 def all_questions():
-    theme_online = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
-    question_no_validate = QuestionModel.query.filter_by(is_approved=False, theme_id= theme_online.id)
-    return render_template('admin/all_question.html',questions=question_no_validate)
+    is_theme_online = isThemeOnline()
+    if is_theme_online:
+        theme_online = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
+        question_no_validate = QuestionModel.query.filter_by(is_approved = False, theme_id = theme_online.id)
+    else:
+        question_no_validate = True
+    return render_template('admin/all_question.html', questions=question_no_validate, is_theme_online = is_theme_online)
 
 '''
 controller pour valider une question
@@ -47,8 +62,14 @@ affiche tous les question deja valider
 @app_question.route('/admin/question/reponse')
 @login_required
 def all_question_validate():
-    questions = QuestionModel.query.filter_by(is_approved=True)
-    return render_template('admin/reponse_question.html',questions=questions)
+    theme_online = Theme.query.filter_by(is_brouillon=False, is_archive=False).first()
+    is_theme_online = isThemeOnline()
+    if is_theme_online:
+        theme_id =  theme_online.id
+        questions = QuestionModel.query.filter_by(is_approved=True, theme_id = theme_id)
+    else:
+        questions = []
+    return render_template('admin/reponse_question.html', questions = questions, is_theme_online = is_theme_online)
 
 '''
 affichage du theme, des questions et de leurs reponse
