@@ -200,10 +200,16 @@ def archive_theme():
     if(theme_online is None):
         abort(404)
     if request.method == 'POST':
-        theme_online.is_archive = True
-        db.session.commit()
-        is_archive_name = True
-        flash("Archivage du theme reussie avec success",'success')
+        content = request.form['resume_theme']
+        nbr_content = len(content)
+        if nbr_content <= 50 :
+            flash("le text est trop petit","danger")
+        else:
+            theme_online.conclusion = content
+            theme_online.is_archive = True
+            db.session.commit()
+            is_archive_name = True
+            flash("Archivage du theme reussie avec success",'success')
     return render_template('archiver_theme.html',theme=theme_online,form=form,is_archive_name=is_archive_name)
 
 @app_theme.route('/admin/theme/all_archive')
@@ -229,6 +235,7 @@ def unarchive(id_theme):
         theme_ligne.is_brouillon = False    
     theme.is_archive = False
     theme.is_brouillon = False
+    theme.conclusion = " "
     today_date = datetime.today()
     theme.date_publi=today_date
     db.session.commit()
